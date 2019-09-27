@@ -7,18 +7,19 @@ using MoonSharp.Interpreter;
 namespace LuaBuildEvents {
     public class Program {
         public static int Main(string[] args) {
-            if (args.Length != 1) {
+            if (args.Length <= 0) {
+                Console.WriteLine($"Usage: dotnet LuaBuildEvents.dll <path to script.lua>");
                 return 2;
             }
             if (!File.Exists(args[0])) {
                 Console.WriteLine($"The file \"{args[0]}\" does not exist.");
             }
-            return new Program().Run(args[0]);
+            return new Program().Run(args[0], args);
         }
 
         private Script _luaScript;
 
-        public int Run(string filename) {
+        public int Run(string filename, string[] args) {
             RegisterTypes();
             _luaScript = new Script {
                 Options = {
@@ -32,6 +33,7 @@ namespace LuaBuildEvents {
                     DebugPrint = Console.Write,
                 }
             };
+            _luaScript.Globals["args"] = args;
             _luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
             _luaScript.Globals["_internal_io_path"] = new Func<object>(() => new LuaPath());
             _luaScript.Globals["_internal_io_directory"] = new Func<object>(() => new LuaDirectory());

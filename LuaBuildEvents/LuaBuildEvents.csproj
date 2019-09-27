@@ -3,6 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <StartupObject>LuaBuildEvents.Program</StartupObject>
+    <Authors>Joao Pedro Dante</Authors>
+    <Company />
+    <PackageProjectUrl>https://github.com/jpdante/LuaBuildEvents</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jpdante/LuaBuildEvents</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

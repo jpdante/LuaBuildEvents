@@ -2,7 +2,7 @@
   "profiles": {
     "LuaBuildEvents": {
       "commandName": "Project",
-      "commandLineArgs": "PostBuild.lua"
+      "commandLineArgs": "PostBuild.lua $(SolutionDir)"
     }
   }
 }
