@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LuaBuildEvents": {
+      "commandName": "Project",
+      "commandLineArgs": "PostBuild.lua"
+    }
+  }
+}

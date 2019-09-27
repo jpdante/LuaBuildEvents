@@ -6,11 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="lua\io\directory.lua" />
+    <None Remove="lua\io\file.lua" />
+    <None Remove="lua\io\path.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="lua\io\directory.lua" />
+    <EmbeddedResource Include="lua\io\file.lua" />
+    <EmbeddedResource Include="lua\io\path.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Costura.Fody" Version="4.1.0" />
     <PackageReference Include="Fody" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MoonSharp" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
