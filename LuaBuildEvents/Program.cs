@@ -2,7 +2,10 @@
 using System.IO;
 using LuaBuildEvents.Internal;
 using LuaBuildEvents.Internal.Lua;
+using LuaBuildEvents.Internal.Lua.IO;
+using LuaBuildEvents.Internal.Lua.Sys;
 using MoonSharp.Interpreter;
+// ReSharper disable StringLiteralTypo
 
 namespace LuaBuildEvents {
     public class Program {
@@ -35,16 +38,23 @@ namespace LuaBuildEvents {
                 }
             };
             _luaScript.Globals["args"] = args;
+            _luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
             _luaScript.Globals["_internal_io_file"] = typeof(LuaFile);
             _luaScript.Globals["_internal_io_path"] = typeof(LuaPath);
             _luaScript.Globals["_internal_io_directory"] = typeof(LuaDirectory);
+            _luaScript.Globals["_internal_io_filestream"] = typeof(LuaFileStream);
+            _luaScript.Globals["_internal_io_streamreader"] = typeof(LuaStreamReader);
+            _luaScript.Globals["_internal_io_streamwriter"] = typeof(LuaStreamWriter);
             _luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
             //_luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
             try {
                 _luaScript.DoFile(filename);
-            } catch (ScriptRuntimeException   ex) {
+            } catch (ScriptRuntimeException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
-                return 1;
+                return ex.HResult;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return ex.HResult;
             }
             return 0;
         }
@@ -53,6 +63,9 @@ namespace LuaBuildEvents {
             UserData.RegisterType<LuaFile>();
             UserData.RegisterType<LuaDirectory>();
             UserData.RegisterType<LuaPath>();
+            UserData.RegisterType<LuaFileStream>();
+            UserData.RegisterType<LuaStreamReader>();
+            UserData.RegisterType<LuaStreamWriter>();
             UserData.RegisterType<LuaEnvironment>();
         }
     }

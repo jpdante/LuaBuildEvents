@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Text;
+﻿using System.IO;
+
 // ReSharper disable InconsistentNaming
 
-namespace LuaBuildEvents.Internal.Lua {
+namespace LuaBuildEvents.Internal.Lua.IO {
     public class LuaFile {
         public static bool exists(string path) => File.Exists(path);
         public static void delete(string path) => File.Delete(path);
