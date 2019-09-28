@@ -13,6 +13,7 @@ namespace LuaBuildEvents {
             }
             if (!File.Exists(args[0])) {
                 Console.WriteLine($"The file \"{args[0]}\" does not exist.");
+                return 1;
             }
             return new Program().Run(args[0], args);
         }
@@ -34,9 +35,11 @@ namespace LuaBuildEvents {
                 }
             };
             _luaScript.Globals["args"] = args;
-            _luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
-            _luaScript.Globals["_internal_io_path"] = new Func<object>(() => new LuaPath());
-            _luaScript.Globals["_internal_io_directory"] = new Func<object>(() => new LuaDirectory());
+            _luaScript.Globals["_internal_io_file"] = typeof(LuaFile);
+            _luaScript.Globals["_internal_io_path"] = typeof(LuaPath);
+            _luaScript.Globals["_internal_io_directory"] = typeof(LuaDirectory);
+            _luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
+            //_luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
             try {
                 _luaScript.DoFile(filename);
             } catch (ScriptRuntimeException   ex) {
@@ -50,6 +53,7 @@ namespace LuaBuildEvents {
             UserData.RegisterType<LuaFile>();
             UserData.RegisterType<LuaDirectory>();
             UserData.RegisterType<LuaPath>();
+            UserData.RegisterType<LuaEnvironment>();
         }
     }
 }

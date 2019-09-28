@@ -1,1 +1,1 @@
-﻿return _internal_io_directory()
+﻿return _internal_io_directory

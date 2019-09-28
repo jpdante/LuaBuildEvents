@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LuaBuildEvents.Internal.Lua {
     public class LuaPath {
-        public string combine(string path, string path2) => Path.Combine(path, path2);
-        public string get_full_path(string path) => Path.GetFullPath(path);
+        public static string combine(string path, string path2) => Path.Combine(path, path2);
+        public static string get_full_path(string path) => Path.GetFullPath(path);
     }
 }
