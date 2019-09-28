@@ -22,11 +22,12 @@ To use this program you must have .Net Core 3.0 installed, in the future self-co
 ### Installation
 1. Download the latest version at [https://github.com/jpdante/LuaBuildEvents/releases](https://github.com/jpdante/LuaBuildEvents/releases)
 2. Extract the files in an accessible location and with the necessary permissions to execute.
+3. Run the program within the events of an IDE such as Visual Studio or run it manually.
 
 ## Usage
 To run the program just call dotnet and pass the file path to LuaBuildEvents.dll and then the path of a lua script.
 ```sh
-dotnet <path>/LuaBuildEvents.dll <path>/script.lua
+dotnet <path>/LuaBuildEvents.dll <path>/script.lua <optional args>
 ```
 
 ## Roadmap
