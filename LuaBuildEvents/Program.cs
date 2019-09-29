@@ -3,6 +3,7 @@ using System.IO;
 using LuaBuildEvents.Internal;
 using LuaBuildEvents.Internal.Lua;
 using LuaBuildEvents.Internal.Lua.IO;
+using LuaBuildEvents.Internal.Lua.Security;
 using LuaBuildEvents.Internal.Lua.Sys;
 using MoonSharp.Interpreter;
 // ReSharper disable StringLiteralTypo
@@ -46,6 +47,10 @@ namespace LuaBuildEvents {
             _luaScript.Globals["_internal_io_streamreader"] = typeof(LuaStreamReader);
             _luaScript.Globals["_internal_io_streamwriter"] = typeof(LuaStreamWriter);
             _luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
+            _luaScript.Globals["_internal_sys_process"] = typeof(LuaProcess);
+            _luaScript.Globals["_internal_sys_processstartinfo"] = typeof(LuaProcessStartInfo);
+            _luaScript.Globals["_internal_security_filehash"] = typeof(LuaFileHash);
+            _luaScript.Globals["_internal_security_stringhash"] = typeof(LuaStringHash);
             //_luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
             try {
                 _luaScript.DoFile(filename);
@@ -67,6 +72,10 @@ namespace LuaBuildEvents {
             UserData.RegisterType<LuaStreamReader>();
             UserData.RegisterType<LuaStreamWriter>();
             UserData.RegisterType<LuaEnvironment>();
+            UserData.RegisterType<LuaProcess>();
+            UserData.RegisterType<LuaProcessStartInfo>();
+            UserData.RegisterType<LuaFileHash>();
+            UserData.RegisterType<LuaStringHash>();
         }
     }
 }

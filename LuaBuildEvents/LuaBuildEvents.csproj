@@ -9,8 +9,9 @@
     <PackageProjectUrl>https://github.com/jpdante/LuaBuildEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jpdante/LuaBuildEvents</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +21,17 @@
     <None Remove="lua\io\path.lua" />
     <None Remove="lua\io\streamreader.lua" />
     <None Remove="lua\io\streamwriter.lua" />
+    <None Remove="lua\security\filehash.lua" />
+    <None Remove="lua\security\stringhash.lua" />
     <None Remove="lua\sys\environment.lua" />
+    <None Remove="lua\sys\process.lua" />
+    <None Remove="lua\sys\processstartinfo.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="lua\security\filehash.lua" />
+    <EmbeddedResource Include="lua\security\stringhash.lua" />
+    <EmbeddedResource Include="lua\sys\process.lua" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +42,7 @@
     <EmbeddedResource Include="lua\io\streamreader.lua" />
     <EmbeddedResource Include="lua\io\streamwriter.lua" />
     <EmbeddedResource Include="lua\sys\environment.lua" />
+    <EmbeddedResource Include="lua\sys\processstartinfo.lua" />
   </ItemGroup>
 
   <ItemGroup>

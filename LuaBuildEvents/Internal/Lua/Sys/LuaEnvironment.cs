@@ -11,7 +11,10 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
     public class LuaEnvironment {
         public static string commandline => Environment.CommandLine;
         public static string newline => Environment.NewLine;
-        public static string currentdirectory => Environment.CurrentDirectory;
+        public static string currentdirectory {
+            get => Environment.CurrentDirectory;
+            set => Environment.CurrentDirectory = value;
+        }
         public static string machinename => Environment.MachineName;
         public static string stacktrace => Environment.StackTrace;
         public static string systemdirectory => Environment.SystemDirectory;
@@ -22,7 +25,10 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public static Dictionary<string, string> get_environment_variables() => Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().ToDictionary(var => var.Key.ToString(), var => var.Value.ToString());
         public static string get_folder_path(string value) => Enum.TryParse(value, out Environment.SpecialFolder folderType) ? Environment.GetFolderPath(folderType) : null;
         public static int current_managed_thread_id => Environment.CurrentManagedThreadId;
-        public static int exitcode => Environment.ExitCode;
+        public static int exitcode {
+            get => Environment.ExitCode;
+            set => Environment.ExitCode = value;
+        }
         public static bool has_shutdown_started => Environment.HasShutdownStarted;
         public static bool is_64_bit_operating_system => Environment.Is64BitOperatingSystem;
         public static bool is_64_bit_process => Environment.Is64BitProcess;

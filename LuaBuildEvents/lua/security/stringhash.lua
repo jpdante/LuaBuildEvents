@@ -1,0 +1,1 @@
+﻿return _internal_security_stringhash
