@@ -1,4 +1,6 @@
 # LuaBuildEvents
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f404d387599464d8de5b2ff937bf237)](https://www.codacy.com/manual/jpdante/LuaBuildEvents?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jpdante/LuaBuildEvents&amp;utm_campaign=Badge_Grade)
+
 Cross platform automation program for pre and post build events, using lua scripts with csharp commands and types.
 
 Why use it ?
