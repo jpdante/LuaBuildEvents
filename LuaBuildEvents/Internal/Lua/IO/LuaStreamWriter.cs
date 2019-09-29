@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using MoonSharp.Interpreter.Interop;
 // ReSharper disable InconsistentNaming
@@ -6,7 +7,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.Internal.Lua.IO {
-    public class LuaStreamWriter {
+    public class LuaStreamWriter : IDisposable {
         [MoonSharpVisible(false)]
         private readonly StreamWriter _streamWriter;
 
@@ -52,7 +53,11 @@ namespace LuaBuildEvents.Internal.Lua.IO {
         public void writeline() => _streamWriter.WriteLine();
         public void writeline(string data) => _streamWriter.WriteLine(data);
         public void write(char value) => _streamWriter.Write(value);
-        public void dispose() => _streamWriter.Dispose();
+        public void dispose() => Dispose();
         public void close() => _streamWriter.Close();
+
+        public void Dispose() {
+            _streamWriter?.Dispose();
+        }
     }
 }

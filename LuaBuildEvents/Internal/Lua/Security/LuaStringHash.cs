@@ -76,7 +76,7 @@ namespace LuaBuildEvents.Internal.Lua.Security {
                     using (var sha512 = SHA512.Create()) {
                         var buffer = Encoding.GetEncoding(encoding).GetBytes(data);
                         var hash = sha512.ComputeHash(buffer, 0, buffer.Length);
-                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();;
+                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
                 default:
                     throw new ScriptRuntimeException("Failed to parse Encryption.");

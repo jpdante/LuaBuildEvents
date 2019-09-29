@@ -6,8 +6,10 @@ namespace LuaBuildEvents.Internal.Lua.IO {
     public class LuaFile {
         public static bool exists(string path) => File.Exists(path);
         public static void delete(string path) => File.Delete(path);
-        public static void move(string from, string to, bool overwrite = false) => File.Move(from, to, overwrite);
-        public static void copy(string from, string to, bool overwrite = false) => File.Copy(from, to, overwrite);
+        public static void move(string from, string to) => move(from, to, false);
+        public static void move(string from, string to, bool overwrite) => File.Move(from, to, overwrite);
+        public static void copy(string from, string to) => copy(from, to, false);
+        public static void copy(string from, string to, bool overwrite) => File.Copy(from, to, overwrite);
         public static void write_all_text(string path, string content) => File.WriteAllText(path, content);
         public static void write_all_lines(string path, string[] content) => File.WriteAllLines(path, content);
         public static void write_all_bytes(string path, byte[] buffer) => File.WriteAllBytes(path, buffer);

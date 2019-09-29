@@ -9,7 +9,11 @@ namespace LuaBuildEvents.Internal.Lua.IO {
         public static void move(string from, string to) => Directory.Move(from, to);
         public static string get_current_directory() => Directory.GetCurrentDirectory();
         public static void create_directory(string path) => Directory.CreateDirectory(path);
-        public static string[] get_files(string path, string pattern = "*.*", bool topOnly = false) => Directory.GetFiles(path, pattern, topOnly ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
-        public static string[] get_directories(string path, string pattern = "*.*", bool topOnly = false) => Directory.GetDirectories(path, "*.*", topOnly ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+        public static string[] get_files(string path) => get_files(path, "*.*", false);
+        public static string[] get_files(string path, string pattern) => get_files(path, pattern, false);
+        public static string[] get_files(string path, string pattern, bool topOnly) => Directory.GetFiles(path, pattern, topOnly ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+        public static string[] get_directories(string path) => get_directories(path, "*.*", false);
+        public static string[] get_directories(string path, string pattern) => get_directories(path, pattern, false);
+        public static string[] get_directories(string path, string pattern, bool topOnly) => Directory.GetDirectories(path, "*.*", topOnly ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
     }
 }

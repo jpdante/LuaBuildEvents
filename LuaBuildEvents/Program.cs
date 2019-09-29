@@ -22,11 +22,9 @@ namespace LuaBuildEvents {
             return new Program().Run(args[0], args);
         }
 
-        private Script _luaScript;
-
         public int Run(string filename, string[] args) {
             RegisterTypes();
-            _luaScript = new Script {
+            var luaScript = new Script {
                 Options = {
                     ScriptLoader = new LuaScriptLoader {
                         ModulePaths = new[] {
@@ -38,22 +36,21 @@ namespace LuaBuildEvents {
                     DebugPrint = Console.Write,
                 }
             };
-            _luaScript.Globals["args"] = args;
-            _luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
-            _luaScript.Globals["_internal_io_file"] = typeof(LuaFile);
-            _luaScript.Globals["_internal_io_path"] = typeof(LuaPath);
-            _luaScript.Globals["_internal_io_directory"] = typeof(LuaDirectory);
-            _luaScript.Globals["_internal_io_filestream"] = typeof(LuaFileStream);
-            _luaScript.Globals["_internal_io_streamreader"] = typeof(LuaStreamReader);
-            _luaScript.Globals["_internal_io_streamwriter"] = typeof(LuaStreamWriter);
-            _luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
-            _luaScript.Globals["_internal_sys_process"] = typeof(LuaProcess);
-            _luaScript.Globals["_internal_sys_processstartinfo"] = typeof(LuaProcessStartInfo);
-            _luaScript.Globals["_internal_security_filehash"] = typeof(LuaFileHash);
-            _luaScript.Globals["_internal_security_stringhash"] = typeof(LuaStringHash);
-            //_luaScript.Globals["_internal_io_file"] = new Func<object>(() => new LuaFile());
+            luaScript.Globals["args"] = args;
+            luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
+            luaScript.Globals["_internal_io_file"] = typeof(LuaFile);
+            luaScript.Globals["_internal_io_path"] = typeof(LuaPath);
+            luaScript.Globals["_internal_io_directory"] = typeof(LuaDirectory);
+            luaScript.Globals["_internal_io_filestream"] = typeof(LuaFileStream);
+            luaScript.Globals["_internal_io_streamreader"] = typeof(LuaStreamReader);
+            luaScript.Globals["_internal_io_streamwriter"] = typeof(LuaStreamWriter);
+            luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
+            luaScript.Globals["_internal_sys_process"] = typeof(LuaProcess);
+            luaScript.Globals["_internal_sys_processstartinfo"] = typeof(LuaProcessStartInfo);
+            luaScript.Globals["_internal_security_filehash"] = typeof(LuaFileHash);
+            luaScript.Globals["_internal_security_stringhash"] = typeof(LuaStringHash);
             try {
-                _luaScript.DoFile(filename);
+                luaScript.DoFile(filename);
             } catch (ScriptRuntimeException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
                 return ex.HResult;
@@ -64,7 +61,7 @@ namespace LuaBuildEvents {
             return 0;
         }
 
-        public void RegisterTypes() {
+        public static void RegisterTypes() {
             UserData.RegisterType<LuaFile>();
             UserData.RegisterType<LuaDirectory>();
             UserData.RegisterType<LuaPath>();

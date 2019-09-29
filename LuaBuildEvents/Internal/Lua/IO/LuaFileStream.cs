@@ -7,7 +7,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.Internal.Lua.IO {
-    public class LuaFileStream {
+    public class LuaFileStream : IDisposable {
         [MoonSharpVisible(false)]
         private readonly FileStream _fileStream;
 
@@ -79,6 +79,11 @@ namespace LuaBuildEvents.Internal.Lua.IO {
         public void write(byte[] buffer, int offset, int buffer_length) => _fileStream.Write(buffer, offset, buffer_length);
         public void writebyte(byte value) => _fileStream.WriteByte(value);
         public void close() => _fileStream.Close();
-        public void dispose() => _fileStream.Dispose();
+        public void dispose() => Dispose();
+
+        [MoonSharpVisible(false)]
+        public void Dispose() {
+            _fileStream?.Dispose();
+        }
     }
 }
