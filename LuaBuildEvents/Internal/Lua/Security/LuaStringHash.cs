@@ -58,7 +58,7 @@ namespace LuaBuildEvents.Internal.Lua.Security {
                     using (var sha1 = SHA1.Create()) {
                         var buffer = Encoding.GetEncoding(encoding).GetBytes(data);
                         var hash = sha1.ComputeHash(buffer, 0, buffer.Length);
-                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();;
+                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
                 case "SHA-256":
                     using (var sha256 = SHA256.Create()) {

@@ -50,7 +50,7 @@ namespace LuaBuildEvents.Internal.Lua.Security {
                 case "SHA-1":
                     using (var sha1 = SHA1.Create()) {
                         var hash = sha1.ComputeHash(fileStream.GetFileStream());
-                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant(); ;
+                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
                 case "SHA-256":
                     using (var sha256 = SHA256.Create()) {
@@ -65,7 +65,7 @@ namespace LuaBuildEvents.Internal.Lua.Security {
                 case "SHA-512":
                     using (var sha512 = SHA512.Create()) {
                         var hash = sha512.ComputeHash(fileStream.GetFileStream());
-                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant(); ;
+                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
                 default:
                     throw new ScriptRuntimeException("Failed to parse Encryption.");

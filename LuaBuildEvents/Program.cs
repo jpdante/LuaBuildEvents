@@ -9,7 +9,7 @@ using MoonSharp.Interpreter;
 // ReSharper disable StringLiteralTypo
 
 namespace LuaBuildEvents {
-    public class Program {
+    public static class Program {
         public static int Main(string[] args) {
             if (args.Length <= 0) {
                 Console.WriteLine($"Usage: dotnet LuaBuildEvents.dll <path to script.lua>");
