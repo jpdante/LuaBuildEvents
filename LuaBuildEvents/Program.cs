@@ -19,10 +19,10 @@ namespace LuaBuildEvents {
                 Console.WriteLine($"The file \"{args[0]}\" does not exist.");
                 return 1;
             }
-            return new Program().Run(args[0], args);
+            return Run(args[0], args);
         }
 
-        public int Run(string filename, string[] args) {
+        public static int Run(string filename, string[] args) {
             RegisterTypes();
             var luaScript = new Script {
                 Options = {

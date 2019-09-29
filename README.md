@@ -1,14 +1,14 @@
 # LuaBuildEvents
 Cross platform automation program for pre and post build events, using lua scripts with csharp commands and types.
 
-### Why use it?
+Why use it ?
 *   Avoid manual work by performing repetitive operations for each build.
 *   The shell or bash used by IDE's like Visual Studio are often limited.
 *   The commands used do not work between different operating systems.
 *   Allows greater control and automation using scripts that can be edited without recompiling a program.
 *   There are many other reasons, such as playing with Lua :)
 
-### Why was this project developed?
+Why was this project developed ?
 
 While I was developing projects there was a mismatch between the commands used on my Windows and my Linux notebook,
 ie whenever I tried to compile the solution the BuildEvents of each project triggered an error that canceled the compilation of the solution. I developed this software to be cross platform and had more functions than a simple shell.
