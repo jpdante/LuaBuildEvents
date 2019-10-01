@@ -54,6 +54,12 @@ namespace LuaBuildEvents {
             } catch (ScriptRuntimeException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
                 return ex.HResult;
+            } catch (InternalErrorException ex) {
+                Console.WriteLine(ex.DecoratedMessage);
+                return ex.HResult;
+            } catch (InterpreterException ex) {
+                Console.WriteLine(ex.DecoratedMessage);
+                return ex.HResult;
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
                 return ex.HResult;

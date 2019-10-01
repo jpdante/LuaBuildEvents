@@ -43,6 +43,10 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public ICollection<string> argumentlist => _processStartInfo.ArgumentList;
         public StringDictionary environmentvariables => _processStartInfo.EnvironmentVariables;
 
+        public void set_environment_variable(string key, string value) {
+            _processStartInfo.EnvironmentVariables[key] = value;
+        }
+
         public string filename {
             get => _processStartInfo.FileName;
             set => _processStartInfo.FileName = value;
