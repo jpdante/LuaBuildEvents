@@ -47,7 +47,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             _processStartInfo.EnvironmentVariables[key] = value;
         }
 
-        public string file_name {
+        public string filename {
             get => _processStartInfo.FileName;
             set => _processStartInfo.FileName = value;
         }
@@ -67,7 +67,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _processStartInfo.PasswordInClearText = value;
         }
 
-        public string user_name {
+        public string username {
             get => _processStartInfo.UserName;
             set => _processStartInfo.UserName = value;
         }
@@ -77,7 +77,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _processStartInfo.Verb = value;
         }
 
-        public string working_directory {
+        public string workingdirectory {
             get => _processStartInfo.WorkingDirectory;
             set => _processStartInfo.WorkingDirectory = value;
         }
@@ -88,7 +88,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         }
 
 
-        public bool error_dialog {
+        public bool errordialog {
             get => _processStartInfo.ErrorDialog;
             set => _processStartInfo.ErrorDialog = value;
         }
@@ -103,7 +103,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _processStartInfo.UseShellExecute = value;
         }
 
-        public string window_style {
+        public string windowstyle {
             get => _processStartInfo.WindowStyle.ToString();
             set {
                 if (!Enum.TryParse(value, out ProcessWindowStyle result)) {
