@@ -14,9 +14,9 @@ end
 function build_program(project_directory, deployment_type, system_os, extra_arguments)
     print("[LBE] Loading build...\n")
     psi = ProcessStartInfo.create()
-	psi.filename = "dotnet"
+	psi.file_name = "dotnet"
 	psi.arguments = "publish -r " .. system_os .. " -c " .. deployment_type .. " --self-contained true " .. extra_arguments
-	psi.workingdirectory = project_directory
+	psi.working_directory = project_directory
 	psi.use_shell_execute = false
 	psi.redirect_standard_output = true
 	psi.redirect_standard_error = true
@@ -25,18 +25,18 @@ function build_program(project_directory, deployment_type, system_os, extra_argu
     process = Process.create(psi)
 	print("[LBE] Starting build...\n")
 	process.start()
-	output_reader = process.standardoutput
-	error_reader = process.standarderror
-	while output_reader.end_of_stream == false do
-	    print("[LBE-ProcessOutput] " .. output_reader.readline() .. "\n")
+	output_reader = process.standard_output
+	error_reader = process.standard_error
+	while output_reader.is_end_of_stream == false do
+	    print("[LBE-ProcessOutput] " .. output_reader.read_line() .. "\n")
 	end
-	while error_reader.end_of_stream == false do
-	    print("[LBE-ProcessError] " .. error_reader.readline() .. "\n")
+	while error_reader.is_end_of_stream == false do
+	    print("[LBE-ProcessError] " .. error_reader.read_line() .. "\n")
 	end
 	print("[LBE] Waiting for build to complete...\n")
 	process.wait_for_exit(process_timeout)
 	print("[LBE] Build complete!\n")
-	return process.exitcode
+	return process.exit_code
 end
 
 code = build_program(args[2], args[3], "win10-x64", "/p:PublishSingleFile=true")

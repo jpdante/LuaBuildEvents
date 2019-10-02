@@ -79,9 +79,9 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public long peak_working_set64 => _process.PeakWorkingSet64;
         public long private_memory_size64 => _process.PrivateMemorySize64;
         public TimeSpan privileged_processor_time => _process.PrivilegedProcessorTime;
-        public LuaStreamReader standarderror => new LuaStreamReader(_process.StandardError);
-        public LuaStreamWriter standardinput => new LuaStreamWriter(_process.StandardInput);
-        public LuaStreamReader standardoutput => new LuaStreamReader(_process.StandardOutput);
+        public LuaStreamReader standard_error => new LuaStreamReader(_process.StandardError);
+        public LuaStreamWriter standard_input => new LuaStreamWriter(_process.StandardInput);
+        public LuaStreamReader standard_output => new LuaStreamReader(_process.StandardOutput);
         public DateTime start_time => _process.StartTime;
         public TimeSpan total_processor_time => _process.TotalProcessorTime;
         public TimeSpan user_processor_time => _process.UserProcessorTime;
