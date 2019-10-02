@@ -23,8 +23,8 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
 
         public LuaProcess(string path) {
             _process = new Process();
-            start_info = new LuaProcessStartInfo(_process.StartInfo) {
-                file_name = path
+            startinfo = new LuaProcessStartInfo(_process.StartInfo) {
+                filename = path
             };
             _process.OutputDataReceived += ProcessOnOutputDataReceived;
             _process.ErrorDataReceived += ProcessOnErrorDataReceived;
@@ -36,7 +36,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
 
         public LuaProcess(LuaProcessStartInfo processStartInfo) {
             _process = new Process();
-            start_info = processStartInfo;
+            startinfo = processStartInfo;
             _process.OutputDataReceived += ProcessOnOutputDataReceived;
             _process.ErrorDataReceived += ProcessOnErrorDataReceived;
             _process.Exited += ProcessOnExited;
@@ -53,7 +53,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public event EventHandler on_exited;
         public event EventHandler on_disposed;
 
-        public LuaProcessStartInfo start_info {
+        public LuaProcessStartInfo startinfo {
             get => _startinfo;
             set {
                 _process.StartInfo = value.GetProcessStartInfo();
@@ -61,15 +61,15 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             }
         }
 
-        public int session_id => _process.SessionId;
-        public string machine_name => _process.MachineName;
+        public int sessionid => _process.SessionId;
+        public string machinename => _process.MachineName;
         public string main_window_title => _process.MainWindowTitle;
-        public string process_name => _process.ProcessName;
-        public int base_priority => _process.BasePriority;
-        public int exit_code => _process.ExitCode;
-        public DateTime exit_time => _process.ExitTime;
-        public int handle_count => _process.HandleCount;
-        public bool has_exited => _process.HasExited;
+        public string processname => _process.ProcessName;
+        public int basepriority => _process.BasePriority;
+        public int exitcode => _process.ExitCode;
+        public DateTime exittime => _process.ExitTime;
+        public int handlecount => _process.HandleCount;
+        public bool hasexited => _process.HasExited;
         public int id => _process.Id;
         public long nonpaged_system_memory_size64 => _process.NonpagedSystemMemorySize64;
         public long paged_memory_size64 => _process.PagedMemorySize64;
@@ -82,12 +82,12 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public LuaStreamReader standarderror => new LuaStreamReader(_process.StandardError);
         public LuaStreamWriter standardinput => new LuaStreamWriter(_process.StandardInput);
         public LuaStreamReader standardoutput => new LuaStreamReader(_process.StandardOutput);
-        public DateTime start_time => _process.StartTime;
+        public DateTime starttime => _process.StartTime;
         public TimeSpan total_processor_time => _process.TotalProcessorTime;
         public TimeSpan user_processor_time => _process.UserProcessorTime;
         public bool responding => _process.Responding;
         public long virtual_memory_size64 => _process.VirtualMemorySize64;
-        public long working_set64 => _process.WorkingSet64;
+        public long workingset64 => _process.WorkingSet64;
 
         public bool enable_raising_events {
             get => _process.EnableRaisingEvents;
