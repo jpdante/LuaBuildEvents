@@ -31,19 +31,26 @@ namespace LuaBuildEvents.Internal.Lua.IO {
             _streamReader = streamReader;
         }
 
-        public static LuaStreamReader create(LuaFileStream fileStream, string encoding, bool detectEncoding) => new LuaStreamReader(fileStream.GetFileStream(), encoding, detectEncoding);
-        public static LuaStreamReader create(LuaFileStream fileStream, string encoding) => new LuaStreamReader(fileStream.GetFileStream(), encoding);
-        public static LuaStreamReader create(LuaFileStream fileStream) => new LuaStreamReader(fileStream.GetFileStream());
+        public static LuaStreamReader create(LuaStream stream, string encoding, bool detectEncoding) => new LuaStreamReader(stream.GetStream(), encoding, detectEncoding);
+        public static LuaStreamReader create(LuaStream stream, string encoding) => new LuaStreamReader(stream.GetStream(), encoding);
+        public static LuaStreamReader create(LuaStream stream) => new LuaStreamReader(stream.GetStream());
 
-        public bool end_of_stream => _streamReader.EndOfStream;
+        public bool is_end_of_stream => _streamReader.EndOfStream;
 
-        public string readline() => _streamReader.ReadLine();
+        public string read_line() => _streamReader.ReadLine();
+
         public string read_to_end() => _streamReader.ReadToEnd();
+
         public void discard_buffered_data() => _streamReader.DiscardBufferedData();
+
         public int peek() => _streamReader.Peek();
+
         public int read() => _streamReader.Read();
-        public int readblock(char[] buffer, int index, int buffer_length) => _streamReader.ReadBlock(buffer, index, buffer_length);
+
+        public int read_block(char[] buffer, int index, int buffer_length) => _streamReader.ReadBlock(buffer, index, buffer_length);
+
         public void dispose() => Dispose();
+
         public void close() => _streamReader.Close();
 
         public void Dispose() {
