@@ -39,7 +39,7 @@ function build_program(project_directory, deployment_type, system_os, extra_argu
 	return process.exitcode
 end
 
-code = build_program(args[2], args[3], "win10-x64", "/p:PublishSingleFile=true /p:PublishTrimmed=true")
+code = build_program(args[2], args[3], "win10-x64", "/p:PublishSingleFile=true")
 if code != 0 then
     exit(code)
 end
