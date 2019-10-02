@@ -1,1 +1,1 @@
-﻿return _internal_io_file
+﻿return _internal_io_file()

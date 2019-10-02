@@ -1,1 +1,1 @@
-﻿return _internal_io_streamwriter
+﻿return _internal_io_streamwriter()

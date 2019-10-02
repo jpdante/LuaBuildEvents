@@ -23,7 +23,7 @@ namespace LuaBuildEvents {
         }
 
         public static int Run(string filename, string[] args) {
-            RegisterTypes();
+            //RegisterTypes();
             var luaScript = new Script {
                 Options = {
                     ScriptLoader = new LuaScriptLoader {
@@ -38,17 +38,7 @@ namespace LuaBuildEvents {
             };
             luaScript.Globals["args"] = args;
             luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
-            luaScript.Globals["_internal_io_file"] = typeof(LuaFile);
-            luaScript.Globals["_internal_io_path"] = typeof(LuaPath);
-            luaScript.Globals["_internal_io_directory"] = typeof(LuaDirectory);
-            luaScript.Globals["_internal_io_filestream"] = typeof(LuaFileStream);
-            luaScript.Globals["_internal_io_streamreader"] = typeof(LuaStreamReader);
-            luaScript.Globals["_internal_io_streamwriter"] = typeof(LuaStreamWriter);
-            luaScript.Globals["_internal_sys_environment"] = typeof(LuaEnvironment);
-            luaScript.Globals["_internal_sys_process"] = typeof(LuaProcess);
-            luaScript.Globals["_internal_sys_processstartinfo"] = typeof(LuaProcessStartInfo);
-            luaScript.Globals["_internal_security_filehash"] = typeof(LuaFileHash);
-            luaScript.Globals["_internal_security_stringhash"] = typeof(LuaStringHash);
+            RegisterFunctionsAndTypes(luaScript);
             try {
                 luaScript.DoFile(filename);
             } catch (ScriptRuntimeException ex) {
@@ -67,7 +57,54 @@ namespace LuaBuildEvents {
             return 0;
         }
 
-        public static void RegisterTypes() {
+        public static void RegisterFunctionsAndTypes(Script luaScript) {
+            luaScript.Globals["_internal_io_file"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaFile>();
+                return typeof(LuaFile);
+            });
+            luaScript.Globals["_internal_io_path"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaPath>();
+                return typeof(LuaPath);
+            });
+            luaScript.Globals["_internal_io_directory"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaDirectory>();
+                return typeof(LuaDirectory);
+            });
+            luaScript.Globals["_internal_io_filestream"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaFileStream>();
+                return typeof(LuaFileStream);
+            });
+            luaScript.Globals["_internal_io_streamreader"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaStreamReader>();
+                return typeof(LuaStreamReader);
+            });
+            luaScript.Globals["_internal_io_streamwriter"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaStreamWriter>();
+                return typeof(LuaStreamWriter);
+            });
+            luaScript.Globals["_internal_sys_environment"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaEnvironment>();
+                return typeof(LuaEnvironment);
+            });
+            luaScript.Globals["_internal_sys_process"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaProcess>();
+                return typeof(LuaProcess);
+            });
+            luaScript.Globals["_internal_sys_processstartinfo"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaProcessStartInfo>();
+                return typeof(LuaProcessStartInfo);
+            });
+            luaScript.Globals["_internal_security_filehash"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaFileHash>();
+                return typeof(LuaFileHash);
+            });
+            luaScript.Globals["_internal_security_stringhash"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaStringHash>();
+                return typeof(LuaStringHash);
+            });
+        }
+
+        /*public static void RegisterTypes() {
             UserData.RegisterType<LuaFile>();
             UserData.RegisterType<LuaDirectory>();
             UserData.RegisterType<LuaPath>();
@@ -79,6 +116,6 @@ namespace LuaBuildEvents {
             UserData.RegisterType<LuaProcessStartInfo>();
             UserData.RegisterType<LuaFileHash>();
             UserData.RegisterType<LuaStringHash>();
-        }
+        }*/
     }
 }

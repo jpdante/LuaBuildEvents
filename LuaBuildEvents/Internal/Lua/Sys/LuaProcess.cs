@@ -99,7 +99,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _process.PriorityBoostEnabled = value;
         }
 
-        public string priorityclass {
+        public string priority_class {
             get => _process.PriorityClass.ToString();
             set {
                 if (!Enum.TryParse(value, out ProcessPriorityClass result)) {

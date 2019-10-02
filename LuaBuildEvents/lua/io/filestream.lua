@@ -1,1 +1,1 @@
-﻿return _internal_io_filestream
+﻿return _internal_io_filestream()

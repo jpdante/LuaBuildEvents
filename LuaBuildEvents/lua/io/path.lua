@@ -1,1 +1,1 @@
-﻿return _internal_io_path
+﻿return _internal_io_path()

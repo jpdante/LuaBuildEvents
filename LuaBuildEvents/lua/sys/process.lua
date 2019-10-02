@@ -1,1 +1,1 @@
-﻿return _internal_sys_process
+﻿return _internal_sys_process()

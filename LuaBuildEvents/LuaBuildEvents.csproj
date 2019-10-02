@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/jpdante/LuaBuildEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jpdante/LuaBuildEvents</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.2.0</Version>
+    <AssemblyVersion>1.3.1.0</AssemblyVersion>
+    <FileVersion>1.3.1.0</FileVersion>
+    <Version>1.3.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

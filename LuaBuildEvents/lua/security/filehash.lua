@@ -1,1 +1,1 @@
-﻿return _internal_security_filehash
+﻿return _internal_security_filehash()

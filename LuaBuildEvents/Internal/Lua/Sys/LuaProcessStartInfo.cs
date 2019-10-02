@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Linq;
 using System.Security;
 using System.Text;
 using MoonSharp.Interpreter;
@@ -41,11 +42,10 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public IDictionary<string, string> environment => _processStartInfo.Environment;
         public string[] verbs => _processStartInfo.Verbs;
         public ICollection<string> argumentlist => _processStartInfo.ArgumentList;
-        public StringDictionary environmentvariables => _processStartInfo.EnvironmentVariables;
 
-        public void set_environment_variable(string key, string value) {
-            _processStartInfo.EnvironmentVariables[key] = value;
-        }
+        public Dictionary<string, string> environment_variable_table(string key) => _processStartInfo.EnvironmentVariables.Cast<KeyValuePair<string, string>>().ToDictionary(variable => variable.Key, variable => variable.Value);
+        public string get_environment_variable(string key) => _processStartInfo.EnvironmentVariables[key];
+        public void set_environment_variable(string key, string value) => _processStartInfo.EnvironmentVariables[key] = value;
 
         public string file_name {
             get => _processStartInfo.FileName;
