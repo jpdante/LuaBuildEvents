@@ -32,8 +32,11 @@ To run the program just call dotnet and pass the file path to LuaBuildEvents.dll
 dotnet <path>/LuaBuildEvents.dll <path>/script.lua <optional args>
 ```
 
+## Wiki
+See the [wiki](https://github.com/jpdante/LuaBuildEvents/wiki) for more information on how to use it.
+
 ## Roadmap
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/jpdante/LuaBuildEvents/issues) for a list of proposed features (and known issues).
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
