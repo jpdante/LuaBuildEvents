@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "LuaBuildEvents.Test": {
+      "commandName": "Project"
+    }
+  }
+}
