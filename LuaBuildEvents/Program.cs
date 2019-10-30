@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using LuaBuildEvents.Internal;
 using LuaBuildEvents.Internal.Lua;
 using LuaBuildEvents.Internal.Lua.IO;
@@ -101,6 +102,10 @@ namespace LuaBuildEvents {
             luaScript.Globals["_internal_security_stringhash"] = new Func<Type>( () => {
                 UserData.RegisterType<LuaStringHash>();
                 return typeof(LuaStringHash);
+            });
+            luaScript.Globals["_internal_net_webclient"] = new Func<Type>( () => {
+                UserData.RegisterType<WebClient>();
+                return typeof(WebClient);
             });
         }
 

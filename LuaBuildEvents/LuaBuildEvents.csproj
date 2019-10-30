@@ -21,6 +21,7 @@
     <None Remove="lua\io\path.lua" />
     <None Remove="lua\io\streamreader.lua" />
     <None Remove="lua\io\streamwriter.lua" />
+    <None Remove="lua\net\webclient.lua" />
     <None Remove="lua\security\filehash.lua" />
     <None Remove="lua\security\stringhash.lua" />
     <None Remove="lua\sys\environment.lua" />
@@ -29,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="lua\net\webclient.lua" />
     <EmbeddedResource Include="lua\security\filehash.lua" />
     <EmbeddedResource Include="lua\security\stringhash.lua" />
     <EmbeddedResource Include="lua\sys\process.lua" />

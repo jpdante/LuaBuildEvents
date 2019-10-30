@@ -9,4 +9,10 @@
     <ProjectReference Include="..\LuaBuildEvents\LuaBuildEvents.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="lua\test_all.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
