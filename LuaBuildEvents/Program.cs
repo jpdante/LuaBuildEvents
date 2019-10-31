@@ -4,6 +4,7 @@ using System.Net;
 using LuaBuildEvents.Internal;
 using LuaBuildEvents.Internal.Lua;
 using LuaBuildEvents.Internal.Lua.IO;
+using LuaBuildEvents.Internal.Lua.Net;
 using LuaBuildEvents.Internal.Lua.Security;
 using LuaBuildEvents.Internal.Lua.Sys;
 using MoonSharp.Interpreter;
@@ -105,6 +106,7 @@ namespace LuaBuildEvents {
             });
             luaScript.Globals["_internal_net_webclient"] = new Func<Type>( () => {
                 UserData.RegisterType<WebClient>();
+                UserData.RegisterType<LuaWebClientHeader>();
                 return typeof(WebClient);
             });
         }
