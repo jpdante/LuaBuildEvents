@@ -7,7 +7,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.lua.net {
-    public class LuaIPAddress : LuaBridgeScript {
+    public class LuaIPAddress {
         [MoonSharpVisible(false)]
         private readonly IPAddress _ipAddress;
 

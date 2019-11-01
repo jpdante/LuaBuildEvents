@@ -4,7 +4,7 @@ using LuaBuildEvents.lua.io;
 using MoonSharp.Interpreter;
 
 namespace LuaBuildEvents.lua.sec {
-    public class LuaFileHash : LuaBridgeScript {
+    public class LuaFileHash {
 
         public static byte[] hashStreamToBytes(string encryption, LuaFileStream fileStream) {
             switch (encryption) {

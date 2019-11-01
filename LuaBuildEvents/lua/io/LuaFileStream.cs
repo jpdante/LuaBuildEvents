@@ -8,7 +8,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.lua.io {
-    public class LuaFileStream : LuaStream, LuaBridgeScript {
+    public class LuaFileStream : LuaStream {
         [MoonSharpVisible(false)]
         private readonly FileStream _fileStream;
 

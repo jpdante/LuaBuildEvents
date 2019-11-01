@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using MoonSharp.Interpreter.Interop;
 
 namespace LuaBuildEvents.lua.net {
-    public class LuaEndPoint : LuaBridgeScript {
+    public class LuaEndPoint {
         [MoonSharpVisible(false)]
         public EndPoint EndPoint;
 

@@ -14,7 +14,7 @@ using MoonSharp.Interpreter.Interop;
 
 namespace LuaBuildEvents.lua.net {
     // TODO: Add support for async and events
-    public class LuaWebClient : LuaBridgeScript {
+    public class LuaWebClient {
         [MoonSharpVisible(false)]
         private readonly WebClient _webClient;
 

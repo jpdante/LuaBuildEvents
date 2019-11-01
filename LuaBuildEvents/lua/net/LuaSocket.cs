@@ -9,7 +9,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.lua.net {
-    public class LuaSocket : LuaBridgeScript {
+    public class LuaSocket {
         [MoonSharpVisible(false)]
         private readonly Socket _socket;
 

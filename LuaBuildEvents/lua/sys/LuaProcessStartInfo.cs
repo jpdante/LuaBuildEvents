@@ -11,7 +11,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.lua.sys {
-    public class LuaProcessStartInfo : LuaBridgeScript {
+    public class LuaProcessStartInfo {
         [MoonSharpVisible(false)]
         private readonly ProcessStartInfo _processStartInfo;
 
