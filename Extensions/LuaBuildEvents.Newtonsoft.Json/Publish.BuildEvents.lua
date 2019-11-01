@@ -1,0 +1,3 @@
+﻿require("lua.io")
+File.copy([[C:\Users\jpdante\source\repos\LuaBuildEvents\Extensions\LuaBuildEvents.Newtonsoft.Json\bin\Debug\netcoreapp3.0\LuaBuildEvents.Newtonsoft.Json.dll]], [[C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\LuaBuildEvents.Newtonsoft.Json.dll]], true)
+File.copy([[C:\Users\jpdante\.nuget\packages\newtonsoft.json\12.0.2\lib\netstandard2.0\Newtonsoft.Json.dll]], [[C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll]], true)

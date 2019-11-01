@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using MoonSharp.Interpreter;
 // ReSharper disable StringLiteralTypo
 
@@ -19,27 +21,31 @@ namespace LuaBuildEvents {
         }
 
         public static int Run(string filename, string[] args) {
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomainOnAssemblyResolve;
+            var scriptLoader = new LuaScriptLoader {
+                ModulePaths = new[] {
+                    "?.lua",
+                    $"{Directory.GetCurrentDirectory()}/?",
+                    $"{Directory.GetCurrentDirectory()}/?.lua"
+                }
+            };
             var luaScript = new Script {
                 Options = {
-                    ScriptLoader = new LuaScriptLoader {
-                        ModulePaths = new[] {
-                            "?.lua",
-                            $"{Directory.GetCurrentDirectory()}/?",
-                            $"{Directory.GetCurrentDirectory()}/?.lua"
-                        }
-                    },
+                    ScriptLoader = scriptLoader,
                     DebugPrint = Console.Write,
                 }
             };
             luaScript.Globals["args"] = args;
             luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
-            luaScript.Globals["_csharp_loadAssembly"] = new Action<string>( (assembly) => {
-                Assembly.Load(assembly);
+            luaScript.Globals["_csharp_loadAssembly"] = new Action<string>((assemblyString) => {
+                var assembly = Assembly.Load(assemblyString);
+                scriptLoader.AddAssembly(assembly);
             });
-            luaScript.Globals["_csharp_loadAssemblyFile"] = new Action<string>( (assembly) => {
-                Assembly.LoadFile(assembly);
+            luaScript.Globals["_csharp_loadAssemblyFile"] = new Action<string>((path) => {
+                var assembly = Assembly.LoadFile(path);
+                scriptLoader.AddAssembly(assembly);
             });
-            luaScript.Globals["_csharp_getType"] = new Func<string, Type>( (requestedType) => {
+            luaScript.Globals["_csharp_getType"] = new Func<string, Type>((requestedType) => {
                 var type = Assembly.GetExecutingAssembly().GetType("LuaBuildEvents.lua." + requestedType);
                 if (type == null) {
                     throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
@@ -47,13 +53,16 @@ namespace LuaBuildEvents {
                 UserData.RegisterType(type);
                 return type;
             });
-            luaScript.Globals["_csharp_getAssemblyType"] = new Func<string, Type>( (requestedType) => {
-                var type = Assembly.GetExecutingAssembly().GetType(requestedType);
-                if (type == null) {
-                    throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
+            luaScript.Globals["_csharp_getAssemblyType"] = new Func<string, Type>((requestedType) => {
+                foreach (var assembly in scriptLoader.ResourceAssemblies) {
+                    var type = assembly.GetType(requestedType);
+                    if (type == null) {
+                        continue;
+                    }
+                    UserData.RegisterType(type);
+                    return type;
                 }
-                UserData.RegisterType(type);
-                return type;
+                throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
             });
             try {
                 luaScript.DoFile(filename);
@@ -71,6 +80,18 @@ namespace LuaBuildEvents {
                 return ex.HResult;
             }
             return 0;
+        }
+
+        private static Assembly CurrentDomainOnAssemblyResolve(object sender, ResolveEventArgs args) {
+            var pluginDependencyName = args.Name.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).First();
+            var path = ToApplicationPath(pluginDependencyName + ".dll");
+            var assembly = Assembly.LoadFile(path);
+            return assembly;
+        }
+
+        public static string ToApplicationPath(string fileName) {
+            var exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Split('\\', 2)[1];
+            return Path.Combine(exePath, fileName);
         }
     }
 }

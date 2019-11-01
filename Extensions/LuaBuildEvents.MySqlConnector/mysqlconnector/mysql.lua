@@ -1,0 +1,5 @@
+﻿MySqlCommand = _csharp_getAssemblyType("LuaBuildEvents.MySqlConnector.LuaMySqlCommand")
+MySqlConnection = _csharp_getAssemblyType("LuaBuildEvents.MySqlConnector.LuaMySqlConnection")
+MySqlDataReader = _csharp_getAssemblyType("LuaBuildEvents.MySqlConnector.LuaMySqlDataReader")
+MySqlParameters = _csharp_getAssemblyType("LuaBuildEvents.MySqlConnector.LuaMySqlParameters")
+MySqlTransaction = _csharp_getAssemblyType("LuaBuildEvents.MySqlConnector.LuaMySqlTransaction")
