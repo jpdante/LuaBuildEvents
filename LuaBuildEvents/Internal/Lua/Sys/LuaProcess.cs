@@ -24,7 +24,7 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
         public LuaProcess(string path) {
             _process = new Process();
             startInfo = new LuaProcessStartInfo(_process.StartInfo) {
-                file_name = path
+                fileName = path
             };
             _process.OutputDataReceived += ProcessOnOutputDataReceived;
             _process.ErrorDataReceived += ProcessOnErrorDataReceived;

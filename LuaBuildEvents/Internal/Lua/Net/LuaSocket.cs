@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
@@ -137,27 +140,43 @@ namespace LuaBuildEvents.Internal.Lua.Net {
         }
 
         public LuaSocket accept() => new LuaSocket(_socket.Accept());
-        public void bind() => _socket.Bind();
+        public void bind(LuaEndPoint endPoint) => _socket.Bind(endPoint.EndPoint);
         public void close() => _socket.Close();
-        public LuaSocket connect() => _socket.Connect();
-        public LuaSocket disconnect() => _socket.Disconnect();
-        public LuaSocket dispose() => _socket.Dispose();
-        public LuaSocket listen() => _socket.Listen();
+        public void connect(LuaEndPoint endPoint) => _socket.Connect(endPoint.EndPoint);
+        public void connect(LuaIPAddress address, int port) => _socket.Connect(address.GetIPAddress(), port);
+        public void connect(LuaIPAddress[] addresses, int port) => _socket.Connect(addresses.Select(address => address.GetIPAddress()).ToArray(), port);
+        public void connect(string host, int port) => _socket.Connect(host, port);
+        public void disconnect(bool reuseSocket = false) => _socket.Disconnect(reuseSocket);
+        public void dispose() => _socket.Dispose();
+        public void listen(int backlog) => _socket.Listen(backlog);
+        public void poll(int microSeconds, SelectMode selectMode) => _socket.Poll(microSeconds, selectMode);
+        public int receive(byte[] buffer) => _socket.Receive(buffer);
+        public int receive(byte[] buffer, int offset, int size, SocketFlags socketFlags) => _socket.Receive(buffer, offset, size, socketFlags);
+        public int send(byte[] buffer) => _socket.Send(buffer);
+        public int send(byte[] buffer, int offset, int size, SocketFlags socketFlags) => _socket.Send(buffer, offset, size, socketFlags);
+        public void shutdown(SocketShutdown how) => _socket.Shutdown(how);
+        public int receiveFrom(byte[] buffer, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.ReceiveFrom(buffer, socketFlags, ref remoteEP.EndPoint);
+        public int receiveFrom(byte[] buffer, int offset, int size, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.ReceiveFrom(buffer, offset, size, socketFlags, ref remoteEP.EndPoint);
+        public int receiveFrom(byte[] buffer, int size, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.ReceiveFrom(buffer, size, socketFlags, ref remoteEP.EndPoint);
+        public int receiveFrom(byte[] buffer, LuaEndPoint remoteEP) => _socket.ReceiveFrom(buffer, ref remoteEP.EndPoint);
+        public void sendFile(string fileName) => _socket.SendFile(fileName);
+        public void sendFile(string fileName, byte[] preBuffer, byte[] postBuffer, TransmitFileOptions transmitFileOptions) => _socket.SendFile(fileName, preBuffer, postBuffer, transmitFileOptions);
+        public int sendTo(byte[] buffer, LuaEndPoint remoteEP) => _socket.SendTo(buffer, remoteEP.EndPoint);
+        public int sendTo(byte[] buffer, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.SendTo(buffer, socketFlags, remoteEP.EndPoint);
+        public int sendTo(byte[] buffer, int offset, int size, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.SendTo(buffer, offset, size, socketFlags, remoteEP.EndPoint);
+        public int sendTo(byte[] buffer, int size, SocketFlags socketFlags, LuaEndPoint remoteEP) => _socket.SendTo(buffer, size, socketFlags, remoteEP.EndPoint);
+        public int ioControl(IOControlCode controlCode, byte[] optionInValue, byte[] optionOutValue) => _socket.IOControl(controlCode, optionInValue, optionOutValue);
+        public int ioControl(int controlCode, byte[] optionInValue, byte[] optionOutValue) => _socket.IOControl(controlCode, optionInValue, optionOutValue);
+        public int receiveMessageFrom(byte[] buffer, int offset, int size, ref SocketFlags socketFlags, LuaEndPoint remoteEP, out IPPacketInformation packetInformation) => _socket.ReceiveMessageFrom(buffer, offset, size, ref socketFlags, ref remoteEP.EndPoint, out packetInformation);
+        public void setIPProtectionLevel(IPProtectionLevel protectionLevel) => _socket.SetIPProtectionLevel(protectionLevel);
+        public void setSocketOption(SocketOptionLevel socketOptionLevel, SocketOptionName socketOptionName, bool optionValue) => _socket.SetSocketOption(socketOptionLevel, socketOptionName, optionValue);
+        public void setSocketOption(SocketOptionLevel socketOptionLevel, SocketOptionName socketOptionName, byte[] optionValue) => _socket.SetSocketOption(socketOptionLevel, socketOptionName, optionValue);
+        public void setSocketOption(SocketOptionLevel socketOptionLevel, SocketOptionName socketOptionName, int optionValue) => _socket.SetSocketOption(socketOptionLevel, socketOptionName, optionValue);
+        public void setSocketOption(SocketOptionLevel socketOptionLevel, SocketOptionName socketOptionName, object optionValue) => _socket.SetSocketOption(socketOptionLevel, socketOptionName, optionValue);
+        public string getSocketOption(SocketOptionLevel socketOptionLevel, SocketOptionName socketOptionName) => _socket.GetSocketOption(socketOptionLevel, socketOptionName).ToString();
 
-        public LuaSocket poll(int microSeconds, string selectMode) {
-            _socket.Poll(microSeconds, selectMode);
-        }
+        // TODO: Async
 
-        public LuaSocket receive() => _socket.Receive();
-        public LuaSocket send() => _socket.Send();
-        public LuaSocket shutdown() => _socket.Shutdown();
-        public LuaSocket receiveFrom() => _socket.ReceiveFrom();
-        public LuaSocket sendFile() => _socket.SendFile();
-        public LuaSocket sendTo() => _socket.SendTo();
-        public LuaSocket ioControl() => _socket.IOControl();
-        public LuaSocket receiveMessageFrom() => _socket.ReceiveMessageFrom();
-        public LuaSocket setIPProtectionLevel() => _socket.SetIPProtectionLevel();
-        public LuaSocket setSocketOption() => _socket.SetSocketOption();
-        public LuaSocket getSocketOption() => _socket.GetSocketOption();
+        // TODO: BEGIN, END
     }
 }

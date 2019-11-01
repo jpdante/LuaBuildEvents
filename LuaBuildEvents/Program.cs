@@ -108,8 +108,23 @@ namespace LuaBuildEvents {
             });
             luaScript.Globals["_internal_net_webclient"] = new Func<Type>( () => {
                 UserData.RegisterType<WebClient>();
-                UserData.RegisterType<LuaWebClientHeader>();
                 return typeof(WebClient);
+            });
+            luaScript.Globals["_internal_net_webclientheader"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaWebClientHeader>();
+                return typeof(LuaWebClientHeader);
+            });
+            luaScript.Globals["_internal_net_webclientheader"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaWebClientHeader>();
+                return typeof(LuaWebClientHeader);
+            });
+            luaScript.Globals["_internal_net_webclientheader"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaWebClientHeader>();
+                return typeof(LuaWebClientHeader);
+            });
+            luaScript.Globals["_internal_net_webclientheader"] = new Func<Type>( () => {
+                UserData.RegisterType<LuaWebClientHeader>();
+                return typeof(LuaWebClientHeader);
             });
         }
 
