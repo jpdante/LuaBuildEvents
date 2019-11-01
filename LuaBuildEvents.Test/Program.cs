@@ -23,12 +23,16 @@ namespace LuaBuildEvents.Test {
         }
 
         private static void ProcessOnErrorDataReceived(object sender, DataReceivedEventArgs e) {
-            if (e.Data == null || e.Data.Equals(string.Empty)) return;
+            if (e.Data == null || e.Data.Equals(string.Empty)) {
+                return;
+            }
             Console.WriteLine(e.Data);
         }
 
         private static void ProcessOnOutputDataReceived(object sender, DataReceivedEventArgs e) {
-            if (e.Data == null || e.Data.Equals(string.Empty)) return;
+            if (e.Data == null || e.Data.Equals(string.Empty)) {
+                return;
+            }
             Console.WriteLine(e.Data);
         }
     }
