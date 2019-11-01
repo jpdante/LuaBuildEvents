@@ -19,20 +19,20 @@ namespace LuaBuildEvents.Internal.Lua.IO {
         [MoonSharpVisible(false)]
         public void SetStream(Stream stream) { _stream = stream; }
 
-        public bool can_read => _stream.CanRead;
-        public bool can_seek => _stream.CanSeek;
-        public bool can_write => _stream.CanWrite;
-        public bool can_timeout => _stream.CanTimeout;
+        public bool canRead => _stream.CanRead;
+        public bool canSeek => _stream.CanSeek;
+        public bool canWrite => _stream.CanWrite;
+        public bool canTimeout => _stream.CanTimeout;
 
         public long position {
             get => _stream.Position;
             set => _stream.Position = value;
         }
-        public int read_timeout {
+        public int readTimeout {
             get => _stream.ReadTimeout;
             set => _stream.ReadTimeout = value;
         }
-        public int write_timeout {
+        public int writeTimeout {
             get => _stream.WriteTimeout;
             set => _stream.WriteTimeout = value;
         }
@@ -47,13 +47,13 @@ namespace LuaBuildEvents.Internal.Lua.IO {
         }
 
         public int read(byte[] buffer, int offset, int buffer_length) => _stream.Read(buffer, offset, buffer_length);
-        public int read_byte() => _stream.ReadByte();
+        public int readByte() => _stream.ReadByte();
 
         public void write(byte[] buffer, int offset, int buffer_length) => _stream.Write(buffer, offset, buffer_length);
-        public void write_byte(byte value) => _stream.WriteByte(value);
+        public void writeByte(byte value) => _stream.WriteByte(value);
 
-        public long get_length() => _stream.Length;
-        public void set_length(long value) => _stream.SetLength(value);
+        public long getLength() => _stream.Length;
+        public void setLength(long value) => _stream.SetLength(value);
 
         public void close() => _stream.Close();
 

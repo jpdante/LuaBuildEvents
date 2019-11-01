@@ -35,19 +35,19 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             _processStartInfo = new ProcessStartInfo(filename, arguments);
         }
 
-        public static LuaProcessStartInfo create() => new LuaProcessStartInfo();
-        public static LuaProcessStartInfo create(string filename) => new LuaProcessStartInfo(filename);
-        public static LuaProcessStartInfo create(string filename, string arguments) => new LuaProcessStartInfo(filename, arguments);
+        public static LuaProcessStartInfo New() => new LuaProcessStartInfo();
+        public static LuaProcessStartInfo New(string filename) => new LuaProcessStartInfo(filename);
+        public static LuaProcessStartInfo New(string filename, string arguments) => new LuaProcessStartInfo(filename, arguments);
 
         public IDictionary<string, string> environment => _processStartInfo.Environment;
         public string[] verbs => _processStartInfo.Verbs;
         public ICollection<string> argumentlist => _processStartInfo.ArgumentList;
 
-        public Dictionary<string, string> environment_variable_table(string key) => _processStartInfo.EnvironmentVariables.Cast<KeyValuePair<string, string>>().ToDictionary(variable => variable.Key, variable => variable.Value);
-        public string get_environment_variable(string key) => _processStartInfo.EnvironmentVariables[key];
-        public void set_environment_variable(string key, string value) => _processStartInfo.EnvironmentVariables[key] = value;
+        public Dictionary<string, string> environmentVariableTable(string key) => _processStartInfo.EnvironmentVariables.Cast<KeyValuePair<string, string>>().ToDictionary(variable => variable.Key, variable => variable.Value);
+        public string getEnvironmentVariable(string key) => _processStartInfo.EnvironmentVariables[key];
+        public void setEnvironmentVariable(string key, string value) => _processStartInfo.EnvironmentVariables[key] = value;
 
-        public string file_name {
+        public string fileName {
             get => _processStartInfo.FileName;
             set => _processStartInfo.FileName = value;
         }
@@ -62,12 +62,12 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _processStartInfo.PasswordInClearText = value;
         }
 
-        public string password_in_clear_text {
+        public string passwordInClearText {
             get => _processStartInfo.PasswordInClearText;
             set => _processStartInfo.PasswordInClearText = value;
         }
 
-        public string user_name {
+        public string userName {
             get => _processStartInfo.UserName;
             set => _processStartInfo.UserName = value;
         }
@@ -77,33 +77,33 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             set => _processStartInfo.Verb = value;
         }
 
-        public string working_directory {
+        public string workingDirectory {
             get => _processStartInfo.WorkingDirectory;
             set => _processStartInfo.WorkingDirectory = value;
         }
 
-        public bool create_no_window {
+        public bool createNoWindow {
             get => _processStartInfo.CreateNoWindow;
             set => _processStartInfo.CreateNoWindow = value;
         }
 
 
-        public bool error_dialog {
+        public bool errorDialog {
             get => _processStartInfo.ErrorDialog;
             set => _processStartInfo.ErrorDialog = value;
         }
 
-        public bool load_user_profile {
+        public bool loadUserProfile {
             get => _processStartInfo.LoadUserProfile;
             set => _processStartInfo.LoadUserProfile = value;
         }
 
-        public bool use_shell_execute {
+        public bool useShellExecute {
             get => _processStartInfo.UseShellExecute;
             set => _processStartInfo.UseShellExecute = value;
         }
 
-        public string window_style {
+        public string windowStyle {
             get => _processStartInfo.WindowStyle.ToString();
             set {
                 if (!Enum.TryParse(value, out ProcessWindowStyle result)) {
@@ -113,32 +113,32 @@ namespace LuaBuildEvents.Internal.Lua.Sys {
             }
         }
 
-        public bool redirect_standard_input {
+        public bool redirectStandardInput {
             get => _processStartInfo.RedirectStandardInput;
             set => _processStartInfo.RedirectStandardInput = value;
         }
 
-        public bool redirect_standard_output {
+        public bool redirectStandardOutput {
             get => _processStartInfo.RedirectStandardOutput;
             set => _processStartInfo.RedirectStandardOutput = value;
         }
 
-        public bool redirect_standard_error {
+        public bool redirectStandardError {
             get => _processStartInfo.RedirectStandardError;
             set => _processStartInfo.RedirectStandardError = value;
         }
 
-        public string standard_error_encoding {
+        public string standardErrorEncoding {
             get => _processStartInfo.StandardErrorEncoding?.ToString();
             set => _processStartInfo.StandardErrorEncoding = Encoding.GetEncoding(value);
         }
 
-        public string standard_input_encoding {
+        public string standardInputEncoding {
             get => _processStartInfo.StandardInputEncoding?.ToString();
             set => _processStartInfo.StandardInputEncoding = Encoding.GetEncoding(value);
         }
 
-        public string standard_output_encoding {
+        public string standardOutputEncoding {
             get => _processStartInfo.StandardOutputEncoding?.ToString();
             set => _processStartInfo.StandardOutputEncoding = Encoding.GetEncoding(value);
         }

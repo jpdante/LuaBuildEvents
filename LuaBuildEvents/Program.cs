@@ -86,6 +86,8 @@ namespace LuaBuildEvents {
             });
             luaScript.Globals["_internal_sys_environment"] = new Func<Type>( () => {
                 UserData.RegisterType<LuaEnvironment>();
+                UserData.RegisterType<LuaVersion>();
+                UserData.RegisterType<LuaOperatingSystem>();
                 return typeof(LuaEnvironment);
             });
             luaScript.Globals["_internal_sys_process"] = new Func<Type>( () => {

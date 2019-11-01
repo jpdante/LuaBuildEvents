@@ -44,11 +44,11 @@ namespace LuaBuildEvents.Internal.Lua.IO {
             this.SetStream(_fileStream);
         }
 
-        public static LuaFileStream create(string path, string mode) => new LuaFileStream(path, mode);
-        public static LuaFileStream create(string path, string mode, string access) => new LuaFileStream(path, mode, access);
-        public static LuaFileStream create(string path, string mode, string access, string share) => new LuaFileStream(path, mode, access, share);
+        public static LuaFileStream New(string path, string mode) => new LuaFileStream(path, mode);
+        public static LuaFileStream New(string path, string mode, string access) => new LuaFileStream(path, mode, access);
+        public static LuaFileStream New(string path, string mode, string access, string share) => new LuaFileStream(path, mode, access, share);
 
         public string name => _fileStream.Name;
-        public bool is_async => _fileStream.IsAsync;
+        public bool isAsync => _fileStream.IsAsync;
     }
 }

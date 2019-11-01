@@ -8,7 +8,7 @@ using MoonSharp.Interpreter;
 namespace LuaBuildEvents.Internal.Lua.Security {
     public class LuaFileHash {
 
-        public static byte[] hash_stream_to_bytes(string encryption, LuaFileStream fileStream) {
+        public static byte[] hashStreamToBytes(string encryption, LuaFileStream fileStream) {
             switch (encryption) {
                 case "MD5":
                     using (var md5 = MD5.Create()) {
@@ -40,7 +40,7 @@ namespace LuaBuildEvents.Internal.Lua.Security {
             }
         }
 
-        public static string hash_stream_to_string(string encryption, LuaFileStream fileStream) {
+        public static string hashStreamToString(string encryption, LuaFileStream fileStream) {
             switch (encryption) {
                 case "MD5":
                     using (var md5 = MD5.Create()) {

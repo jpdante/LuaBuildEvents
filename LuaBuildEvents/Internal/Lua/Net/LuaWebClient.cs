@@ -20,17 +20,16 @@ namespace LuaBuildEvents.Internal.Lua.Net {
         [MoonSharpVisible(false)]
         public WebClient GetWebClient() => _webClient;
 
-
         public LuaWebClient() {
             _webClient = new WebClient();
             headers = new LuaWebClientHeader(_webClient.Headers);
         }
 
-        public NameValueCollection query_string => _webClient.QueryString;
+        public NameValueCollection queryString => _webClient.QueryString;
 
-        public Dictionary<string, string> response_headers => _webClient.ResponseHeaders.Keys.Cast<string>().ToDictionary(key => key, key => _webClient.ResponseHeaders.Get(key));
+        public Dictionary<string, string> responseHeaders => _webClient.ResponseHeaders.Keys.Cast<string>().ToDictionary(key => key, key => _webClient.ResponseHeaders.Get(key));
 
-        public bool use_default_credentials {
+        public bool useDefaultCredentials {
             get => _webClient.UseDefaultCredentials;
             set => _webClient.UseDefaultCredentials = value;
         }
@@ -46,7 +45,7 @@ namespace LuaBuildEvents.Internal.Lua.Net {
 
         public LuaWebClientHeader headers { get; }
 
-        public string cache_policy_level {
+        public string cachePolicyLevel {
             get => _webClient.CachePolicy?.Level.ToString();
             set {
                 if (Enum.TryParse(value, out RequestCacheLevel result)) {
@@ -55,7 +54,7 @@ namespace LuaBuildEvents.Internal.Lua.Net {
             }
         }
 
-        public string base_address {
+        public string baseAddress {
             get => _webClient.BaseAddress;
             set => _webClient.BaseAddress = value;
         }
@@ -65,19 +64,19 @@ namespace LuaBuildEvents.Internal.Lua.Net {
             set => _webClient.Encoding = Encoding.GetEncoding(value);
         }
 
-        public byte[] download_data(string uri) => _webClient.DownloadData(uri);
-        public void download_file(string uri, string fileName) => _webClient.DownloadFile(uri, fileName);
-        public string download_string(string uri) => _webClient.DownloadString(uri);
-        public byte[] upload_data(string uri, byte[] data) => _webClient.UploadData(uri, data);
-        public byte[] upload_data(string uri, string method, byte[] data) => _webClient.UploadData(uri, method, data);
-        public byte[] upload_file(string uri, string fileName) => _webClient.UploadFile(uri, fileName);
-        public byte[] upload_file(string uri, string method, string fileName) => _webClient.UploadFile(uri, method, fileName);
-        public string upload_string(string uri, string data) => _webClient.UploadString(uri, data);
-        public string upload_string(string uri, string method, string data) => _webClient.UploadString(uri, method, data);
-        public byte[] upload_values(string uri, NameValueCollection data) => _webClient.UploadValues(uri, data);
-        public byte[] upload_values(string uri, string method, NameValueCollection data) => _webClient.UploadValues(uri, method, data);
-        public void open_read(string uri) => _webClient.OpenRead(uri);
-        public void open_write(string uri) => _webClient.OpenWrite(uri);
+        public byte[] downloadData(string uri) => _webClient.DownloadData(uri);
+        public void downloadFile(string uri, string fileName) => _webClient.DownloadFile(uri, fileName);
+        public string downloadString(string uri) => _webClient.DownloadString(uri);
+        public byte[] uploadData(string uri, byte[] data) => _webClient.UploadData(uri, data);
+        public byte[] uploadData(string uri, string method, byte[] data) => _webClient.UploadData(uri, method, data);
+        public byte[] uploadFile(string uri, string fileName) => _webClient.UploadFile(uri, fileName);
+        public byte[] uploadFile(string uri, string method, string fileName) => _webClient.UploadFile(uri, method, fileName);
+        public string uploadString(string uri, string data) => _webClient.UploadString(uri, data);
+        public string uploadString(string uri, string method, string data) => _webClient.UploadString(uri, method, data);
+        public byte[] uploadValues(string uri, NameValueCollection data) => _webClient.UploadValues(uri, data);
+        public byte[] uploadValues(string uri, string method, NameValueCollection data) => _webClient.UploadValues(uri, method, data);
+        public void openRead(string uri) => _webClient.OpenRead(uri);
+        public void openWrite(string uri) => _webClient.OpenWrite(uri);
         public void dispose() => _webClient.Dispose();
     }
 
@@ -105,9 +104,9 @@ namespace LuaBuildEvents.Internal.Lua.Net {
 
         public string get(int index) => _collection.Get(index);
         public string get(string name) => _collection.Get(name);
-        public string get_key(int index) => _collection.GetKey(index);
-        public string[] get_values(int index) => _collection.GetValues(index);
-        public string[] get_values(string name) => _collection.GetValues(name);
+        public string getKey(int index) => _collection.GetKey(index);
+        public string[] getValues(int index) => _collection.GetValues(index);
+        public string[] getValues(string name) => _collection.GetValues(name);
 
         public void remove(string name) {
             if (Enum.TryParse(name, out HttpRequestHeader result)) {

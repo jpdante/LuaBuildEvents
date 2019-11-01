@@ -7,8 +7,8 @@ using MoonSharp.Interpreter;
 namespace LuaBuildEvents.Internal.Lua.Security {
     public class LuaStringHash {
         
-        public static byte[] hash_string_to_bytes(string encryption, string data) => hash_string_to_bytes(encryption, data, "UTF-8");
-        public static byte[] hash_string_to_bytes(string encryption, string data, string encoding) {
+        public static byte[] hashStringToBytes(string encryption, string data) => hashStringToBytes(encryption, data, "UTF-8");
+        public static byte[] hashStringToBytes(string encryption, string data, string encoding) {
             switch (encryption) {
                 case "MD5":
                     using (var md5 = MD5.Create()) {
@@ -45,8 +45,8 @@ namespace LuaBuildEvents.Internal.Lua.Security {
             }
         }
 
-        public static string hash_string_to_string(string encryption, string data) => hash_string_to_string(encryption, data, "UTF-8");
-        public static string hash_string_to_string(string encryption, string data, string encoding) {
+        public static string hashStringToString(string encryption, string data) => hashStringToString(encryption, data, "UTF-8");
+        public static string hashStringToString(string encryption, string data, string encoding) {
             switch (encryption) {
                 case "MD5":
                     using (var md5 = MD5.Create()) {

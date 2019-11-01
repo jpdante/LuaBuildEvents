@@ -57,81 +57,81 @@ namespace LuaBuildEvents.Internal.Lua.Net {
 
         public bool isConnected => _socket.Connected;
 
-        public bool dont_fragment {
+        public bool dontFragment {
             get => _socket.DontFragment;
             set => _socket.DontFragment = value;
         }
 
-        public bool dual_mode {
+        public bool dualMode {
             get => _socket.DualMode;
             set => _socket.DualMode = value;
         }
 
-        public bool enable_broadcast {
+        public bool enableBroadcast {
             get => _socket.EnableBroadcast;
             set => _socket.EnableBroadcast = value;
         }
 
         public bool isBound => _socket.IsBound;
 
-        public bool multicast_loopback {
+        public bool multicastLoopback {
             get => _socket.MulticastLoopback;
             set => _socket.MulticastLoopback = value;
         }
 
-        public bool no_delay {
+        public bool noDelay {
             get => _socket.NoDelay;
             set => _socket.NoDelay = value;
         }
 
-        public bool exclusive_address_use {
+        public bool exclusiveAddressUse {
             get => _socket.ExclusiveAddressUse;
             set => _socket.ExclusiveAddressUse = value;
         }
 
-        public bool use_only_overlapped_io {
+        public bool useOnlyOverlappedIO {
             get => _socket.UseOnlyOverlappedIO;
             set => _socket.UseOnlyOverlappedIO = value;
         }
 
         public short ttl => _socket.Ttl;
 
-        public string address_family => _socket.AddressFamily.ToString();
+        public string addressFamily => _socket.AddressFamily.ToString();
 
-        public bool linger_state_enabled {
+        public bool lingerStateEnabled {
             get => _socket.LingerState.Enabled;
             set => _socket.LingerState.Enabled = value;
         }
 
-        public int linger_state_linger_time {
+        public int lingerStateLingerTime {
             get => _socket.LingerState.LingerTime;
             set => _socket.LingerState.LingerTime = value;
         }
 
-        public string protocol_type => _socket.ProtocolType.ToString();
+        public string protocolType => _socket.ProtocolType.ToString();
 
-        public int receive_timeout {
+        public int receiveTimeout {
             get => _socket.ReceiveTimeout;
             set => _socket.ReceiveTimeout = value;
         }
 
-        public int send_timeout {
+        public int sendTimeout {
             get => _socket.SendTimeout;
             set => _socket.SendTimeout = value;
         }
 
-        public string socket_type => _socket.SocketType.ToString();
+        public string socketType => _socket.SocketType.ToString();
 
-        public string local_end_point => _socket.LocalEndPoint.ToString();
+        public string localEndPoint => _socket.LocalEndPoint.ToString();
 
-        public string remote_end_point => _socket.RemoteEndPoint.ToString();
+        public string remoteEndPoint => _socket.RemoteEndPoint.ToString();
 
-        public int send_buffer_size {
+        public int sendBufferSize {
             get => _socket.SendBufferSize;
             set => _socket.SendBufferSize = value;
         }
 
-        public int receive_buffer_size {
+        public int receiveBufferSize {
             get => _socket.ReceiveBufferSize;
             set => _socket.ReceiveBufferSize = value;
         }
@@ -151,13 +151,13 @@ namespace LuaBuildEvents.Internal.Lua.Net {
         public LuaSocket receive() => _socket.Receive();
         public LuaSocket send() => _socket.Send();
         public LuaSocket shutdown() => _socket.Shutdown();
-        public LuaSocket receive_from() => _socket.ReceiveFrom();
-        public LuaSocket send_file() => _socket.SendFile();
-        public LuaSocket send_to() => _socket.SendTo();
-        public LuaSocket io_control() => _socket.IOControl();
-        public LuaSocket receive_message_from() => _socket.ReceiveMessageFrom();
-        public LuaSocket set_ip_protection_level() => _socket.SetIPProtectionLevel();
-        public LuaSocket set_socket_option() => _socket.SetSocketOption();
-        public LuaSocket get_socket_option() => _socket.GetSocketOption();
+        public LuaSocket receiveFrom() => _socket.ReceiveFrom();
+        public LuaSocket sendFile() => _socket.SendFile();
+        public LuaSocket sendTo() => _socket.SendTo();
+        public LuaSocket ioControl() => _socket.IOControl();
+        public LuaSocket receiveMessageFrom() => _socket.ReceiveMessageFrom();
+        public LuaSocket setIPProtectionLevel() => _socket.SetIPProtectionLevel();
+        public LuaSocket setSocketOption() => _socket.SetSocketOption();
+        public LuaSocket getSocketOption() => _socket.GetSocketOption();
     }
 }
