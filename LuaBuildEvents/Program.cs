@@ -33,7 +33,19 @@ namespace LuaBuildEvents {
             };
             luaScript.Globals["args"] = args;
             luaScript.Globals["exit"] = new Action<int>(Environment.Exit);
+            luaScript.Globals["_csharp_loadAssembly"] = new Action<string>( (assembly) => {
+                Assembly.Load(assembly);
+            });
+            luaScript.Globals["_csharp_loadAssemblyFile"] = new Action<string>( (assembly) => {
+                Assembly.LoadFile(assembly);
+            });
             luaScript.Globals["_csharp_getType"] = new Func<string, Type>( (requestedType) => {
+                var type = Assembly.GetExecutingAssembly().GetType("LuaBuildEvents.lua." + requestedType);
+                if(type == null) throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
+                UserData.RegisterType(type);
+                return type;
+            });
+            luaScript.Globals["_csharp_getAssemblyType"] = new Func<string, Type>( (requestedType) => {
                 var type = Assembly.GetExecutingAssembly().GetType(requestedType);
                 if(type == null) throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
                 UserData.RegisterType(type);
