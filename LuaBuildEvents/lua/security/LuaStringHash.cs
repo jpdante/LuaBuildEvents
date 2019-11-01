@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using MoonSharp.Interpreter;
 
-namespace LuaBuildEvents.lua.sec {
+namespace LuaBuildEvents.lua.security {
     public class LuaStringHash {
         
         public static byte[] hashStringToBytes(string encryption, string data) => hashStringToBytes(encryption, data, "UTF-8");

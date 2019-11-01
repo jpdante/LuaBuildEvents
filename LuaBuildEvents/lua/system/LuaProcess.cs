@@ -8,7 +8,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.lua.sys {
+namespace LuaBuildEvents.lua.system {
     public class LuaProcess {
         [MoonSharpVisible(false)]
         private readonly Process _process;

@@ -10,7 +10,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.lua.sys {
+namespace LuaBuildEvents.lua.system {
     public class LuaProcessStartInfo {
         [MoonSharpVisible(false)]
         private readonly ProcessStartInfo _processStartInfo;

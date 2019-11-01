@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using LuaBuildEvents.lua.io;
 using MoonSharp.Interpreter;
 
-namespace LuaBuildEvents.lua.sec {
+namespace LuaBuildEvents.lua.security {
     public class LuaFileHash {
 
         public static byte[] hashStreamToBytes(string encryption, LuaFileStream fileStream) {
