@@ -1,0 +1,1 @@
+﻿[[Path = _csharp_getType("LuaBuildEvents.lua.io.LuaPath");]]

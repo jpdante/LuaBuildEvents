@@ -8,7 +8,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.lua.net {
+namespace LuaBuildEvents.lua.net.sockets {
     public class LuaSocket {
         [MoonSharpVisible(false)]
         private readonly Socket _socket;
