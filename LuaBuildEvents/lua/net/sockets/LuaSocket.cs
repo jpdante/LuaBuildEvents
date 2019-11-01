@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net.Sockets;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
-
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
