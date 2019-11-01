@@ -9,7 +9,7 @@ using System.Linq;
 // ReSharper disable InconsistentNaming
 
 namespace LuaBuildEvents.lua.system {
-    public class LuaEnvironment {
+    public static class LuaEnvironment {
         public static string command_line => Environment.CommandLine;
         public static string new_line => Environment.NewLine;
 

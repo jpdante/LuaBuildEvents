@@ -3,7 +3,7 @@
 // ReSharper disable InconsistentNaming
 
 namespace LuaBuildEvents.lua.io {
-    public class LuaDirectory {
+    public static class LuaDirectory {
         public static bool exists(string path) => Directory.Exists(path);
         public static void delete(string path) => Directory.Delete(path);
         public static void move(string from, string to) => Directory.Move(from, to);
