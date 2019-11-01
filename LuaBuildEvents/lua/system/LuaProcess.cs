@@ -13,7 +13,7 @@ namespace LuaBuildEvents.lua.system {
         [MoonSharpVisible(false)]
         private readonly Process _process;
 
-        [MoonSharpVisible(false)] 
+        [MoonSharpVisible(false)]
         private LuaProcessStartInfo _startinfo;
 
         [MoonSharpVisible(false)]
@@ -46,11 +46,26 @@ namespace LuaBuildEvents.lua.system {
         public static LuaProcess New(string path) => new LuaProcess(path);
         public static LuaProcess New(LuaProcessStartInfo processStartInfo) => new LuaProcess(processStartInfo);
 
+        #region Events
         public event EventHandler onOutputDataReceived;
         public event EventHandler onErrorDataReceived;
         public event EventHandler onExited;
         public event EventHandler onDisposed;
 
+        [MoonSharpVisible(false)]
+        private void ProcessOnOutputDataReceived(object sender, DataReceivedEventArgs e) { onOutputDataReceived?.Invoke(this, e); }
+
+        [MoonSharpVisible(false)]
+        private void ProcessOnErrorDataReceived(object sender, DataReceivedEventArgs e) { onErrorDataReceived?.Invoke(this, e); }
+
+        [MoonSharpVisible(false)]
+        private void ProcessOnExited(object sender, EventArgs e) { onExited?.Invoke(this, e); }
+
+        [MoonSharpVisible(false)]
+        private void ProcessOnDisposed(object sender, EventArgs e) { onDisposed?.Invoke(this, e); }
+        #endregion
+
+        #region Variables
         public LuaProcessStartInfo startInfo {
             get => _startinfo;
             set {
@@ -106,7 +121,9 @@ namespace LuaBuildEvents.lua.system {
                 throw new ScriptRuntimeException("Failed to parse ProcessPriorityClass.");
             }
         }
+        #endregion
 
+        #region Sync
         public void beginErrorReadLine() => _process.BeginErrorReadLine();
         public void beginOutputReadLine() => _process.BeginOutputReadLine();
         public void cancelErrorRead() => _process.CancelErrorRead();
@@ -121,18 +138,8 @@ namespace LuaBuildEvents.lua.system {
         public void kill(bool entireProcessTree) => _process.Kill(entireProcessTree);
         public void refresh() => _process.Refresh();
         public bool start() => _process.Start();
+        #endregion
+
         public void dispose() => _process.Dispose();
-
-        [MoonSharpVisible(false)]
-        private void ProcessOnOutputDataReceived(object sender, DataReceivedEventArgs e) { onOutputDataReceived?.Invoke(this, e); }
-
-        [MoonSharpVisible(false)]
-        private void ProcessOnErrorDataReceived(object sender, DataReceivedEventArgs e) { onErrorDataReceived?.Invoke(this, e); }
-
-        [MoonSharpVisible(false)]
-        private void ProcessOnExited(object sender, EventArgs e) { onExited?.Invoke(this, e); }
-
-        [MoonSharpVisible(false)]
-        private void ProcessOnDisposed(object sender, EventArgs e) { onDisposed?.Invoke(this, e); }
     }
 }
