@@ -2,8 +2,8 @@
 
 // ReSharper disable InconsistentNaming
 
-namespace LuaBuildEvents.Internal.Lua.IO {
-    public class LuaFile {
+namespace LuaBuildEvents.lua.io {
+    public class LuaFile : LuaBridgeScript {
         public static bool exists(string path) => File.Exists(path);
         public static void delete(string path) => File.Delete(path);
         public static void move(string from, string to) => move(from, to, false);

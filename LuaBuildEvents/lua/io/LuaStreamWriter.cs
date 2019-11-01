@@ -2,12 +2,13 @@
 using System.IO;
 using System.Text;
 using MoonSharp.Interpreter.Interop;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.IO {
-    public class LuaStreamWriter : IDisposable {
+namespace LuaBuildEvents.lua.io {
+    public class LuaStreamWriter : IDisposable, LuaBridgeScript {
         [MoonSharpVisible(false)]
         private readonly StreamWriter _streamWriter;
 

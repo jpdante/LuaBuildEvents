@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using MoonSharp.Interpreter.Interop;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.Net {
-    public class LuaIPAddress {
+namespace LuaBuildEvents.lua.net {
+    public class LuaIPAddress : LuaBridgeScript {
         [MoonSharpVisible(false)]
         private readonly IPAddress _ipAddress;
 

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
@@ -10,8 +8,8 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.Net {
-    public class LuaSocket {
+namespace LuaBuildEvents.lua.net {
+    public class LuaSocket : LuaBridgeScript {
         [MoonSharpVisible(false)]
         private readonly Socket _socket;
 

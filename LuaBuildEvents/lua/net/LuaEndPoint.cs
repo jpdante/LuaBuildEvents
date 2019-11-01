@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using MoonSharp.Interpreter.Interop;
 
-namespace LuaBuildEvents.Internal.Lua.Net {
-    public class LuaEndPoint {
+namespace LuaBuildEvents.lua.net {
+    public class LuaEndPoint : LuaBridgeScript {
         [MoonSharpVisible(false)]
         public EndPoint EndPoint;
 

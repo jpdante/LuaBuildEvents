@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.IO {
-    public class LuaStream : IDisposable {
+namespace LuaBuildEvents.lua.io {
+    public class LuaStream : IDisposable, LuaBridgeScript {
 
         [MoonSharpVisible(false)]
         protected Stream _stream;

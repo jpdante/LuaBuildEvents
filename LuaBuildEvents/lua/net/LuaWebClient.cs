@@ -7,13 +7,14 @@ using System.Net.Cache;
 using System.Text;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.Net {
+namespace LuaBuildEvents.lua.net {
     // TODO: Add support for async and events
-    public class LuaWebClient {
+    public class LuaWebClient : LuaBridgeScript {
         [MoonSharpVisible(false)]
         private readonly WebClient _webClient;
 

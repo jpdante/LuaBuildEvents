@@ -6,8 +6,8 @@ namespace LuaBuildEvents.Test {
     public class Program {
         public static void Main(string[] args) {
             var startInfo = new ProcessStartInfo {
-                FileName = "LuaBuildEvents.exe",
-                Arguments = $"{Path.Combine(Environment.CurrentDirectory, "")} {Path.Combine(args[0], @"LuaBuildEvents.Test\lua\test_all.lua")}",
+                FileName = "dotnet.exe",
+                Arguments = $@"C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\LuaBuildEvents.dll {Path.Combine(Environment.CurrentDirectory, @"lua\test_all.lua")}",
                 RedirectStandardOutput = true,
                 RedirectStandardError = true
             };
@@ -23,11 +23,13 @@ namespace LuaBuildEvents.Test {
         }
 
         private static void ProcessOnErrorDataReceived(object sender, DataReceivedEventArgs e) {
-            Console.WriteLine($"[Test] {e.Data}");
+            if (e.Data == null || e.Data.Equals(string.Empty)) return;
+            Console.WriteLine(e.Data);
         }
 
         private static void ProcessOnOutputDataReceived(object sender, DataReceivedEventArgs e) {
-            Console.WriteLine($"[Test] {e.Data}");
+            if (e.Data == null || e.Data.Equals(string.Empty)) return;
+            Console.WriteLine(e.Data);
         }
     }
 }

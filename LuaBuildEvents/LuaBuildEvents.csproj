@@ -15,36 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="lua\io\directory.lua" />
-    <None Remove="lua\io\file.lua" />
-    <None Remove="lua\io\filestream.lua" />
-    <None Remove="lua\io\path.lua" />
-    <None Remove="lua\io\streamreader.lua" />
-    <None Remove="lua\io\streamwriter.lua" />
-    <None Remove="lua\net\webclient.lua" />
-    <None Remove="lua\security\filehash.lua" />
-    <None Remove="lua\security\stringhash.lua" />
-    <None Remove="lua\sys\environment.lua" />
-    <None Remove="lua\sys\process.lua" />
-    <None Remove="lua\sys\processstartinfo.lua" />
+    <None Remove="lua\io.lua" />
+    <None Remove="lua\net.lua" />
+    <None Remove="lua\sec.lua" />
+    <None Remove="lua\sys.lua" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="lua\net\webclient.lua" />
-    <EmbeddedResource Include="lua\security\filehash.lua" />
-    <EmbeddedResource Include="lua\security\stringhash.lua" />
-    <EmbeddedResource Include="lua\sys\process.lua" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="lua\io\directory.lua" />
-    <EmbeddedResource Include="lua\io\file.lua" />
-    <EmbeddedResource Include="lua\io\filestream.lua" />
-    <EmbeddedResource Include="lua\io\path.lua" />
-    <EmbeddedResource Include="lua\io\streamreader.lua" />
-    <EmbeddedResource Include="lua\io\streamwriter.lua" />
-    <EmbeddedResource Include="lua\sys\environment.lua" />
-    <EmbeddedResource Include="lua\sys\processstartinfo.lua" />
+    <EmbeddedResource Include="lua\sys.lua" />
+    <EmbeddedResource Include="lua\sec.lua" />
+    <EmbeddedResource Include="lua\net.lua" />
+    <EmbeddedResource Include="lua\io.lua" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,7 +33,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet $(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.0\$(TargetFileName) $(ProjectDir)Publish.BuildEvents.lua $(ProjectDir) $(ConfigurationName)" />
+    <Exec Command="::dotnet $(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.0\$(TargetFileName) $(ProjectDir)Publish.BuildEvents.lua $(ProjectDir) $(ConfigurationName)" />
   </Target>
 
 </Project>

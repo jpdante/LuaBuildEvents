@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
-using System.Security;
 using System.Text;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.Internal.Lua.Sys {
-    public class LuaProcessStartInfo {
+namespace LuaBuildEvents.lua.sys {
+    public class LuaProcessStartInfo : LuaBridgeScript {
         [MoonSharpVisible(false)]
         private readonly ProcessStartInfo _processStartInfo;
 

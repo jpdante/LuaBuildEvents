@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Loaders;
 
-namespace LuaBuildEvents.Internal {
+namespace LuaBuildEvents {
     public class LuaScriptLoader : ScriptLoaderBase {
         private readonly Assembly _resourceAssembly;
         private readonly HashSet<string> _resourceNames;

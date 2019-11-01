@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using MoonSharp.Interpreter;
 
-namespace LuaBuildEvents.Internal.Lua.Security {
-    public class LuaStringHash {
+namespace LuaBuildEvents.lua.sec {
+    public class LuaStringHash : LuaBridgeScript {
         
         public static byte[] hashStringToBytes(string encryption, string data) => hashStringToBytes(encryption, data, "UTF-8");
         public static byte[] hashStringToBytes(string encryption, string data, string encoding) {

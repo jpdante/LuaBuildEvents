@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
 // ReSharper disable InconsistentNaming
 
-namespace LuaBuildEvents.Internal.Lua.Sys {
-    public class LuaEnvironment {
+namespace LuaBuildEvents.lua.sys {
+    public class LuaEnvironment : LuaBridgeScript {
         public static string command_line => Environment.CommandLine;
         public static string new_line => Environment.NewLine;
 
