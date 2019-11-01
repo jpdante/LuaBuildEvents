@@ -1,5 +1,4 @@
-﻿require("lua.reflection")
-Assembly.importLibrary([[C:\Users\jpdante\source\repos\LuaBuildEvents\Extensions\LuaBuildEvents.MySqlConnector\bin\Debug\netcoreapp3.0\LuaBuildEvents.MySqlConnector.dll]])
+﻿Assembly.importLibrary([[C:\Users\jpdante\source\repos\LuaBuildEvents\Extensions\LuaBuildEvents.MySqlConnector\bin\Debug\netcoreapp3.0\LuaBuildEvents.MySqlConnector.dll]])
 require("mysqlconnector.mysql")
 
 connection = MySqlConnection.New("Server=127.0.0.1;Database=test;Uid=root;Pwd=root;")
