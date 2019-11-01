@@ -17,12 +17,14 @@
   <ItemGroup>
     <None Remove="lua\io.lua" />
     <None Remove="lua\net.lua" />
+    <None Remove="lua\net\sockets.lua" />
     <None Remove="lua\reflection.lua" />
     <None Remove="lua\security.lua" />
     <None Remove="lua\system.lua" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="lua\net\sockets.lua" />
     <EmbeddedResource Include="lua\reflection.lua" />
     <EmbeddedResource Include="lua\system.lua" />
     <EmbeddedResource Include="lua\security.lua" />
