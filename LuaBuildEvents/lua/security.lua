@@ -1,2 +1,2 @@
-﻿FileHash = _csharp_getType("LuaBuildEvents.lua.sec.LuaFileHash");
-StringHash = _csharp_getType("LuaBuildEvents.lua.sec.LuaStringHash");
+﻿FileHash = _csharp_getType("LuaBuildEvents.lua.security.LuaFileHash");
+StringHash = _csharp_getType("LuaBuildEvents.lua.security.LuaStringHash");
