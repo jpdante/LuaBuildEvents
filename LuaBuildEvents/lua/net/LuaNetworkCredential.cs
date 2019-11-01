@@ -3,6 +3,7 @@ using System.Net;
 using System.Security;
 using LuaBuildEvents.lua.security;
 using LuaBuildEvents.lua.system;
+using MoonSharp.Interpreter.Interop;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
@@ -10,9 +11,10 @@ using LuaBuildEvents.lua.system;
 
 namespace LuaBuildEvents.lua.net {
     public class LuaNetworkCredential : LuaICredentials {
-
+        [MoonSharpVisible(false)]
         private readonly NetworkCredential _networkCredential;
 
+        [MoonSharpVisible(false)]
         public NetworkCredential GetNetworkCredential() { return _networkCredential; }
 
         public LuaNetworkCredential() {

@@ -40,6 +40,11 @@ namespace LuaBuildEvents.lua.net {
 
         public bool isBusy => _webClient.IsBusy;
 
+        public LuaWebProxy proxy {
+            get => new LuaWebProxy((WebProxy)_webClient.Proxy);
+            set => _webClient.Proxy = value.GetWebProxy();
+        }
+
         public LuaICredentials credentials {
             get => new LuaICredentials(_webClient.Credentials);
             set => _webClient.Credentials = value.GetCredentials();

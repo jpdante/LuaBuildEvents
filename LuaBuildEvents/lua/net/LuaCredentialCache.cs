@@ -9,6 +9,7 @@ using MoonSharp.Interpreter.Interop;
 namespace LuaBuildEvents.lua.net {
     public class LuaCredentialCache : LuaICredentials {
 
+        [MoonSharpVisible(false)]
         private readonly CredentialCache _credentialCache;
 
         [MoonSharpVisible(false)]
