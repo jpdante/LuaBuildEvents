@@ -5,3 +5,11 @@ require("lua.security")
 
 data = File.readAllText([[C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents.Test\lua\test_all.lua]])
 print(data)
+
+co = coroutine.create(function()
+    print("hi")
+end)
+print("\n")
+print(co)
+print("\n")
+coroutine.resume(co)
