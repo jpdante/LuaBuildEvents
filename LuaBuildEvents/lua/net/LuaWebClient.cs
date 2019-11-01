@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Cache;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
@@ -25,6 +26,8 @@ namespace LuaBuildEvents.lua.net {
             _webClient = new WebClient();
             headers = new LuaWebClientHeader(_webClient.Headers);
         }
+
+        public static LuaWebClient New() => new LuaWebClient();
 
         public NameValueCollection queryString => _webClient.QueryString;
 
