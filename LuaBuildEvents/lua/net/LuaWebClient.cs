@@ -39,11 +39,6 @@ namespace LuaBuildEvents.lua.net {
 
         // TODO: Add support for credentials later
 
-        /*public string credentials {
-            get => _webClient.Credentials;
-            set => _webClient.Credentials;
-        }*/
-
         public LuaWebClientHeader headers { get; }
 
         public string cachePolicyLevel {

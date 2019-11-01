@@ -30,9 +30,9 @@ namespace LuaBuildEvents.lua.net {
             set => _ipAddress.ScopeId = value;
         }
 
-        public LuaIPAddress New(byte[] address) => new LuaIPAddress(new IPAddress(address));
-        public LuaIPAddress New(byte[] address, long scope) => new LuaIPAddress(new IPAddress(address, scope));
-        public LuaIPAddress New(string ipString) => new LuaIPAddress(IPAddress.Parse(ipString));
+        public static LuaIPAddress New(byte[] address) => new LuaIPAddress(new IPAddress(address));
+        public static LuaIPAddress New(byte[] address, long scope) => new LuaIPAddress(new IPAddress(address, scope));
+        public static LuaIPAddress New(string ipString) => new LuaIPAddress(IPAddress.Parse(ipString));
 
         public static LuaIPAddress Any => new LuaIPAddress(IPAddress.Any);
         public static LuaIPAddress Broadcast => new LuaIPAddress(IPAddress.Broadcast);

@@ -144,7 +144,8 @@ namespace LuaBuildEvents.lua.net.sockets {
         public void connect(LuaIPAddress address, int port) => _socket.Connect(address.GetIPAddress(), port);
         public void connect(LuaIPAddress[] addresses, int port) => _socket.Connect(addresses.Select(address => address.GetIPAddress()).ToArray(), port);
         public void connect(string host, int port) => _socket.Connect(host, port);
-        public void disconnect(bool reuseSocket = false) => _socket.Disconnect(reuseSocket);
+        public void disconnect() => _socket.Disconnect(false);
+        public void disconnect(bool reuseSocket) => _socket.Disconnect(reuseSocket);
         public void dispose() => _socket.Dispose();
         public void listen(int backlog) => _socket.Listen(backlog);
         public void poll(int microSeconds, SelectMode selectMode) => _socket.Poll(microSeconds, selectMode);

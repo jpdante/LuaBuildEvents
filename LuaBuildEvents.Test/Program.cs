@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace LuaBuildEvents.Test {
-    public class Program {
+    public static class Program {
         public static void Main(string[] args) {
             var startInfo = new ProcessStartInfo {
                 FileName = "dotnet.exe",
