@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll PreBuild.BuildEvents.lua $(ProjectDir)" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll PostBuild.BuildEvents.lua $(ProjectDir)" />
+  </Target>
+
+</Project>

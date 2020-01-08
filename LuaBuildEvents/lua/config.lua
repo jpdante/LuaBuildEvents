@@ -1,0 +1,1 @@
+﻿FastConfig = _csharp_getType("config.LuaFastConfig");

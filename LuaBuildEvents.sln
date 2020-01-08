@@ -17,6 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.MySqlConnect
 		{B22D21A0-622D-4103-A197-3F7AB4A05246} = {B22D21A0-622D-4103-A197-3F7AB4A05246}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaBuildEvents.Sample", "LuaBuildEvents.Sample\LuaBuildEvents.Sample.csproj", "{16E1A0C6-F24D-497C-8A38-6513E6F5272C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B22D21A0-622D-4103-A197-3F7AB4A05246} = {B22D21A0-622D-4103-A197-3F7AB4A05246}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F20D1581-D0F1-40D1-94B6-A23B23550048}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,11 +42,16 @@ Global
 		{7373DB16-07A1-4239-BB9D-6EBAE73D9CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7373DB16-07A1-4239-BB9D-6EBAE73D9CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7373DB16-07A1-4239-BB9D-6EBAE73D9CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{3B1DB9B7-B8AD-4060-B203-21706D60B53B} = {F20D1581-D0F1-40D1-94B6-A23B23550048}
 		{7373DB16-07A1-4239-BB9D-6EBAE73D9CAD} = {220C56D9-90FD-4D9A-A860-CE5BCB55A163}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
