@@ -3,6 +3,10 @@ using System.Security.Cryptography;
 using System.Text;
 using MoonSharp.Interpreter;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+
 namespace LuaBuildEvents.lua.security {
     public static class LuaStringHash {
         

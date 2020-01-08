@@ -5,9 +5,11 @@ using System.IO;
 namespace LuaBuildEvents.Test {
     public static class Program {
         public static void Main(string[] args) {
+            if (args == null || args.Length <= 0) return;
             var startInfo = new ProcessStartInfo {
                 FileName = "dotnet.exe",
-                Arguments = $@"C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\LuaBuildEvents.dll {Path.Combine(Environment.CurrentDirectory, @"lua\test_all.lua")}",
+                Arguments = $@"{args[0]}\LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll {Path.Combine(Environment.CurrentDirectory, @"lua\test_all.lua")}",
+                WorkingDirectory = Path.Combine(Environment.CurrentDirectory, @"lua\"),
                 RedirectStandardOutput = true,
                 RedirectStandardError = true
             };

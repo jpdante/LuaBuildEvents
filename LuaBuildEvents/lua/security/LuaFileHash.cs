@@ -3,6 +3,10 @@ using System.Security.Cryptography;
 using LuaBuildEvents.lua.io;
 using MoonSharp.Interpreter;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+
 namespace LuaBuildEvents.lua.security {
     public static class LuaFileHash {
 

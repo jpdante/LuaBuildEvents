@@ -1,1 +1,1 @@
-﻿Socket = _csharp_getType("LuaBuildEvents.lua.net.sockets.LuaSocket");
+﻿Socket = _csharp_getType("net.sockets.LuaSocket");

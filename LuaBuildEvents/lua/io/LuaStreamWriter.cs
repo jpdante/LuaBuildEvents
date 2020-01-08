@@ -58,7 +58,11 @@ namespace LuaBuildEvents.lua.io {
 
         public void write(char value) => _streamWriter.Write(value);
 
+        public void write(string value) => _streamWriter.Write(value);
+
         public void dispose() => Dispose();
+
+        public void flush() => _streamWriter.Flush();
 
         public void close() => _streamWriter.Close();
 

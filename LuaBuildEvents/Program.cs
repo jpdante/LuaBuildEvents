@@ -68,15 +68,19 @@ namespace LuaBuildEvents {
                 luaScript.DoFile(filename);
             } catch (ScriptRuntimeException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
+                Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             } catch (InternalErrorException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
+                Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             } catch (InterpreterException ex) {
                 Console.WriteLine(ex.DecoratedMessage);
+                Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             }
             return 0;
