@@ -5,3 +5,6 @@ Stream = _csharp_getType("io.LuaStream");
 FileStream = _csharp_getType("io.LuaFileStream");
 StreamReader = _csharp_getType("io.LuaStreamReader");
 StreamWriter = _csharp_getType("io.LuaStreamWriter");
+FileInfo = _csharp_getType("io.LuaFileInfo");
+DirectoryInfo = _csharp_getType("io.LuaDirectoryInfo");
+FileSystemInfo = _csharp_getType("io.LuaFileSystemInfo");

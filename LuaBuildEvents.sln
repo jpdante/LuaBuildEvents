@@ -13,6 +13,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{220C56D9-90FD-4D9A-A860-CE5BCB55A163}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.MySqlConnector", "Extensions\LuaBuildEvents.MySqlConnector\LuaBuildEvents.MySqlConnector.csproj", "{7373DB16-07A1-4239-BB9D-6EBAE73D9CAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B22D21A0-622D-4103-A197-3F7AB4A05246} = {B22D21A0-622D-4103-A197-3F7AB4A05246}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
