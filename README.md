@@ -16,10 +16,10 @@ While I was developing projects there was a mismatch between the commands used o
 ie whenever I tried to compile the solution the BuildEvents of each project triggered an error that canceled the compilation of the solution. I developed this software to be cross platform and had more functions than a simple shell.
 
 ## Getting Started
-To use this program you must have .Net Core 3.0 installed, in the future self-contained releases will be published.
+To use this program you must have .Net Core 3.1 installed, in the future self-contained releases will be published.
 
 ### Prerequisites
-*   [.Net Core 3.0](https://dotnet.microsoft.com/download)
+*   [.Net Core 3.1](https://dotnet.microsoft.com/download)
 
 ### Installation
 1.  Download the latest version at [https://github.com/jpdante/LuaBuildEvents/releases](https://github.com/jpdante/LuaBuildEvents/releases)
