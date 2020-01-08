@@ -18,6 +18,10 @@ namespace LuaBuildEvents.lua.io {
         [MoonSharpVisible(false)]
         public void SetStream(Stream stream) { _stream = stream; }
 
+        public LuaStream() { }
+
+        public LuaStream(Stream stream) { this._stream = stream; }
+
         public bool canRead => _stream.CanRead;
         public bool canSeek => _stream.CanSeek;
         public bool canWrite => _stream.CanWrite;
@@ -58,9 +62,21 @@ namespace LuaBuildEvents.lua.io {
 
         public void dispose() => Dispose();
 
+        ~LuaStream() {
+            Dispose(false);
+        }
+
         [MoonSharpVisible(false)]
         public void Dispose() {
-            _stream?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        [MoonSharpVisible(false)]
+        protected virtual void Dispose(bool disposing) {
+            if (disposing) {
+                _stream?.Dispose();
+            }
         }
     }
 }

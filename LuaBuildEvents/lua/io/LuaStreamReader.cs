@@ -53,8 +53,21 @@ namespace LuaBuildEvents.lua.io {
 
         public void close() => _streamReader.Close();
 
+        ~LuaStreamReader() {
+            Dispose(false);
+        }
+
+        [MoonSharpVisible(false)]
         public void Dispose() {
-            _streamReader?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        [MoonSharpVisible(false)]
+        protected virtual void Dispose(bool disposing) {
+            if (disposing) {
+                _streamReader?.Dispose();
+            }
         }
     }
 }

@@ -62,8 +62,21 @@ namespace LuaBuildEvents.lua.io {
 
         public void close() => _streamWriter.Close();
 
+        ~LuaStreamWriter() {
+            Dispose(false);
+        }
+
+        [MoonSharpVisible(false)]
         public void Dispose() {
-            _streamWriter?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        [MoonSharpVisible(false)]
+        protected virtual void Dispose(bool disposing) {
+            if (disposing) {
+                _streamWriter?.Dispose();
+            }
         }
     }
 }
