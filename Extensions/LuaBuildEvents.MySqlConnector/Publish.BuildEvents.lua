@@ -1,3 +1,0 @@
-﻿require("lua.io")
-File.copy([[C:\Users\jpdante\source\repos\LuaBuildEvents\Extensions\LuaBuildEvents.MySqlConnector\bin\Debug\netcoreapp3.0\LuaBuildEvents.MySqlConnector.dll]], [[C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\LuaBuildEvents.MySqlConnector.dll]], true)
-File.copy([[C:\Users\jpdante\.nuget\packages\mysqlconnector\0.60.3\lib\netcoreapp3.0\MySqlConnector.dll]], [[C:\Users\jpdante\source\repos\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.0\MySqlConnector.dll]], true)
