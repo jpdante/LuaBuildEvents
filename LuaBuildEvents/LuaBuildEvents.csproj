@@ -23,6 +23,7 @@
     <None Remove="lua\reflection.lua" />
     <None Remove="lua\security.lua" />
     <None Remove="lua\system.lua" />
+    <None Remove="lua\system\threading.lua" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <EmbeddedResource Include="lua\security.lua" />
     <EmbeddedResource Include="lua\net.lua" />
     <EmbeddedResource Include="lua\io.lua" />
+    <EmbeddedResource Include="lua\system\threading.lua" />
   </ItemGroup>
 
   <ItemGroup>

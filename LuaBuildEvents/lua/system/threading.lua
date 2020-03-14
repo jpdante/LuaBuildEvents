@@ -1,0 +1,1 @@
+﻿Thread = _csharp_getType("system.threading.LuaThread");
