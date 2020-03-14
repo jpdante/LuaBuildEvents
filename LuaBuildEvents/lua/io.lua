@@ -8,3 +8,4 @@ StreamWriter = _csharp_getType("io.LuaStreamWriter");
 FileInfo = _csharp_getType("io.LuaFileInfo");
 DirectoryInfo = _csharp_getType("io.LuaDirectoryInfo");
 FileSystemInfo = _csharp_getType("io.LuaFileSystemInfo");
+FileSystemWatcher = _csharp_getType("io.LuaFileSystemWatcher");

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using MoonSharp.Interpreter;
+
 // ReSharper disable StringLiteralTypo
+// ReSharper disable once InconsistentNaming
 
 namespace LuaBuildEvents {
     public static class Program {
@@ -13,15 +15,21 @@ namespace LuaBuildEvents {
         public static Script Script;
 
         public static int Main(string[] args) {
-            if (args.Length <= 0) {
-                Console.WriteLine($"Usage: dotnet LuaBuildEvents.dll <path to script.lua>");
-                return 2;
+            string defaultFile = Path.Combine(Directory.GetCurrentDirectory(), "default.lua");
+            if (File.Exists(defaultFile)) {
+                return Run(defaultFile, args);
+            } else {
+                if (args.Length <= 0) {
+                    Console.WriteLine($"Usage: dotnet LuaBuildEvents.dll <path to script.lua>");
+                    return 2;
+                }
+                // ReSharper disable once InvertIf
+                if (!File.Exists(args[0])) {
+                    Console.WriteLine($"The file \"{args[0]}\" does not exist.");
+                    return 1;
+                }
+                return Run(args[0], args);
             }
-            if (!File.Exists(args[0])) {
-                Console.WriteLine($"The file \"{args[0]}\" does not exist.");
-                return 1;
-            }
-            return Run(args[0], args);
         }
 
         public static int Run(string filename, string[] args) {
@@ -50,6 +58,7 @@ namespace LuaBuildEvents {
                 return type;
             });
             Script.Globals["_csharp_getAssemblyType"] = new Func<string, Type>((requestedType) => {
+                // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
                 foreach (var assembly in ScriptLoader.ResourceAssemblies) {
                     var type = assembly.GetType(requestedType);
                     if (type == null) {
