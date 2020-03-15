@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentFTP" Version="32.2.1" />
+    <PackageReference Include="MoonSharp" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\LuaBuildEvents\LuaBuildEvents.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll $(SolutionDir)Extensions\$(ProjectName)\PostBuild.BuildEvents.lua $(ConfigurationName) $(SolutionDir)" />
+  </Target>
+
+</Project>

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Security.Authentication;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using FluentFTP;
 using FluentFTP.Rules;
 using LuaBuildEvents.lua.io;
 using LuaBuildEvents.lua.net;
-using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 
@@ -286,6 +283,14 @@ namespace LuaBuildEvents.FTP.fluentftp {
         public void disableUTF8() => _ftpClient.DisableUTF8();
         public void disconnect() => _ftpClient.Disconnect();
         public void dispose() => _ftpClient.Dispose();
+        public bool download(LuaStream stream, string remotePath, DynValue function) {
+            if (function == null) {
+                return _ftpClient.Download(stream.GetStream(), remotePath);
+            }
+            return _ftpClient.Download(stream.GetStream(), remotePath, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
         public bool download(LuaStream stream, string remotePath, long restartPosition, DynValue function) {
             if (function == null) {
                 return _ftpClient.Download(stream.GetStream(), remotePath, restartPosition);
@@ -300,6 +305,16 @@ namespace LuaBuildEvents.FTP.fluentftp {
                 return data;
             }
             _ftpClient.Download(out byte[] data2, remotePath, restartPosition, (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+            return data2;
+        }
+        public byte[] download(string remotePath, DynValue function) {
+            if (function == null) {
+                _ftpClient.Download(out byte[] data, remotePath);
+                return data;
+            }
+            _ftpClient.Download(out byte[] data2, remotePath, progress: (FtpProgress) => {
                 Program.Script.Call(function, FtpProgress);
             });
             return data2;
@@ -404,13 +419,126 @@ namespace LuaBuildEvents.FTP.fluentftp {
         public void setModifiedTime(string path, DateTime date) => _ftpClient.SetModifiedTime(path, date);
         public void setModifiedTime(string path, DateTime date, FtpDate ftpDate) => _ftpClient.SetModifiedTime(path, date, ftpDate);
         public void setWorkingDirectory(string path) => _ftpClient.SetWorkingDirectory(path);
-        public void transferDirectory() => _ftpClient.TransferDirectory();
-        public FtpStatus transferFile() => _ftpClient.TransferFile();
-        public void transferFileFXPInternal() => _ftpClient.TransferFileFXPInternal();
-        public void upload() => _ftpClient.Upload();
-        public void uploadDirectory() => _ftpClient.UploadDirectory();
-        public void uploadFile() => _ftpClient.UploadFile();
-        public void uploadFiles() => _ftpClient.UploadFiles();
+        public List<FtpResult> transferDirectory(string sourceFolder, LuaFtpClient remoteClient, string remoteFolder, DynValue function) {
+            if (function == null) {
+                return _ftpClient.TransferDirectory(sourceFolder, remoteClient.GetFtpClient(), remoteFolder);
+            }
+            return _ftpClient.TransferDirectory(sourceFolder, remoteClient.GetFtpClient(), remoteFolder, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public List<FtpResult> transferDirectory(string sourceFolder, LuaFtpClient remoteClient, string remoteFolder, FtpFolderSyncMode ftpFolderSyncMode, FtpRemoteExists ftpRemoteExists, FtpVerify ftpVerify, FtpRule[] rules, DynValue function) {
+            if (function == null) {
+                return _ftpClient.TransferDirectory(sourceFolder, remoteClient.GetFtpClient(), remoteFolder, ftpFolderSyncMode, ftpRemoteExists, ftpVerify, rules.ToList());
+            }
+            return _ftpClient.TransferDirectory(sourceFolder, remoteClient.GetFtpClient(), remoteFolder, ftpFolderSyncMode, ftpRemoteExists, ftpVerify, rules.ToList(), (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus transferFile(string sourceFolder, LuaFtpClient remoteClient, string remotePath, DynValue function) {
+            if (function == null) {
+                return _ftpClient.TransferFile(sourceFolder, remoteClient.GetFtpClient(), remotePath);
+            }
+            return _ftpClient.TransferFile(sourceFolder, remoteClient.GetFtpClient(), remotePath, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus transferFile(string sourceFolder, LuaFtpClient remoteClient, string remotePath, bool createRemoteDir, FtpRemoteExists ftpRemoteExists, FtpVerify ftpVerify, DynValue function) {
+            if (function == null) {
+                return _ftpClient.TransferFile(sourceFolder, remoteClient.GetFtpClient(), remotePath, createRemoteDir, ftpRemoteExists, ftpVerify);
+            }
+            return _ftpClient.TransferFile(sourceFolder, remoteClient.GetFtpClient(), remotePath, createRemoteDir, ftpRemoteExists, ftpVerify, (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public bool transferFileFXPInternal(string sourceFolder, LuaFtpClient remoteClient, string remotePath, bool createRemoteDir, FtpRemoteExists ftpRemoteExists, DynValue function) {
+            if (function == null) {
+                return false;
+            }
+            return _ftpClient.TransferFileFXPInternal(sourceFolder, remoteClient.GetFtpClient(), remotePath, createRemoteDir, ftpRemoteExists, (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            }, null);
+        }
+        public FtpStatus upload(LuaStream stream, string remotePath, DynValue function) {
+            if (function == null) {
+                return _ftpClient.Upload(stream.GetStream(), remotePath);
+            }
+            return _ftpClient.Upload(stream.GetStream(), remotePath, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus upload(LuaStream stream, string remotePath, FtpRemoteExists ftpRemoteExists, bool createRemoteDir, DynValue function) {
+            if (function == null) {
+                return _ftpClient.Upload(stream.GetStream(), remotePath, ftpRemoteExists, createRemoteDir);
+            }
+            return _ftpClient.Upload(stream.GetStream(), remotePath, ftpRemoteExists, createRemoteDir, (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus upload(byte[] data, string remotePath, DynValue function) {
+            if (function == null) {
+                return _ftpClient.Upload(data, remotePath);
+            }
+            return _ftpClient.Upload(data, remotePath, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus upload(byte[] data, string remotePath, FtpRemoteExists ftpRemoteExists, bool createRemoteDir, DynValue function) {
+            if (function == null) {
+                return _ftpClient.Upload(data, remotePath, ftpRemoteExists, createRemoteDir);
+            }
+            return _ftpClient.Upload(data, remotePath, ftpRemoteExists, createRemoteDir, (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public List<FtpResult> uploadDirectory(string localFolder, string remoteFolder, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadDirectory(localFolder, remoteFolder);
+            }
+            return _ftpClient.UploadDirectory(localFolder, remoteFolder, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public List<FtpResult> uploadDirectory(string localFolder, string remoteFolder, FtpFolderSyncMode ftpFolderSyncMode, FtpRemoteExists ftpRemoteExists, FtpVerify ftpVerify, FtpRule[] rules, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadDirectory(localFolder, remoteFolder, ftpFolderSyncMode, ftpRemoteExists, ftpVerify, rules.ToList());
+            }
+            return _ftpClient.UploadDirectory(localFolder, remoteFolder, ftpFolderSyncMode, ftpRemoteExists, ftpVerify, rules.ToList(), (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus uploadFile(string localPath, string remotePath, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadFile(localPath, remotePath);
+            }
+            return _ftpClient.UploadFile(localPath, remotePath, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public FtpStatus uploadFile(string localPath, string remotePath, FtpRemoteExists ftpRemoteExists, bool createRemoteDir, FtpVerify ftpVerify, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadFile(localPath, remotePath, ftpRemoteExists, createRemoteDir, ftpVerify);
+            }
+            return _ftpClient.UploadFile(localPath, remotePath, ftpRemoteExists, createRemoteDir, ftpVerify,(FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public int uploadFiles(string[] localPaths, string remoteDir, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadFiles(localPaths, remoteDir);
+            }
+            return _ftpClient.UploadFiles(localPaths, remoteDir, progress: (FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
+        public int uploadFiles(string[] localPaths, string remoteDir, FtpRemoteExists ftpRemoteExists, bool createRemoteDir, FtpVerify ftpVerify, FtpError ftpError, DynValue function) {
+            if (function == null) {
+                return _ftpClient.UploadFiles(localPaths, remoteDir, ftpRemoteExists, createRemoteDir, ftpVerify, ftpError);
+            }
+            return _ftpClient.UploadFiles(localPaths, remoteDir, ftpRemoteExists, createRemoteDir, ftpVerify, ftpError,(FtpProgress) => {
+                Program.Script.Call(function, FtpProgress);
+            });
+        }
 
         #endregion
     }

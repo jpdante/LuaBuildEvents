@@ -1,0 +1,1 @@
+﻿FtpClient = _csharp_getAssemblyType("LuaBuildEvents.FTP.LuaFtpClient")
