@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.Sample", "Lu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F20D1581-D0F1-40D1-94B6-A23B23550048}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaBuildEvents.FluentFTP", "LuaBuildEvents.FluentFTP\LuaBuildEvents.FluentFTP.csproj", "{E8DA3774-633A-4313-AE7A-49599F401553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaBuildEvents.FTP", "LuaBuildEvents.FluentFTP\LuaBuildEvents.FTP.csproj", "{E8DA3774-633A-4313-AE7A-49599F401553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

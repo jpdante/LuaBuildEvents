@@ -3,11 +3,12 @@ using System.Collections;
 using System.IO;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.MySqlConnector {
+namespace LuaBuildEvents.MySqlConnector.mysqlconnector {
     public class LuaMySqlDataReader {
         private readonly MySqlDataReader _dataReader;
 

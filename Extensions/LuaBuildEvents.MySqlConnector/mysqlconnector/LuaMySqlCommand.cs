@@ -1,11 +1,11 @@
-﻿using System;
-using MoonSharp.Interpreter.Interop;
+﻿using MoonSharp.Interpreter.Interop;
 using MySql.Data.MySqlClient;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.MySqlConnector {
+namespace LuaBuildEvents.MySqlConnector.mysqlconnector {
     public class LuaMySqlCommand {
         [MoonSharpVisible(false)]
         private readonly MySqlCommand _command;

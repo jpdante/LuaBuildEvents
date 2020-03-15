@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MoonSharp.Interpreter.Interop;
+﻿using MoonSharp.Interpreter.Interop;
 using MySql.Data.MySqlClient;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.MySqlConnector {
+namespace LuaBuildEvents.MySqlConnector.mysqlconnector {
     public class LuaMySqlConnection {
         [MoonSharpVisible(false)]
         public MySqlConnection SqlConnection;
