@@ -16,6 +16,8 @@ namespace LuaBuildEvents.lua.system {
             Program.Script.Globals["ConsoleColor"] = UserData.CreateStatic<ConsoleColor>();
         }
 
+        #region Variables
+
         public string title {
             get => Console.Title;
             set => Console.Title = value;
@@ -92,6 +94,11 @@ namespace LuaBuildEvents.lua.system {
             set => Console.OutputEncoding = Encoding.GetEncoding(value);
         }
 
+        #endregion
+
+
+        #region Sync
+
         public static string readLine() => Console.ReadLine();
         public static int read() => Console.Read();
         public static void writeLine(object obj) => Console.WriteLine(obj);
@@ -103,5 +110,7 @@ namespace LuaBuildEvents.lua.system {
         public static void write(object obj) => Console.Write(obj);
         public static void setWindowSize(int width, int height) => Console.SetWindowSize(width, height);
         public static void setWindowPosition(int left, int top) => Console.SetWindowPosition(left, top);
+
+        #endregion
     }
 }
