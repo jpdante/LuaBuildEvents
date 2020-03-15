@@ -25,6 +25,11 @@ namespace LuaBuildEvents.lua.io {
             _fileSystemWatcher.Error += FileSystemWatcherOnError;
             _fileSystemWatcher.Renamed += FileSystemWatcherOnRenamed;
             _fileSystemWatcher.Disposed += FileSystemWatcherOnDisposed;
+            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            UserData.RegisterType<WaitForChangedResult>();
+            UserData.RegisterType<FileSystemEventArgs>();
+            UserData.RegisterType<RenamedEventArgs>();
+            UserData.RegisterType<ErrorEventArgs>();
         }
 
         public LuaFileSystemWatcher(string path) {
@@ -35,6 +40,11 @@ namespace LuaBuildEvents.lua.io {
             _fileSystemWatcher.Error += FileSystemWatcherOnError;
             _fileSystemWatcher.Renamed += FileSystemWatcherOnRenamed;
             _fileSystemWatcher.Disposed += FileSystemWatcherOnDisposed;
+            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            UserData.RegisterType<WaitForChangedResult>();
+            UserData.RegisterType<FileSystemEventArgs>();
+            UserData.RegisterType<RenamedEventArgs>();
+            UserData.RegisterType<ErrorEventArgs>();
         }
 
         public LuaFileSystemWatcher(string path, string filter) {
@@ -45,6 +55,11 @@ namespace LuaBuildEvents.lua.io {
             _fileSystemWatcher.Error += FileSystemWatcherOnError;
             _fileSystemWatcher.Renamed += FileSystemWatcherOnRenamed;
             _fileSystemWatcher.Disposed += FileSystemWatcherOnDisposed;
+            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            UserData.RegisterType<WaitForChangedResult>();
+            UserData.RegisterType<FileSystemEventArgs>();
+            UserData.RegisterType<RenamedEventArgs>();
+            UserData.RegisterType<ErrorEventArgs>();
         }
 
         public static LuaFileSystemWatcher New() => new LuaFileSystemWatcher();
@@ -88,7 +103,7 @@ namespace LuaBuildEvents.lua.io {
 
         #region Variables
 
-        public string name {
+        public string filter {
             get => _fileSystemWatcher.Filter;
             set => _fileSystemWatcher.Filter = value;
         }
@@ -113,14 +128,9 @@ namespace LuaBuildEvents.lua.io {
             set => _fileSystemWatcher.InternalBufferSize = value;
         }
 
-        public string notifyFilter {
-            get => _fileSystemWatcher.NotifyFilter.ToString();
-            set {
-                if (!Enum.TryParse(value, out NotifyFilters result)) {
-                    _fileSystemWatcher.NotifyFilter = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse NotifyFilters.");
-            }
+        public NotifyFilters notifyFilter {
+            get => _fileSystemWatcher.NotifyFilter;
+            set => _fileSystemWatcher.NotifyFilter = value;
         }
 
         #endregion
@@ -129,17 +139,11 @@ namespace LuaBuildEvents.lua.io {
 
         public void beginInit() => _fileSystemWatcher.BeginInit();
         public void endInit() => _fileSystemWatcher.EndInit();
-        public void waitForChanged(string value) {
-            if (!Enum.TryParse(value, out WatcherChangeTypes result)) {
-                _fileSystemWatcher.WaitForChanged(result);
-            }
-            throw new ScriptRuntimeException("Failed to parse WatcherChangeTypes.");
+        public WaitForChangedResult waitForChanged(WatcherChangeTypes changeTypes) {
+            return _fileSystemWatcher.WaitForChanged(changeTypes);
         }
-        public void waitForChanged(string value, int timeout) {
-            if (!Enum.TryParse(value, out WatcherChangeTypes result)) {
-                _fileSystemWatcher.WaitForChanged(result, timeout);
-            }
-            throw new ScriptRuntimeException("Failed to parse WatcherChangeTypes.");
+        public WaitForChangedResult waitForChanged(WatcherChangeTypes changeTypes, int timeout) {
+            return _fileSystemWatcher.WaitForChanged(changeTypes, timeout);
         }
         public void dispose() => _fileSystemWatcher.Dispose();
 

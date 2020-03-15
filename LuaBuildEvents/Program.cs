@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 
 // ReSharper disable StringLiteralTypo
@@ -11,6 +13,7 @@ using MoonSharp.Interpreter;
 namespace LuaBuildEvents {
     public static class Program {
 
+        private static ManualResetEvent _manualResetEvent = new ManualResetEvent(false);
         public static LuaScriptLoader ScriptLoader;
         public static Script Script;
 
@@ -45,10 +48,14 @@ namespace LuaBuildEvents {
                 Options = {
                     ScriptLoader = ScriptLoader,
                     DebugPrint = Console.Write,
-                }
+                },
+                DebuggerEnabled = true
             };
+            UserData.RegisterType<LuaConsole>();
+            Script.Globals["waitExit"] = false;
             Script.Globals["args"] = args;
             Script.Globals["exit"] = new Action<int>(Environment.Exit);
+            Script.Globals["Console"] = new LuaConsole();
             Script.Globals["_csharp_getType"] = new Func<string, Type>((requestedType) => {
                 var type = Assembly.GetExecutingAssembly().GetType("LuaBuildEvents.lua." + requestedType);
                 if (type == null) {
@@ -69,6 +76,20 @@ namespace LuaBuildEvents {
                 }
                 throw new ScriptRuntimeException($"Failed to decode assemblies for '{requestedType}'");
             });
+            Script.Globals["_csharp_getStaticType"] = new Func<string, DynValue>((requestedType) => {
+                Type type = null;
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+                    var tempType = assembly.GetType(requestedType);
+                    if (tempType == null) continue;
+                    type = tempType;
+                }
+                if (type == null) {
+                    throw new ScriptRuntimeException($"Failed to decode enum assemblies for '{requestedType}'");
+                }
+                UserData.RegisterType(type);
+                return UserData.CreateStatic(type);
+            });
+            Script.Globals["_csharp_loadAssembly"] = new Action<string>((requestedType) => { Assembly.Load(requestedType); });
             try {
                 Script.DoFile(filename);
             } catch (ScriptRuntimeException ex) {
@@ -88,6 +109,11 @@ namespace LuaBuildEvents {
                 Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             }
+            if (Script.Globals.Get("waitExit").Boolean) {
+                if (Script.Globals["main"] != null) Script.Call(Script.Globals["main"]);
+                while (_manualResetEvent.WaitOne()) { }
+            }
+            Console.WriteLine(Environment.NewLine);
             return 0;
         }
 
