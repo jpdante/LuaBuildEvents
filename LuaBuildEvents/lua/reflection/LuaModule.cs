@@ -15,5 +15,7 @@ namespace LuaBuildEvents.lua.reflection {
         
         public LuaModule(Module module) { this._module = module; }
 
+        // TODO: Methods and Variables
+
     }
 }
