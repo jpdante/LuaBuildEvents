@@ -114,11 +114,9 @@ namespace LuaBuildEvents {
                 Console.WriteLine(ex.StackTrace);
                 return ex.HResult;
             }
-            if (Script.Globals.Get("waitExit").Boolean) {
-                if (Script.Globals["main"] != null) Script.Call(Script.Globals["main"]);
-                while (_manualResetEvent.WaitOne()) { }
-            }
-            Console.WriteLine(Environment.NewLine);
+            if (!Script.Globals.Get("waitExit").Boolean) return 0;
+            if (Script.Globals["main"] != null) Script.Call(Script.Globals["main"]);
+            while (_manualResetEvent.WaitOne()) { }
             return 0;
         }
 

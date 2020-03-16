@@ -43,7 +43,6 @@ namespace LuaBuildEvents {
                 //Console.WriteLine(name + " - " + filename + Environment.NewLine);
                 var assembly = ResourceAssemblies[_namespaces.IndexOf(name)];
                 var pathName = FileNameToResource(name, filename);
-                Console.WriteLine(pathName);
                 if (assembly.GetManifestResourceInfo(pathName) != null) return true;
             }
             return File.Exists(filename);

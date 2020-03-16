@@ -20,4 +20,4 @@ FtpCompareResult = _csharp_getStaticType("FluentFTP.FtpCompareResult");
 FtpStatus = _csharp_getStaticType("FluentFTP.FtpStatus");
 --FtpHash = _csharp_getAssemblyType("FluentFTP.FtpHash");
 --DateTime = _csharp_getAssemblyType("System.DateTime");
-FtpClient = _csharp_getAssemblyType("LuaBuildEvents.FTP.LuaFtpClient")
+FtpClient = _csharp_getAssemblyType("LuaBuildEvents.FTP.fluentftp.LuaFtpClient")
