@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.MySqlConnector.mysqlconnector {
+namespace LuaBuildEvents.MySqlConnector {
     public class LuaMySqlTransaction {
         [MoonSharpVisible(false)]
         public MySqlTransaction Transaction;

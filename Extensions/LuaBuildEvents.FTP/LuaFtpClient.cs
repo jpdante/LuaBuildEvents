@@ -16,7 +16,7 @@ using MoonSharp.Interpreter.Interop;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.FTP.fluentftp {
+namespace LuaBuildEvents.FTP {
     public class LuaFtpClient {
 
         [MoonSharpVisible(false)]

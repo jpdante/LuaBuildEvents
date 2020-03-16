@@ -6,11 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="mysqlconnector\mysql.lua" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="mysqlconnector\mysql.lua" />
+    <EmbeddedResource Include="mysql.lua" />
   </ItemGroup>
 
   <ItemGroup>
