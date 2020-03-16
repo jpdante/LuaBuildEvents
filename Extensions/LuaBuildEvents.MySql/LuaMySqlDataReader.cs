@@ -8,7 +8,7 @@ using MySql.Data.Types;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
-namespace LuaBuildEvents.MySqlConnector {
+namespace LuaBuildEvents.MySql {
     public class LuaMySqlDataReader {
         private readonly MySqlDataReader _dataReader;
 
