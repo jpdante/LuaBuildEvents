@@ -21,7 +21,7 @@ namespace LuaBuildEvents {
         public void AddAssembly(Assembly assembly) {
             ResourceAssemblies.Add(assembly);
             _namespaces.Add(assembly.FullName.Split(',').First());
-            foreach (var resource in assembly.GetManifestResourceNames()) {
+            foreach (string resource in assembly.GetManifestResourceNames()) {
                 _resourceNames.Add(resource);
             }
         }
@@ -43,6 +43,7 @@ namespace LuaBuildEvents {
                 //Console.WriteLine(name + " - " + filename + Environment.NewLine);
                 var assembly = ResourceAssemblies[_namespaces.IndexOf(name)];
                 var pathName = FileNameToResource(name, filename);
+                Console.WriteLine(pathName);
                 if (assembly.GetManifestResourceInfo(pathName) != null) return true;
             }
             return File.Exists(filename);

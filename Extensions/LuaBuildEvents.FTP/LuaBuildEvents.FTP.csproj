@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="fluentftp\ftp.lua" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentFTP" Version="32.2.1" />
@@ -12,6 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\LuaBuildEvents\LuaBuildEvents.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="fluentftp\ftp.lua" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

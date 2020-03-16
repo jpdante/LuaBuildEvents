@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
+using LuaBuildEvents.lua.reflection;
 using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 
@@ -44,6 +45,9 @@ namespace LuaBuildEvents {
                     $"{Directory.GetCurrentDirectory()}/?.lua"
                 }
             };
+            foreach (string file in Directory.GetFiles(Directory.GetCurrentDirectory(), "LuaBuildEvents.*.dll", SearchOption.TopDirectoryOnly)) {
+                ScriptLoader.AddAssembly(Assembly.LoadFile(file));
+            }
             Script = new Script {
                 Options = {
                     ScriptLoader = ScriptLoader,
@@ -89,7 +93,8 @@ namespace LuaBuildEvents {
                 UserData.RegisterType(type);
                 return UserData.CreateStatic(type);
             });
-            Script.Globals["_csharp_loadAssembly"] = new Action<string>((requestedType) => { Assembly.Load(requestedType); });
+            Script.Globals["_csharp_loadAssembly"] = new Action<string>((requestedType) => new LuaAssembly(Assembly.Load(requestedType)));
+            Script.Globals["_csharp_loadAssemblyFile"] = new Func<string, LuaAssembly>((path) => new LuaAssembly(Assembly.LoadFile(path)));
             try {
                 Script.DoFile(filename);
             } catch (ScriptRuntimeException ex) {
@@ -118,14 +123,14 @@ namespace LuaBuildEvents {
         }
 
         private static Assembly CurrentDomainOnAssemblyResolve(object sender, ResolveEventArgs args) {
-            var pluginDependencyName = args.Name.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).First();
-            var path = getApplicationPath(pluginDependencyName + ".dll");
+            string pluginDependencyName = args.Name.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).First();
+            string path = GetApplicationPath(pluginDependencyName + ".dll");
             var assembly = Assembly.LoadFile(path);
             return assembly;
         }
 
-        public static string getApplicationPath(string fileName) {
-            var exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Split('\\', 2)[1];
+        public static string GetApplicationPath(string fileName) {
+            string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Split('\\', 2)[1];
             return Path.Combine(exePath, fileName);
         }
     }
