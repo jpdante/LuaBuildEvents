@@ -1,4 +1,4 @@
-﻿print("[LuaBuildEvents] Starting LuaBuildEvents.MySqlConnector PostBuild\n")
+﻿print("[LuaBuildEvents] Starting LuaBuildEvents.MySql PostBuild\n")
 require("lua.io")
 
 function execute(configuration, solution_folder)
@@ -9,12 +9,12 @@ function execute(configuration, solution_folder)
 	    Directory.createDirectory(outputDirectory)
 	end
 	File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySqlConnector/bin/Debug/netcoreapp3.1/LuaBuildEvents.MySqlConnector.dll]]),
-      Path.combine(outputDirectory, [[LuaBuildEvents.MySqlConnector.dll]]),
+      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Debug/netcoreapp3.1/LuaBuildEvents.MySql.dll]]),
+      Path.combine(outputDirectory, [[LuaBuildEvents.MySql.dll]]),
       true
     )
     File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySqlConnector/bin/Debug/netcoreapp3.1/MySqlConnector.dll]]),
+      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Debug/netcoreapp3.1/MySqlConnector.dll]]),
       Path.combine(outputDirectory, [[MySqlConnector.dll]]),
       true
     )
@@ -25,12 +25,12 @@ function execute(configuration, solution_folder)
 	    Directory.createDirectory(outputDirectory)
 	end
 	File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySqlConnector/bin/Release/netcoreapp3.1/LuaBuildEvents.MySqlConnector.dll]]),
-      Path.combine(outputDirectory, [[LuaBuildEvents.MySqlConnector.dll]]),
+      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Release/netcoreapp3.1/LuaBuildEvents.MySql.dll]]),
+      Path.combine(outputDirectory, [[LuaBuildEvents.MySql.dll]]),
       true
     )
     File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySqlConnector/bin/Release/netcoreapp3.1/MySqlConnector.dll]]),
+      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Release/netcoreapp3.1/MySqlConnector.dll]]),
       Path.combine(outputDirectory, [[MySqlConnector.dll]]),
       true
     )
@@ -38,4 +38,4 @@ function execute(configuration, solution_folder)
 end
 
 execute(args[2], args[3])
-print("[LuaBuildEvents] Finishing LuaBuildEvents.MySqlConnector PostBuild\n")
+print("[LuaBuildEvents] Finishing LuaBuildEvents.MySql PostBuild\n")
