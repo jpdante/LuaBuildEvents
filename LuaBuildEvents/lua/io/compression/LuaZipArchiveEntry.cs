@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Text;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter.Interop;
 
 // ReSharper disable InconsistentNaming
@@ -27,9 +28,9 @@ namespace LuaBuildEvents.lua.io.compression {
             get => _entry.ExternalAttributes;
             set => _entry.ExternalAttributes = value;
         }
-        public DateTimeOffset lastWriteTime {
-            get => _entry.LastWriteTime;
-            set => _entry.LastWriteTime = value;
+        public LuaDateTimeOffset lastWriteTime {
+            get => new LuaDateTimeOffset(_entry.LastWriteTime);
+            set => _entry.LastWriteTime = value.GetDateTimeOffset();
         }
 
         public LuaStream open() => new LuaStream(_entry.Open());

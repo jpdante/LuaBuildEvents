@@ -40,14 +40,9 @@ namespace LuaBuildEvents.lua.system.threading {
         public string name => _thread.Name;
         public string threadState => _thread.ThreadState.ToString();
 
-        public string priority {
-            get => _thread.Priority.ToString();
-            set {
-                if (!Enum.TryParse(value, out ThreadPriority result)) {
-                    _thread.Priority = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse ThreadPriority.");
-            }
+        public ThreadPriority priority {
+            get => _thread.Priority;
+            set => _thread.Priority = value;
         }
 
         #endregion

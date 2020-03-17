@@ -28,32 +28,16 @@ namespace LuaBuildEvents.lua.io.compression {
         public static void extractToDirectory(string sourceArchiveFileName, string destinationArchiveFileName, string encoding, bool overwriteFiles) => 
             ZipFile.ExtractToDirectory(sourceArchiveFileName, destinationArchiveFileName, Encoding.GetEncoding(encoding), overwriteFiles);
         
-        public static LuaZipArchive createFromDirectory(string sourceDirectoryName, string destinationArchiveFileName, string level, bool includeBaseDirectory) {
-            if (!Enum.TryParse(level, out CompressionLevel compressionLevel)) {
-                ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName, compressionLevel, includeBaseDirectory);
-            }
-            throw new ScriptRuntimeException("Failed to parse CompressionLevel.");
-        }
+        public static void createFromDirectory(string sourceDirectoryName, string destinationArchiveFileName, CompressionLevel compressionLevel, bool includeBaseDirectory) => 
+            ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName, compressionLevel, includeBaseDirectory);
 
-        public static LuaZipArchive createFromDirectory(string sourceDirectoryName, string destinationArchiveFileName, string level, bool includeBaseDirectory, string encoding) {
-            if (!Enum.TryParse(level, out CompressionLevel compressionLevel)) {
-                ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName, compressionLevel, includeBaseDirectory, Encoding.GetEncoding(encoding));
-            }
-            throw new ScriptRuntimeException("Failed to parse CompressionLevel.");
-        }
+        public static void createFromDirectory(string sourceDirectoryName, string destinationArchiveFileName, CompressionLevel compressionLevel, bool includeBaseDirectory, string encoding) => 
+            ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName, compressionLevel, includeBaseDirectory, Encoding.GetEncoding(encoding));
 
-        public static LuaZipArchive open(string path, string mode) {
-            if (!Enum.TryParse(mode, out ZipArchiveMode zipArchiveMode)) {
-                return new LuaZipArchive(ZipFile.Open(path, zipArchiveMode));
-            }
-            throw new ScriptRuntimeException("Failed to parse ZipArchiveMode.");
-        }
+        public static LuaZipArchive open(string path, ZipArchiveMode zipArchiveMode) =>
+            new LuaZipArchive(ZipFile.Open(path, zipArchiveMode));
 
-        public static LuaZipArchive open(string path, string mode, string encoding) {
-            if (!Enum.TryParse(mode, out ZipArchiveMode zipArchiveMode)) {
-                return new LuaZipArchive(ZipFile.Open(path, zipArchiveMode, Encoding.GetEncoding(encoding)));
-            }
-            throw new ScriptRuntimeException("Failed to parse ZipArchiveMode.");
-        }
+        public static LuaZipArchive open(string path, ZipArchiveMode zipArchiveMode, string encoding) => 
+            new LuaZipArchive(ZipFile.Open(path, zipArchiveMode, Encoding.GetEncoding(encoding)));
     }
 }

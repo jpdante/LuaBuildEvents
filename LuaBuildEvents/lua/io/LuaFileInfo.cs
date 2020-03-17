@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 
@@ -32,21 +33,16 @@ namespace LuaBuildEvents.lua.io {
         public bool exists => _fileInfo.Exists;
         public bool isReadOnly => _fileInfo.IsReadOnly;
         public long length => _fileInfo.Length;
-        public string attributes {
-            get => _fileInfo.Attributes.ToString();
-            set {
-                if (!Enum.TryParse(value, out FileAttributes result)) {
-                    _fileInfo.Attributes = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse FileAttributes.");
-            }
+        public FileAttributes attributes {
+            get => _fileInfo.Attributes;
+            set => _fileInfo.Attributes = value;
         }
-        public DateTime creationTime => _fileInfo.CreationTime;
-        public DateTime creationTimeUtc => _fileInfo.CreationTimeUtc;
-        public DateTime lastAccessTime => _fileInfo.LastAccessTime;
-        public DateTime lastAccessTimeUtc => _fileInfo.LastAccessTimeUtc;
-        public DateTime lastWriteTime => _fileInfo.LastWriteTime;
-        public DateTime lastWriteTimeUtc => _fileInfo.LastWriteTimeUtc;
+        public LuaDateTime creationTime => new LuaDateTime(_fileInfo.CreationTime);
+        public LuaDateTime creationTimeUtc => new LuaDateTime(_fileInfo.CreationTimeUtc);
+        public LuaDateTime lastAccessTime => new LuaDateTime(_fileInfo.LastAccessTime);
+        public LuaDateTime lastAccessTimeUtc => new LuaDateTime(_fileInfo.LastAccessTimeUtc);
+        public LuaDateTime lastWriteTime => new LuaDateTime(_fileInfo.LastWriteTime);
+        public LuaDateTime lastWriteTimeUtc => new LuaDateTime(_fileInfo.LastWriteTimeUtc);
 
         public LuaStreamWriter appendText() => new LuaStreamWriter(_fileInfo.AppendText());
         public LuaFileInfo copyTo(string destFileName) => new LuaFileInfo(_fileInfo.CopyTo(destFileName));
@@ -63,29 +59,8 @@ namespace LuaBuildEvents.lua.io {
         public LuaStreamWriter openWrite() => new LuaStreamWriter(_fileInfo.OpenWrite());
         public LuaFileInfo replace(string destinationFileName, string destinationBackupFileName) => new LuaFileInfo(_fileInfo.Replace(destinationFileName, destinationBackupFileName));
         public LuaFileInfo replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors) => new LuaFileInfo(_fileInfo.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors));
-        public LuaFileStream open(string mode) {
-            if (Enum.TryParse(mode, out FileMode fileMode)) {
-                return new LuaFileStream(_fileInfo.Open(fileMode));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
-        public LuaFileStream open(string mode, string access) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess)) {
-                return new LuaFileStream(_fileInfo.Open(fileMode, fileAccess));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
-        public LuaFileStream open(string mode, string access, string share) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess) &&
-                Enum.TryParse(share, out FileShare fileShare)) {
-                return new LuaFileStream(_fileInfo.Open(fileMode, fileAccess, fileShare));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
+        public LuaFileStream open(FileMode fileMode) => new LuaFileStream(_fileInfo.Open(fileMode));
+        public LuaFileStream open(FileMode fileMode, FileAccess fileAccess) => new LuaFileStream(_fileInfo.Open(fileMode, fileAccess));
+        public LuaFileStream open(FileMode fileMode, FileAccess fileAccess, FileShare fileShare) => new LuaFileStream(_fileInfo.Open(fileMode, fileAccess, fileShare));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 
 // ReSharper disable InconsistentNaming
@@ -28,61 +29,29 @@ namespace LuaBuildEvents.lua.io {
         public static string[] readAllLines(string path) => File.ReadAllLines(path);
         public static byte[] readAllBytes(string path) => File.ReadAllBytes(path);
         public static string getAttributes(string path) => File.GetAttributes(path).ToString();
-        public static DateTime getCreationTime(string path) => File.GetCreationTime(path);
-        public static DateTime getCreationTimeUtc(string path) => File.GetCreationTimeUtc(path);
-        public static DateTime getLastAccessTime(string path) => File.GetLastAccessTime(path);
-        public static DateTime getLastAccessTimeUtc(string path) => File.GetLastAccessTimeUtc(path);
-        public static DateTime getLastWriteTime(string path) => File.GetLastWriteTime(path);
-        public static DateTime getLastWriteTimeUtc(string path) => File.GetLastWriteTimeUtc(path);
+        public static LuaDateTime getCreationTime(string path) => new LuaDateTime(File.GetCreationTime(path));
+        public static LuaDateTime getCreationTimeUtc(string path) => new LuaDateTime(File.GetCreationTimeUtc(path));
+        public static LuaDateTime getLastAccessTime(string path) => new LuaDateTime(File.GetLastAccessTime(path));
+        public static LuaDateTime getLastAccessTimeUtc(string path) => new LuaDateTime(File.GetLastAccessTimeUtc(path));
+        public static LuaDateTime getLastWriteTime(string path) => new LuaDateTime(File.GetLastWriteTime(path));
+        public static LuaDateTime getLastWriteTimeUtc(string path) => new LuaDateTime(File.GetLastWriteTimeUtc(path));
         public static void decrypt(string path) => File.Decrypt(path);
         public static void encrypt(string path) => File.Encrypt(path);
         public static LuaFileStream openRead(string path) => new LuaFileStream(File.OpenRead(path));
         public static LuaFileStream openWrite(string path) => new LuaFileStream(File.OpenWrite(path));
         public static LuaStreamReader openText(string path) => new LuaStreamReader(File.OpenText(path));
-        public static void setCreationTime(string path, DateTime dateTime) => File.SetCreationTime(path, dateTime);
-        public static void setCreationTimeUtc(string path, DateTime dateTime) => File.SetCreationTimeUtc(path, dateTime);
-        public static void setLastAccessTime(string path, DateTime dateTime) => File.SetLastAccessTime(path, dateTime);
-        public static void setLastAccessTimeUtc(string path, DateTime dateTime) => File.SetLastAccessTimeUtc(path, dateTime);
-        public static void setLastWriteTime(string path, DateTime dateTime) => File.SetLastWriteTime(path, dateTime);
-        public static void setLastWriteTimeUtc(string path, DateTime dateTime) => File.SetLastWriteTimeUtc(path, dateTime);
+        public static void setCreationTime(string path, LuaDateTime luaDateTime) => File.SetCreationTime(path, luaDateTime.GetDateTime());
+        public static void setCreationTimeUtc(string path, LuaDateTime luaDateTime) => File.SetCreationTimeUtc(path, luaDateTime.GetDateTime());
+        public static void setLastAccessTime(string path, LuaDateTime luaDateTime) => File.SetLastAccessTime(path, luaDateTime.GetDateTime());
+        public static void setLastAccessTimeUtc(string path, LuaDateTime luaDateTime) => File.SetLastAccessTimeUtc(path, luaDateTime.GetDateTime());
+        public static void setLastWriteTime(string path, LuaDateTime luaDateTime) => File.SetLastWriteTime(path, luaDateTime.GetDateTime());
+        public static void setLastWriteTimeUtc(string path, LuaDateTime luaDateTime) => File.SetLastWriteTimeUtc(path, luaDateTime.GetDateTime());
         public static LuaFileStream create(string path) => new LuaFileStream(File.Create(path));
         public static LuaFileStream create(string path, int bufferSize) => new LuaFileStream(File.Create(path, bufferSize));
-        public static LuaFileStream create(string path, int bufferSize, string fileOptions) {
-            if (!Enum.TryParse(fileOptions, out FileOptions result)) {
-                return new LuaFileStream(File.Create(path, bufferSize, result));
-            }
-            throw new ScriptRuntimeException("Failed to parse FileAttributes.");
-        }
-        public static LuaFileStream open(string path, string mode) {
-            if (Enum.TryParse(mode, out FileMode fileMode)) {
-                return new LuaFileStream(File.Open(path, fileMode));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
-        public static LuaFileStream open(string path, string mode, string access) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess)) {
-                return new LuaFileStream(File.Open(path, fileMode, fileAccess));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
-        public static LuaFileStream open(string path, string mode, string access, string share) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess) &&
-                Enum.TryParse(share, out FileShare fileShare)) {
-                return new LuaFileStream(File.Open(path, fileMode, fileAccess, fileShare));
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
-        public static void setAttributes(string path, string attributes) {
-            if (Enum.TryParse(attributes, out FileAttributes fileAttributes)) { 
-                File.SetAttributes(path, fileAttributes);
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
-        }
+        public static LuaFileStream create(string path, int bufferSize, FileOptions fileOptions) => new LuaFileStream(File.Create(path, bufferSize, fileOptions));
+        public static LuaFileStream open(string path, FileMode fileMode) => new LuaFileStream(File.Open(path, fileMode));
+        public static LuaFileStream open(string path, FileMode fileMode, FileAccess fileAccess) => new LuaFileStream(File.Open(path, fileMode, fileAccess));
+        public static LuaFileStream open(string path, FileMode fileMode, FileAccess fileAccess, FileShare fileShare) => new LuaFileStream(File.Open(path, fileMode, fileAccess, fileShare));
+        public static void setAttributes(string path, FileAttributes fileAttributes) => File.SetAttributes(path, fileAttributes);
     }
 }

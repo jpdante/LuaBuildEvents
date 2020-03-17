@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 
@@ -22,21 +23,16 @@ namespace LuaBuildEvents.lua.io {
         public string fullName => _fileSystemInfo.FullName;
         public string extension => _fileSystemInfo.Extension;
         public bool exists => _fileSystemInfo.Exists;
-        public string attributes {
-            get => _fileSystemInfo.Attributes.ToString();
-            set {
-                if (!Enum.TryParse(value, out FileAttributes result)) {
-                    _fileSystemInfo.Attributes = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse FileAttributes.");
-            }
+        public FileAttributes attributes {
+            get => _fileSystemInfo.Attributes;
+            set => _fileSystemInfo.Attributes = value;
         }
-        public DateTime creationTime => _fileSystemInfo.CreationTime;
-        public DateTime creationTimeUtc => _fileSystemInfo.CreationTimeUtc;
-        public DateTime lastAccessTime => _fileSystemInfo.LastAccessTime;
-        public DateTime lastAccessTimeUtc => _fileSystemInfo.LastAccessTimeUtc;
-        public DateTime lastWriteTime => _fileSystemInfo.LastWriteTime;
-        public DateTime lastWriteTimeUtc => _fileSystemInfo.LastWriteTimeUtc;
+        public LuaDateTime creationTime => new LuaDateTime(_fileSystemInfo.CreationTime);
+        public LuaDateTime creationTimeUtc => new LuaDateTime(_fileSystemInfo.CreationTimeUtc);
+        public LuaDateTime lastAccessTime => new LuaDateTime(_fileSystemInfo.LastAccessTime);
+        public LuaDateTime lastAccessTimeUtc => new LuaDateTime(_fileSystemInfo.LastAccessTimeUtc);
+        public LuaDateTime lastWriteTime => new LuaDateTime(_fileSystemInfo.LastWriteTime);
+        public LuaDateTime lastWriteTimeUtc => new LuaDateTime(_fileSystemInfo.LastWriteTimeUtc);
 
         public void delete() => _fileSystemInfo.Delete();
         public void refresh() => _fileSystemInfo.Refresh();

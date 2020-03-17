@@ -102,14 +102,9 @@ namespace LuaBuildEvents.lua.system {
             set => _processStartInfo.UseShellExecute = value;
         }
 
-        public string windowStyle {
-            get => _processStartInfo.WindowStyle.ToString();
-            set {
-                if (!Enum.TryParse(value, out ProcessWindowStyle result)) {
-                    _processStartInfo.WindowStyle = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse ProcessWindowStyle.");
-            }
+        public ProcessWindowStyle windowStyle {
+            get => _processStartInfo.WindowStyle;
+            set => _processStartInfo.WindowStyle = value;
         }
 
         public bool redirectStandardInput {

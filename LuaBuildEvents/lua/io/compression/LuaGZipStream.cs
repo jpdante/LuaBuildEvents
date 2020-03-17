@@ -35,24 +35,9 @@ namespace LuaBuildEvents.lua.io.compression {
             this.SetStream(_gzipStream);
         }
 
-        public static LuaGZipStream New(LuaStream stream, string data) {
-            if (Enum.TryParse(data, out CompressionLevel compressionLevel)) {
-                return new LuaGZipStream(stream.GetStream(), compressionLevel);
-            }
-            if (Enum.TryParse(data, out CompressionMode compressionMode)) {
-                return new LuaGZipStream(stream.GetStream(), compressionMode);
-            }
-            throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-        }
-
-        public static LuaGZipStream New(LuaStream stream, string data, bool leaveOpen) {
-            if (Enum.TryParse(data, out CompressionLevel compressionLevel)) {
-                return new LuaGZipStream(stream.GetStream(), compressionLevel, leaveOpen);
-            }
-            if (Enum.TryParse(data, out CompressionMode compressionMode)) {
-                return new LuaGZipStream(stream.GetStream(), compressionMode, leaveOpen);
-            }
-            throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-        }
+        public static LuaGZipStream New(LuaStream stream, CompressionLevel compressionLevel) => new LuaGZipStream(stream.GetStream(), compressionLevel);
+        public static LuaGZipStream New(LuaStream stream, CompressionMode compressionMode) => new LuaGZipStream(stream.GetStream(), compressionMode);
+        public static LuaGZipStream New(LuaStream stream, CompressionLevel compressionLevel, bool leaveOpen) => new LuaGZipStream(stream.GetStream(), compressionLevel, leaveOpen);
+        public static LuaGZipStream New(LuaStream stream, CompressionMode compressionMode, bool leaveOpen) => new LuaGZipStream(stream.GetStream(), compressionMode, leaveOpen);
     }
 }

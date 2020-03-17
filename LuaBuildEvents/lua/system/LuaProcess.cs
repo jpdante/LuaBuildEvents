@@ -80,7 +80,7 @@ namespace LuaBuildEvents.lua.system {
         public string processName => _process.ProcessName;
         public int basePriority => _process.BasePriority;
         public int exitCode => _process.ExitCode;
-        public DateTime exitTime => _process.ExitTime;
+        public LuaDateTime exitTime => new LuaDateTime(_process.ExitTime);
         public int handleCount => _process.HandleCount;
         public bool hasExited => _process.HasExited;
         public int id => _process.Id;
@@ -91,13 +91,13 @@ namespace LuaBuildEvents.lua.system {
         public long peakVirtualMemorySize64 => _process.PeakVirtualMemorySize64;
         public long peakWorkingSet64 => _process.PeakWorkingSet64;
         public long privateMemorySize64 => _process.PrivateMemorySize64;
-        public TimeSpan privilegedProcessorTime => _process.PrivilegedProcessorTime;
+        public LuaTimeSpan privilegedProcessorTime => new LuaTimeSpan(_process.PrivilegedProcessorTime);
         public LuaStreamReader standardError => new LuaStreamReader(_process.StandardError);
         public LuaStreamWriter standardInput => new LuaStreamWriter(_process.StandardInput);
         public LuaStreamReader standardOutput => new LuaStreamReader(_process.StandardOutput);
-        public DateTime startTime => _process.StartTime;
-        public TimeSpan totalProcessorTime => _process.TotalProcessorTime;
-        public TimeSpan userProcessorTime => _process.UserProcessorTime;
+        public LuaDateTime startTime => new LuaDateTime(_process.StartTime);
+        public LuaTimeSpan totalProcessorTime => new LuaTimeSpan(_process.TotalProcessorTime);
+        public LuaTimeSpan userProcessorTime => new LuaTimeSpan(_process.UserProcessorTime);
         public bool responding => _process.Responding;
         public long virtualMemorySize64 => _process.VirtualMemorySize64;
         public long workingSet64 => _process.WorkingSet64;
@@ -112,14 +112,9 @@ namespace LuaBuildEvents.lua.system {
             set => _process.PriorityBoostEnabled = value;
         }
 
-        public string priorityClass {
-            get => _process.PriorityClass.ToString();
-            set {
-                if (!Enum.TryParse(value, out ProcessPriorityClass result)) {
-                    _process.PriorityClass = result;
-                }
-                throw new ScriptRuntimeException("Failed to parse ProcessPriorityClass.");
-            }
+        public ProcessPriorityClass priorityClass {
+            get => _process.PriorityClass;
+            set => _process.PriorityClass = value;
         }
         #endregion
 

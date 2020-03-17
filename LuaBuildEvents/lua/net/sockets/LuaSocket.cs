@@ -29,24 +29,8 @@ namespace LuaBuildEvents.lua.net.sockets {
             _socket = new Socket(socketType, protocolType);
         }
 
-        public static LuaSocket create(string addressFamily, string socketType, string protocolType) {
-            if (Enum.TryParse(addressFamily, out AddressFamily result1) &&
-                Enum.TryParse(socketType, out SocketType result2) &&
-                Enum.TryParse(protocolType, out ProtocolType result3)) {
-                return new LuaSocket(result1, result2, result3);
-            }
-
-            throw new ScriptRuntimeException("Failed to parse Enums.");
-        }
-
-        public static LuaSocket create(string socketType, string protocolType) {
-            if (Enum.TryParse(socketType, out SocketType result1) &&
-                Enum.TryParse(protocolType, out ProtocolType result2)) {
-                return new LuaSocket(result1, result2);
-            }
-
-            throw new ScriptRuntimeException("Failed to parse Enums.");
-        }
+        public static LuaSocket New(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType) => new LuaSocket(addressFamily, socketType, protocolType);
+        public static LuaSocket New(SocketType socketType, ProtocolType protocolType) => new LuaSocket(socketType, protocolType);
 
         public int available => _socket.Available;
 
@@ -96,7 +80,7 @@ namespace LuaBuildEvents.lua.net.sockets {
 
         public short ttl => _socket.Ttl;
 
-        public string addressFamily => _socket.AddressFamily.ToString();
+        public AddressFamily addressFamily => _socket.AddressFamily;
 
         public bool lingerStateEnabled {
             get => _socket.LingerState.Enabled;
@@ -108,7 +92,7 @@ namespace LuaBuildEvents.lua.net.sockets {
             set => _socket.LingerState.LingerTime = value;
         }
 
-        public string protocolType => _socket.ProtocolType.ToString();
+        public ProtocolType protocolType => _socket.ProtocolType;
 
         public int receiveTimeout {
             get => _socket.ReceiveTimeout;
@@ -120,11 +104,11 @@ namespace LuaBuildEvents.lua.net.sockets {
             set => _socket.SendTimeout = value;
         }
 
-        public string socketType => _socket.SocketType.ToString();
+        public SocketType socketType => _socket.SocketType;
 
-        public string localEndPoint => _socket.LocalEndPoint.ToString();
+        public LuaEndPoint localEndPoint => new LuaEndPoint(_socket.LocalEndPoint);
 
-        public string remoteEndPoint => _socket.RemoteEndPoint.ToString();
+        public LuaEndPoint remoteEndPoint => new LuaEndPoint(_socket.RemoteEndPoint);
 
         public int sendBufferSize {
             get => _socket.SendBufferSize;

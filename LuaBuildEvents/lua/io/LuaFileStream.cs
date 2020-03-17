@@ -15,33 +15,18 @@ namespace LuaBuildEvents.lua.io {
         [MoonSharpVisible(false)]
         public FileStream GetFileStream() => _fileStream;
 
-        public LuaFileStream(string path, string mode, string access, string share) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess) &&
-                Enum.TryParse(share, out FileShare fileShare)) {
-                _fileStream = new FileStream(path, fileMode, fileAccess, fileShare);
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
+        public LuaFileStream(string path, FileMode fileMode, FileAccess fileAccess, FileShare fileShare) {
+            _fileStream = new FileStream(path, fileMode, fileAccess, fileShare);
             this.SetStream(_fileStream);
         }
 
-        public LuaFileStream(string path, string mode, string access) {
-            if (Enum.TryParse(mode, out FileMode fileMode) &&
-                Enum.TryParse(access, out FileAccess fileAccess)) {
-                _fileStream = new FileStream(path, fileMode, fileAccess);
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
+        public LuaFileStream(string path, FileMode fileMode, FileAccess fileAccess) {
+            _fileStream = new FileStream(path, fileMode, fileAccess);
             this.SetStream(_fileStream);
         }
 
-        public LuaFileStream(string path, string mode) {
-            if (Enum.TryParse(mode, out FileMode fileMode)) {
-                _fileStream = new FileStream(path, fileMode);
-            } else {
-                throw new ScriptRuntimeException("Failed to parse FileStream arguments.");
-            }
+        public LuaFileStream(string path, FileMode fileMode) {
+            _fileStream = new FileStream(path, fileMode);
             this.SetStream(_fileStream);
         }
 
@@ -50,9 +35,9 @@ namespace LuaBuildEvents.lua.io {
             this.SetStream(_fileStream);
         }
 
-        public static LuaFileStream New(string path, string mode) => new LuaFileStream(path, mode);
-        public static LuaFileStream New(string path, string mode, string access) => new LuaFileStream(path, mode, access);
-        public static LuaFileStream New(string path, string mode, string access, string share) => new LuaFileStream(path, mode, access, share);
+        public static LuaFileStream New(string path, FileMode fileMode) => new LuaFileStream(path, fileMode);
+        public static LuaFileStream New(string path, FileMode fileMode, FileAccess fileAccess) => new LuaFileStream(path, fileMode, fileAccess);
+        public static LuaFileStream New(string path, FileMode fileMode, FileAccess fileAccess, FileShare fileShare) => new LuaFileStream(path, fileMode, fileAccess, fileShare);
 
         public string name => _fileStream.Name;
         public bool isAsync => _fileStream.IsAsync;

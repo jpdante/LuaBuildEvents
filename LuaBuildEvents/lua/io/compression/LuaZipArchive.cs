@@ -37,36 +37,16 @@ namespace LuaBuildEvents.lua.io.compression {
         }
 
         public static LuaZipArchive New(LuaStream stream) => new LuaZipArchive(stream.GetStream());
-        public static LuaZipArchive New(LuaStream stream, string mode) {
-            if (!Enum.TryParse(mode, out ZipArchiveMode zipArchiveMode)) {
-                return new LuaZipArchive(stream.GetStream(), zipArchiveMode);
-            }
-            throw new ScriptRuntimeException("Failed to parse SearchOption.");
-        }
-        public static LuaZipArchive New(LuaStream stream, string mode, bool leaveOpen) {
-            if (!Enum.TryParse(mode, out ZipArchiveMode zipArchiveMode)) {
-                return new LuaZipArchive(stream.GetStream(), zipArchiveMode, leaveOpen);
-            }
-            throw new ScriptRuntimeException("Failed to parse SearchOption.");
-        }
-        public static LuaZipArchive New(LuaStream stream, string mode, bool leaveOpen, string encoding) {
-            if (!Enum.TryParse(mode, out ZipArchiveMode zipArchiveMode)) {
-                return new LuaZipArchive(stream.GetStream(), zipArchiveMode, leaveOpen, Encoding.GetEncoding(encoding));
-            }
-            throw new ScriptRuntimeException("Failed to parse SearchOption.");
-        }
+        public static LuaZipArchive New(LuaStream stream, ZipArchiveMode zipArchiveMode) => new LuaZipArchive(stream.GetStream(), zipArchiveMode);
+        public static LuaZipArchive New(LuaStream stream, ZipArchiveMode zipArchiveMode, bool leaveOpen) => new LuaZipArchive(stream.GetStream(), zipArchiveMode, leaveOpen);
+        public static LuaZipArchive New(LuaStream stream, ZipArchiveMode zipArchiveMode, bool leaveOpen, string encoding) => new LuaZipArchive(stream.GetStream(), zipArchiveMode, leaveOpen, Encoding.GetEncoding(encoding));
 
         public string mode => _zipArchive.Mode.ToString();
         public List<LuaZipArchiveEntry> entries => _zipArchive.Entries.Select(entry => new LuaZipArchiveEntry(entry)).ToList();
 
         public LuaZipArchiveEntry createEntry(string entryName) => new LuaZipArchiveEntry(_zipArchive.CreateEntry(entryName));
 
-        public LuaZipArchiveEntry createEntry(string entryName, string level) {
-            if (!Enum.TryParse(level, out CompressionLevel compressionLevel)) {
-                return new LuaZipArchiveEntry(_zipArchive.CreateEntry(entryName, compressionLevel));
-            }
-            throw new ScriptRuntimeException("Failed to parse SearchOption.");
-        }
+        public LuaZipArchiveEntry createEntry(string entryName, CompressionLevel compressionLevel) => new LuaZipArchiveEntry(_zipArchive.CreateEntry(entryName, compressionLevel));
 
         public LuaZipArchiveEntry getEntry(string entryName) => new LuaZipArchiveEntry(_zipArchive.GetEntry(entryName));
 

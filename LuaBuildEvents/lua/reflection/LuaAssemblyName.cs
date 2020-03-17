@@ -5,6 +5,10 @@ using System.Text;
 using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter.Interop;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+
 namespace LuaBuildEvents.lua.reflection {
     public class LuaAssemblyName {
         [MoonSharpVisible(false)]

@@ -2,6 +2,10 @@
 using System.Net;
 using MoonSharp.Interpreter;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+
 namespace LuaBuildEvents.lua.net {
     public class LuaWebClientHeader {
         private readonly WebHeaderCollection _collection;

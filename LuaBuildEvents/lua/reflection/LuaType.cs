@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using MoonSharp.Interpreter.Interop;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+
 namespace LuaBuildEvents.lua.reflection {
     public class LuaType {
 
