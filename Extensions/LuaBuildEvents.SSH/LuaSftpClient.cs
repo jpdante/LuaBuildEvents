@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using LuaBuildEvents.lua.io;
+using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter.Interop;
 using Renci.SshNet;
 using Renci.SshNet.Common;
@@ -67,7 +68,7 @@ namespace LuaBuildEvents.SSH {
         }
 
         private void SftpClientOnHostKeyReceived(object sender, HostKeyEventArgs e) {
-            onHostKeyReceived?.Invoke(sender, new LuaAuthenticationPasswordChangeEventArgs(e));
+            onHostKeyReceived?.Invoke(sender, e);
         }
 
         #endregion
@@ -81,9 +82,9 @@ namespace LuaBuildEvents.SSH {
             set => _sftpClient.BufferSize = value;
         }
 
-        public double operationTimeout {
-            get => _sftpClient.OperationTimeout.TotalSeconds;
-            set => _sftpClient.OperationTimeout = TimeSpan.FromSeconds(value);
+        public LuaTimeSpan operationTimeout {
+            get => new LuaTimeSpan(_sftpClient.OperationTimeout);
+            set => _sftpClient.OperationTimeout = value.GetTimeSpan();
         }
 
         public int protocolVersion => _sftpClient.ProtocolVersion;
@@ -92,9 +93,9 @@ namespace LuaBuildEvents.SSH {
 
         public bool isConnected => _sftpClient.IsConnected;
 
-        public double keepAliveInterval {
-            get => _sftpClient.KeepAliveInterval.TotalSeconds;
-            set => _sftpClient.KeepAliveInterval = TimeSpan.FromSeconds(value);
+        public LuaTimeSpan keepAliveInterval {
+            get => new LuaTimeSpan(_sftpClient.KeepAliveInterval);
+            set => _sftpClient.KeepAliveInterval = value.GetTimeSpan();
         }
 
         #endregion
@@ -102,15 +103,15 @@ namespace LuaBuildEvents.SSH {
         #region Sync
 
         public void downloadFile() => _sftpClient.DownloadFile();
-        public void appendAllLines() => _sftpClient.AppendAllLines();
-        public void appendAllText() => _sftpClient.AppendAllText();
-        public void appendText() => _sftpClient.AppendText();
+        public void appendAllLines(string path, string[] lines) => _sftpClient.AppendAllLines(path, lines);
+        public void appendAllText(string path, string contents) => _sftpClient.AppendAllText(path, contents);
+        public LuaStreamWriter appendText(string path) => new LuaStreamWriter(_sftpClient.AppendText(path));
         public void beginDownloadFile() => _sftpClient.BeginDownloadFile();
         public void beginListDirectory() => _sftpClient.BeginListDirectory();
         public void beginSynchronizeDirectories() => _sftpClient.BeginSynchronizeDirectories();
         public void beginUploadFile() => _sftpClient.BeginUploadFile();
-        public void changeDirectory() => _sftpClient.ChangeDirectory();
-        public void changePermissions() => _sftpClient.ChangePermissions();
+        public void changeDirectory(string path) => _sftpClient.ChangeDirectory(path);
+        public void changePermissions(string path, short mode) => _sftpClient.ChangePermissions(path, mode);
         public LuaStream create(string path) => new LuaStream(_sftpClient.Create(path));
         public LuaStream create(string path, int buffer) => new LuaStream(_sftpClient.Create(path, buffer));
         public void createDirectory(string path) => _sftpClient.CreateDirectory(path);
@@ -141,16 +142,16 @@ namespace LuaBuildEvents.SSH {
         public string[] readAllLines(string path, string encoding) => _sftpClient.ReadAllLines(path, Encoding.GetEncoding(encoding));
         public string readAllText(string path) => _sftpClient.ReadAllText(path);
         public string readAllText(string path, string encoding) => _sftpClient.ReadAllText(path, Encoding.GetEncoding(encoding));
-        public void readLines() => _sftpClient.ReadLines();
+        public string[] readLines(string path) => _sftpClient.ReadLines(path).ToArray();
         public void renameFile(string oldPath, string newPath) => _sftpClient.RenameFile(oldPath, newPath);
         public void renameFile(string oldPath, string newPath, bool isPosix) => _sftpClient.RenameFile(oldPath, newPath, isPosix);
         public void setAttributes() => _sftpClient.SetAttributes();
         public void symbolicLink(string path, string linkPath) => _sftpClient.SymbolicLink(path, linkPath);
         public void synchronizeDirectories() => _sftpClient.SynchronizeDirectories();
         public void uploadFile() => _sftpClient.UploadFile();
-        public void writeAllBytes() => _sftpClient.WriteAllBytes();
-        public void writeAllLines() => _sftpClient.WriteAllLines();
-        public void writeAllText() => _sftpClient.WriteAllText();
+        public void writeAllBytes(string path, byte[] bytes) => _sftpClient.WriteAllBytes(path, bytes);
+        public void writeAllLines(string path, string[] lines) => _sftpClient.WriteAllLines(path, lines);
+        public void writeAllText(string path, string contents) => _sftpClient.WriteAllText(path, contents);
         public void connect() => _sftpClient.Connect();
         public void disconnect() => _sftpClient.Disconnect();
         public void dispose() => _sftpClient.Dispose();
