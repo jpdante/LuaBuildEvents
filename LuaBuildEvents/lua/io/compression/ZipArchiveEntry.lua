@@ -1,0 +1,1 @@
+﻿return _csharp_getType("io.compression.LuaZipArchiveEntry");
