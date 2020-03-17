@@ -18,84 +18,83 @@ namespace LuaBuildEvents.lua.system {
 
         #region Variables
 
-        public string title {
+        public static string title {
             get => Console.Title;
             set => Console.Title = value;
         }
 
-        public int bufferWidth {
+        public static int bufferWidth {
             get => Console.BufferWidth;
             set => Console.BufferWidth = value;
         }
 
-        public int bufferHeight {
+        public static int bufferHeight {
             get => Console.BufferHeight;
             set => Console.BufferHeight = value;
         }
 
-        public ConsoleColor backgroundColor {
+        public static ConsoleColor backgroundColor {
             get => Console.BackgroundColor;
             set => Console.BackgroundColor = value;
         }
 
-        public bool capsLock => Console.CapsLock;
+        public static bool capsLock => Console.CapsLock;
 
-        public int cursorLeft {
+        public static int cursorLeft {
             get => Console.CursorLeft;
             set => Console.CursorLeft = value;
         }
 
-        public int cursorSize {
+        public static int cursorSize {
             get => Console.CursorSize;
             set => Console.CursorSize = value;
         }
 
-        public int cursorTop {
+        public static int cursorTop {
             get => Console.CursorTop;
             set => Console.CursorTop = value;
         }
 
-        public bool cursorVisible {
+        public static bool cursorVisible {
             get => Console.CursorVisible;
             set => Console.CursorVisible = value;
         }
 
-        public ConsoleColor foregroundColor {
+        public static ConsoleColor foregroundColor {
             get => Console.ForegroundColor;
             set => Console.ForegroundColor = value;
         }
 
-        public string inputEncoding {
+        public static string inputEncoding {
             get => Console.InputEncoding?.ToString();
             set => Console.InputEncoding = Encoding.GetEncoding(value);
         }
 
-        public bool isErrorRedirected => Console.IsErrorRedirected;
+        public static bool isErrorRedirected => Console.IsErrorRedirected;
 
-        public bool isInputRedirected => Console.IsInputRedirected;
+        public static bool isInputRedirected => Console.IsInputRedirected;
 
-        public bool isOutputRedirected => Console.IsOutputRedirected;
+        public static bool isOutputRedirected => Console.IsOutputRedirected;
 
-        public bool keyAvailable => Console.KeyAvailable;
+        public static bool keyAvailable => Console.KeyAvailable;
 
-        public bool numberLock => Console.NumberLock;
+        public static bool numberLock => Console.NumberLock;
 
-        public bool treatControlCAsInput {
+        public static bool treatControlCAsInput {
             get => Console.TreatControlCAsInput;
             set => Console.TreatControlCAsInput = value;
         }
 
-        public int largestWindowHeight => Console.LargestWindowHeight;
+        public static int largestWindowHeight => Console.LargestWindowHeight;
 
-        public int largestWindowWidth => Console.LargestWindowWidth;
+        public static int largestWindowWidth => Console.LargestWindowWidth;
 
-        public string outputEncoding {
+        public static string outputEncoding {
             get => Console.OutputEncoding?.ToString();
             set => Console.OutputEncoding = Encoding.GetEncoding(value);
         }
 
         #endregion
-
 
         #region Sync
 

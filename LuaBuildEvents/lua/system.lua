@@ -11,3 +11,4 @@ Uri = _csharp_getType("system.LuaUri");
 -- Time
 DateTime = _csharp_getType("system.LuaDateTime");
 TimeSpan = _csharp_getType("system.LuaTimeSpan");
+TimeSpanOffset = _csharp_getType("system.LuaTimeSpanOffset");

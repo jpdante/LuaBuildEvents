@@ -1,10 +1,11 @@
-﻿using System.Security;
+﻿using System;
+using System.Security;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 // ReSharper disable IdentifierTypo
 
 namespace LuaBuildEvents.lua.security {
-    public class LuaSecureString {
+    public class LuaSecureString : IDisposable {
 
         private readonly SecureString _secureString;
 
@@ -15,5 +16,8 @@ namespace LuaBuildEvents.lua.security {
         public LuaSecureString(SecureString secureString) { _secureString = secureString; }
 
 
+        public void Dispose() {
+            _secureString?.Dispose();
+        }
     }
 }
