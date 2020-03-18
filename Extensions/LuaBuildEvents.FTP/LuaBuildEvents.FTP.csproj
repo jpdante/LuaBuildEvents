@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ftp\FtpClient.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentFTP" Version="32.2.1" />
     <PackageReference Include="MoonSharp" Version="2.0.0" />
   </ItemGroup>
@@ -16,6 +20,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="ftp.lua" />
+    <EmbeddedResource Include="ftp\FtpClient.lua" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

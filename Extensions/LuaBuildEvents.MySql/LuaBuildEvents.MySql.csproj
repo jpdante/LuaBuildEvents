@@ -6,7 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="mysql\MySqlCommand.lua" />
+    <None Remove="mysql\MySqlConnection.lua" />
+    <None Remove="mysql\MySqlDataReader.lua" />
+    <None Remove="mysql\MySqlParameters.lua" />
+    <None Remove="mysql\MySqlTransaction.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="mysql.lua" />
+    <EmbeddedResource Include="mysql\MySqlTransaction.lua" />
+    <EmbeddedResource Include="mysql\MySqlParameters.lua" />
+    <EmbeddedResource Include="mysql\MySqlDataReader.lua" />
+    <EmbeddedResource Include="mysql\MySqlConnection.lua" />
+    <EmbeddedResource Include="mysql\MySqlCommand.lua" />
   </ItemGroup>
 
   <ItemGroup>
