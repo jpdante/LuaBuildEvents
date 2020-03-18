@@ -7,10 +7,36 @@
 
   <ItemGroup>
     <None Remove="ssh.lua" />
+    <None Remove="ssh\AuthenticationMethod.lua" />
+    <None Remove="ssh\AuthenticationPasswordChangeEventArgs.lua" />
+    <None Remove="ssh\ConnectionInfo.lua" />
+    <None Remove="ssh\ForwardedPort.lua" />
+    <None Remove="ssh\PasswordAuthenticationMethod.lua" />
+    <None Remove="ssh\PrivateKeyAuthenticationMethod.lua" />
+    <None Remove="ssh\PrivateKeyFile.lua" />
+    <None Remove="ssh\SftpClient.lua" />
+    <None Remove="ssh\SftpFile.lua" />
+    <None Remove="ssh\SftpFileAttributes.lua" />
+    <None Remove="ssh\SftpFileSystemInformation.lua" />
+    <None Remove="ssh\SshClient.lua" />
+    <None Remove="ssh\SshCommand.lua" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ssh.lua" />
+    <EmbeddedResource Include="ssh\ConnectionInfo.lua" />
+    <EmbeddedResource Include="ssh\ForwardedPort.lua" />
+    <EmbeddedResource Include="ssh\PasswordAuthenticationMethod.lua" />
+    <EmbeddedResource Include="ssh\PrivateKeyAuthenticationMethod.lua" />
+    <EmbeddedResource Include="ssh\SftpFileAttributes.lua" />
+    <EmbeddedResource Include="ssh\SftpFile.lua" />
+    <EmbeddedResource Include="ssh\SshCommand.lua" />
+    <EmbeddedResource Include="ssh\SshClient.lua" />
+    <EmbeddedResource Include="ssh\SftpFileSystemInformation.lua" />
+    <EmbeddedResource Include="ssh\PrivateKeyFile.lua" />
+    <EmbeddedResource Include="ssh\SftpClient.lua" />
+    <EmbeddedResource Include="ssh\AuthenticationPasswordChangeEventArgs.lua" />
+    <EmbeddedResource Include="ssh\AuthenticationMethod.lua" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Timers;
 using LuaBuildEvents.lua.io;
 using LuaBuildEvents.lua.system;
 using MoonSharp.Interpreter;
@@ -208,7 +206,9 @@ namespace LuaBuildEvents.SSH {
             _sftpClient.DownloadFile(path, luaStream.GetStream(), obj => { Program.Script.Call(downloadCallback, obj); });
         }
         public void appendAllLines(string path, string[] lines) => _sftpClient.AppendAllLines(path, lines);
+        public void appendAllLines(string path, string[] lines, string encoding) => _sftpClient.AppendAllLines(path, lines, Encoding.GetEncoding(encoding));
         public void appendAllText(string path, string contents) => _sftpClient.AppendAllText(path, contents);
+        public void appendAllText(string path, string contents, string encoding) => _sftpClient.AppendAllText(path, contents, Encoding.GetEncoding(encoding));
         public LuaStreamWriter appendText(string path) => new LuaStreamWriter(_sftpClient.AppendText(path));
         public void changeDirectory(string path) => _sftpClient.ChangeDirectory(path);
         public void changePermissions(string path, short mode) => _sftpClient.ChangePermissions(path, mode);
@@ -221,19 +221,15 @@ namespace LuaBuildEvents.SSH {
         public void deleteDirectory(string path) => _sftpClient.DeleteDirectory(path);
         public void deleteFile(string path) => _sftpClient.DeleteFile(path);
         public bool exists(string path) => _sftpClient.Exists(path);
-        public void get() => _sftpClient.Get();
-        public void getAttributes() => _sftpClient.GetAttributes();
-        public void getLastAccessTime() => _sftpClient.GetLastAccessTime();
-        public void getLastAccessTimeUtc() => _sftpClient.GetLastAccessTimeUtc();
-        public void getLastWriteTime() => _sftpClient.GetLastWriteTime();
-        public void getLastWriteTimeUtc() => _sftpClient.GetLastWriteTimeUtc();
-        public void getStatus() => _sftpClient.GetStatus();
-        public void listDirectory(string path, DynValue listCallback) {
-            if (listCallback == null) {
-                return _sftpClient.ListDirectory(path);
-            }
-            return _sftpClient.ListDirectory(path, obj => { Program.Script.Call(listCallback, obj); });
-        }
+        public LuaSftpFile get(string path) => new LuaSftpFile(_sftpClient.Get(path));
+        public LuaSftpFileAttributes getAttributes(string path) => new LuaSftpFileAttributes(_sftpClient.GetAttributes(path));
+        public LuaDateTime getLastAccessTime(string path) => new LuaDateTime(_sftpClient.GetLastAccessTime(path));
+        public LuaDateTime getLastAccessTimeUtc(string path) => new LuaDateTime(_sftpClient.GetLastAccessTimeUtc(path));
+        public LuaDateTime getLastWriteTime(string path) => new LuaDateTime(_sftpClient.GetLastWriteTime(path));
+        public LuaDateTime getLastWriteTimeUtc(string path) => new LuaDateTime(_sftpClient.GetLastWriteTimeUtc(path));
+        public LuaSftpFileSystemInformation getStatus(string path) => new LuaSftpFileSystemInformation(_sftpClient.GetStatus(path));
+        public LuaSftpFile[] listDirectory(string path, DynValue listCallback) =>
+            listCallback == null ? _sftpClient.ListDirectory(path).Select(sftpFile => new LuaSftpFile(sftpFile)).ToArray() : _sftpClient.ListDirectory(path, obj => { Program.Script.Call(listCallback, obj); }).Select(sftpFile => new LuaSftpFile(sftpFile)).ToArray();
         public LuaStream open(string path, FileMode fileMode) => new LuaStream(_sftpClient.Open(path, fileMode));
         public LuaStream openRead(string path) => new LuaStream(_sftpClient.OpenRead(path));
         public LuaStreamReader openText(string path) => new LuaStreamReader(_sftpClient.OpenText(path));
@@ -246,7 +242,7 @@ namespace LuaBuildEvents.SSH {
         public string[] readLines(string path) => _sftpClient.ReadLines(path).ToArray();
         public void renameFile(string oldPath, string newPath) => _sftpClient.RenameFile(oldPath, newPath);
         public void renameFile(string oldPath, string newPath, bool isPosix) => _sftpClient.RenameFile(oldPath, newPath, isPosix);
-        public void setAttributes() => _sftpClient.SetAttributes();
+        public void setAttributes(string path, LuaSftpFileAttributes luaSftpFileAttributes) => _sftpClient.SetAttributes(path, luaSftpFileAttributes.GetSftpFileAttributes());
         public void symbolicLink(string path, string linkPath) => _sftpClient.SymbolicLink(path, linkPath);
         public LuaFileInfo[] synchronizeDirectories(string sourcePath, string destinationPath, string searchPattern) => 
             _sftpClient.SynchronizeDirectories(sourcePath, destinationPath, searchPattern).Select(fileInfo => new LuaFileInfo(fileInfo)).ToArray();
