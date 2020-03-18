@@ -60,6 +60,7 @@
     <None Remove="lua\system\DateTime.lua" />
     <None Remove="lua\system\DateTimeOffset.lua" />
     <None Remove="lua\system\Environment.lua" />
+    <None Remove="lua\system\IAsyncResult.lua" />
     <None Remove="lua\system\Process.lua" />
     <None Remove="lua\system\ProcessStartInfo.lua" />
     <None Remove="lua\system\threading.lua" />
@@ -110,6 +111,7 @@
     <EmbeddedResource Include="lua\security.lua" />
     <EmbeddedResource Include="lua\net.lua" />
     <EmbeddedResource Include="lua\io.lua" />
+    <EmbeddedResource Include="lua\system\IAsyncResult.lua" />
     <EmbeddedResource Include="lua\system\Uri.lua" />
     <EmbeddedResource Include="lua\system\TimeSpan.lua" />
     <EmbeddedResource Include="lua\system\ProcessStartInfo.lua" />

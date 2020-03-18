@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Timers;
 using LuaBuildEvents.lua.io;
 using LuaBuildEvents.lua.system;
+using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 using Renci.SshNet;
 using Renci.SshNet.Common;
@@ -100,16 +102,114 @@ namespace LuaBuildEvents.SSH {
 
         #endregion
 
+        #region Async
+
+        public LuaIAsyncResult beginDownloadFile(string path, LuaStream luaStream) => new LuaIAsyncResult(_sftpClient.BeginDownloadFile(path, luaStream.GetStream()));
+        public LuaIAsyncResult beginDownloadFile(string path, LuaStream luaStream, DynValue asyncCallBack) => new LuaIAsyncResult(_sftpClient.BeginDownloadFile(path, luaStream.GetStream(), ar => {
+            Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar));
+        }));
+        public LuaIAsyncResult beginDownloadFile(string path, LuaStream luaStream, DynValue asyncCallBack, DynValue state, DynValue downloadCallback) {
+            if (downloadCallback == null) {
+                return new LuaIAsyncResult(_sftpClient.BeginDownloadFile(
+                    path,
+                    luaStream.GetStream(),
+                    ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                    state
+                ));
+            }
+            return new LuaIAsyncResult(_sftpClient.BeginDownloadFile(
+                path,
+                luaStream.GetStream(),
+                ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                state,
+                obj => { Program.Script.Call(downloadCallback, obj); }
+            ));
+        }
+        public LuaIAsyncResult beginListDirectory(string path, DynValue asyncCallBack, DynValue state, DynValue listCallback) {
+            if (listCallback == null) {
+                return new LuaIAsyncResult(_sftpClient.BeginListDirectory(
+                    path, ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                    state
+                ));
+            }
+            return new LuaIAsyncResult(_sftpClient.BeginListDirectory(
+                path, ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                state,
+                i => { Program.Script.Call(listCallback, i); }
+            ));
+        }
+        public LuaIAsyncResult beginSynchronizeDirectories(string sourcePath, string destinationPath, string searchPattern, DynValue asyncCallBack, DynValue state) => new LuaIAsyncResult(_sftpClient.BeginSynchronizeDirectories(
+                sourcePath,
+                destinationPath,
+                searchPattern,
+                ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                state
+        ));
+        public LuaIAsyncResult beginUploadFile(LuaStream luaStream, string path) => new LuaIAsyncResult(_sftpClient.BeginUploadFile(luaStream.GetStream(), path));
+        public LuaIAsyncResult beginUploadFile(LuaStream luaStream, string path, DynValue asyncCallBack) => new LuaIAsyncResult(_sftpClient.BeginUploadFile(
+            luaStream.GetStream(),
+            path, 
+            ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); }
+        ));
+        public LuaIAsyncResult beginUploadFile(LuaStream luaStream, string path, DynValue asyncCallBack, DynValue state, DynValue uploadCallback) {
+            if (uploadCallback == null) {
+                return new LuaIAsyncResult(_sftpClient.BeginUploadFile(
+                    luaStream.GetStream(),
+                    path,
+                    ar => {
+                        Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar));
+                    },
+                    state
+                ));
+            }
+            return new LuaIAsyncResult(_sftpClient.BeginUploadFile(
+                luaStream.GetStream(),
+                path,
+                ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                state,
+                obj => { Program.Script.Call(uploadCallback, obj); }
+            ));
+        }
+        public LuaIAsyncResult beginUploadFile(LuaStream luaStream, string path, bool canOverride, DynValue asyncCallBack, DynValue state, DynValue uploadCallback) {
+            if (uploadCallback == null) {
+                return new LuaIAsyncResult(_sftpClient.BeginUploadFile(
+                    luaStream.GetStream(),
+                    path,
+                    canOverride,
+                    ar => {
+                        Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar));
+                    },
+                    state
+                ));
+            }
+            return new LuaIAsyncResult(_sftpClient.BeginUploadFile(
+                luaStream.GetStream(),
+                path,
+                canOverride,
+                ar => { Program.Script.Call(asyncCallBack, new LuaIAsyncResult(ar)); },
+                state,
+                obj => { Program.Script.Call(uploadCallback, obj); }
+            ));
+        }
+
+        public void endDownloadFile(LuaIAsyncResult luaIAsyncResult) => _sftpClient.EndDownloadFile(luaIAsyncResult.GetIAsyncResult());
+        public void endListDirectory(LuaIAsyncResult luaIAsyncResult) => _sftpClient.EndListDirectory(luaIAsyncResult.GetIAsyncResult());
+        public void endSynchronizeDirectories(LuaIAsyncResult luaIAsyncResult) => _sftpClient.EndSynchronizeDirectories(luaIAsyncResult.GetIAsyncResult());
+        public void endUploadFile(LuaIAsyncResult luaIAsyncResult) => _sftpClient.EndUploadFile(luaIAsyncResult.GetIAsyncResult());
+
+        #endregion
+
         #region Sync
 
-        public void downloadFile() => _sftpClient.DownloadFile();
+        public void downloadFile(string path, LuaStream luaStream, DynValue downloadCallback) {
+            if (downloadCallback == null) {
+                _sftpClient.DownloadFile(path, luaStream.GetStream());
+            }
+            _sftpClient.DownloadFile(path, luaStream.GetStream(), obj => { Program.Script.Call(downloadCallback, obj); });
+        }
         public void appendAllLines(string path, string[] lines) => _sftpClient.AppendAllLines(path, lines);
         public void appendAllText(string path, string contents) => _sftpClient.AppendAllText(path, contents);
         public LuaStreamWriter appendText(string path) => new LuaStreamWriter(_sftpClient.AppendText(path));
-        public void beginDownloadFile() => _sftpClient.BeginDownloadFile();
-        public void beginListDirectory() => _sftpClient.BeginListDirectory();
-        public void beginSynchronizeDirectories() => _sftpClient.BeginSynchronizeDirectories();
-        public void beginUploadFile() => _sftpClient.BeginUploadFile();
         public void changeDirectory(string path) => _sftpClient.ChangeDirectory(path);
         public void changePermissions(string path, short mode) => _sftpClient.ChangePermissions(path, mode);
         public LuaStream create(string path) => new LuaStream(_sftpClient.Create(path));
@@ -120,10 +220,6 @@ namespace LuaBuildEvents.SSH {
         public void delete(string path) => _sftpClient.Delete(path);
         public void deleteDirectory(string path) => _sftpClient.DeleteDirectory(path);
         public void deleteFile(string path) => _sftpClient.DeleteFile(path);
-        public void endDownloadFile() => _sftpClient.EndDownloadFile();
-        public void endListDirectory() => _sftpClient.EndListDirectory();
-        public void endSynchronizeDirectories() => _sftpClient.EndSynchronizeDirectories();
-        public void endUploadFile() => _sftpClient.EndUploadFile();
         public bool exists(string path) => _sftpClient.Exists(path);
         public void get() => _sftpClient.Get();
         public void getAttributes() => _sftpClient.GetAttributes();
@@ -132,7 +228,12 @@ namespace LuaBuildEvents.SSH {
         public void getLastWriteTime() => _sftpClient.GetLastWriteTime();
         public void getLastWriteTimeUtc() => _sftpClient.GetLastWriteTimeUtc();
         public void getStatus() => _sftpClient.GetStatus();
-        public void listDirectory() => _sftpClient.ListDirectory();
+        public void listDirectory(string path, DynValue listCallback) {
+            if (listCallback == null) {
+                return _sftpClient.ListDirectory(path);
+            }
+            return _sftpClient.ListDirectory(path, obj => { Program.Script.Call(listCallback, obj); });
+        }
         public LuaStream open(string path, FileMode fileMode) => new LuaStream(_sftpClient.Open(path, fileMode));
         public LuaStream openRead(string path) => new LuaStream(_sftpClient.OpenRead(path));
         public LuaStreamReader openText(string path) => new LuaStreamReader(_sftpClient.OpenText(path));
@@ -147,8 +248,20 @@ namespace LuaBuildEvents.SSH {
         public void renameFile(string oldPath, string newPath, bool isPosix) => _sftpClient.RenameFile(oldPath, newPath, isPosix);
         public void setAttributes() => _sftpClient.SetAttributes();
         public void symbolicLink(string path, string linkPath) => _sftpClient.SymbolicLink(path, linkPath);
-        public void synchronizeDirectories() => _sftpClient.SynchronizeDirectories();
-        public void uploadFile() => _sftpClient.UploadFile();
+        public LuaFileInfo[] synchronizeDirectories(string sourcePath, string destinationPath, string searchPattern) => 
+            _sftpClient.SynchronizeDirectories(sourcePath, destinationPath, searchPattern).Select(fileInfo => new LuaFileInfo(fileInfo)).ToArray();
+        public void uploadFile(LuaStream luaStream, string path, DynValue uploadCallback) {
+            if (uploadCallback == null) {
+                _sftpClient.UploadFile(luaStream.GetStream(), path);
+            }
+            _sftpClient.UploadFile(luaStream.GetStream(), path, obj => { Program.Script.Call(uploadCallback, obj); });
+        }
+        public void uploadFile(LuaStream luaStream, string path, bool canOverride, DynValue uploadCallback) {
+            if (uploadCallback == null) {
+                _sftpClient.UploadFile(luaStream.GetStream(), path, canOverride);
+            }
+            _sftpClient.UploadFile(luaStream.GetStream(), path, canOverride, obj => { Program.Script.Call(uploadCallback, obj); });
+        }
         public void writeAllBytes(string path, byte[] bytes) => _sftpClient.WriteAllBytes(path, bytes);
         public void writeAllLines(string path, string[] lines) => _sftpClient.WriteAllLines(path, lines);
         public void writeAllText(string path, string contents) => _sftpClient.WriteAllText(path, contents);
