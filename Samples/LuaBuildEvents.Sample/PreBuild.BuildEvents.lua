@@ -24,7 +24,7 @@ build = build + 1
 config.set("Build", build)
 config.save()
 
-templateFile = File.open(Path.combine(projectPath, "Version.template"), "Open")
+templateFile = File.open(Path.combine(projectPath, "Version.template"), FileMode.Open)
 reader = StreamReader.New(templateFile)
 templateData = reader.readToEnd()
 reader.close();
@@ -39,7 +39,7 @@ templateData = templateData:gsub("!Build", tostring(build))
 if File.exists(Path.combine(projectPath, "Version.generated.cs")) == false then
   File.create(Path.combine(projectPath, "Version.generated.cs")).dispose()
 end
-generatedFile = File.open(Path.combine(projectPath, "Version.generated.cs"), "Open")
+generatedFile = File.open(Path.combine(projectPath, "Version.generated.cs"), FileMode.Open)
 generatedFile.setLength(0)
 writer = StreamWriter.New(generatedFile)
 writer.write(templateData)

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LuaBuildEvents\LuaBuildEvents.csproj" />
+    <ProjectReference Include="..\..\LuaBuildEvents\LuaBuildEvents.csproj" />
   </ItemGroup>
 
   <ItemGroup>

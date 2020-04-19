@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll PreBuild.BuildEvents.lua $(ProjectDir)" />
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll $(ProjectDir)PreBuild.BuildEvents.lua $(ProjectDir)" />
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll PostBuild.BuildEvents.lua $(ProjectDir)" />
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll $(ProjectDir)PostBuild.BuildEvents.lua $(ProjectDir)" />
   </Target>
 
 </Project>

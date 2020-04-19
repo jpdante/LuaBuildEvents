@@ -2,6 +2,14 @@
 _csharp_loadAssembly("System.IO.FileSystem")
 _csharp_loadAssembly("System.IO.FileSystem.Watcher")
 
+-- Dependencies
+SearchOption = _csharp_getStaticType("System.IO.SearchOption");
+FileMode = _csharp_getStaticType("System.IO.FileMode");
+FileAccess = _csharp_getStaticType("System.IO.FileAccess");
+FileShare = _csharp_getStaticType("System.IO.FileShare");
+FileAttributes = _csharp_getStaticType("System.IO.FileAttributes");
+FileOptions = _csharp_getStaticType("System.IO.FileOptions");
+
 -- Path
 Path = _csharp_getType("io.LuaPath");
 

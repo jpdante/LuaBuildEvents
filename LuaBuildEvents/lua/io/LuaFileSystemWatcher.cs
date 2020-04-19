@@ -75,7 +75,7 @@ namespace LuaBuildEvents.lua.io {
         public event EventHandler onRenamed;
         public event EventHandler onDisposed;
 
-        private void FileSystemWatcherOnDisposed(object? sender, EventArgs e) {
+        private void FileSystemWatcherOnDisposed(object sender, EventArgs e) {
             onDisposed?.Invoke(this, e);
         }
 

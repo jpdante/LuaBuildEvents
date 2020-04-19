@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/jpdante/LuaBuildEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jpdante/LuaBuildEvents</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>1.3.1.0</AssemblyVersion>
-    <FileVersion>1.3.1.0</FileVersion>
-    <Version>1.3.1</Version>
+    <AssemblyVersion>1.3.2.0</AssemblyVersion>
+    <FileVersion>1.3.2.0</FileVersion>
+    <Version>1.3.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -131,9 +131,5 @@
   <ItemGroup>
     <EmbeddedResource Include="lua\io\compression.lua" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="::dotnet $(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.0\$(TargetFileName) $(ProjectDir)Publish.BuildEvents.lua $(ProjectDir) $(ConfigurationName)" />
-  </Target>
 
 </Project>

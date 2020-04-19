@@ -5,22 +5,24 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents", "LuaBuildEvents\LuaBuildEvents.csproj", "{B22D21A0-622D-4103-A197-3F7AB4A05246}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.Test", "LuaBuildEvents.Test\LuaBuildEvents.Test.csproj", "{3B1DB9B7-B8AD-4060-B203-21706D60B53B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{220C56D9-90FD-4D9A-A860-CE5BCB55A163}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.Sample", "LuaBuildEvents.Sample\LuaBuildEvents.Sample.csproj", "{16E1A0C6-F24D-497C-8A38-6513E6F5272C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B22D21A0-622D-4103-A197-3F7AB4A05246} = {B22D21A0-622D-4103-A197-3F7AB4A05246}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F20D1581-D0F1-40D1-94B6-A23B23550048}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.FTP", "Extensions\LuaBuildEvents.FTP\LuaBuildEvents.FTP.csproj", "{8B32CEA5-01C7-4812-A013-3622275D34E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaBuildEvents.SSH", "Extensions\LuaBuildEvents.SSH\LuaBuildEvents.SSH.csproj", "{84C8C0D9-73B9-4372-94D5-B19DD37F2636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.SSH", "Extensions\LuaBuildEvents.SSH\LuaBuildEvents.SSH.csproj", "{84C8C0D9-73B9-4372-94D5-B19DD37F2636}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.MySql", "Extensions\LuaBuildEvents.MySql\LuaBuildEvents.MySql.csproj", "{8F8D980A-1606-4568-B2A4-B355EBE7013D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{614B0A95-7720-40EE-B5E5-F66F03A19F0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.Test", "Tests\LuaBuildEvents.Test\LuaBuildEvents.Test.csproj", "{EC8905AF-8011-4BCA-9B29-EC238F339735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuaBuildEvents.Sample", "Samples\LuaBuildEvents.Sample\LuaBuildEvents.Sample.csproj", "{364F05A7-8F50-48F3-94E6-8AADE2CDF532}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B22D21A0-622D-4103-A197-3F7AB4A05246} = {B22D21A0-622D-4103-A197-3F7AB4A05246}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +34,6 @@ Global
 		{B22D21A0-622D-4103-A197-3F7AB4A05246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22D21A0-622D-4103-A197-3F7AB4A05246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22D21A0-622D-4103-A197-3F7AB4A05246}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B1DB9B7-B8AD-4060-B203-21706D60B53B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B1DB9B7-B8AD-4060-B203-21706D60B53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B1DB9B7-B8AD-4060-B203-21706D60B53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B1DB9B7-B8AD-4060-B203-21706D60B53B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16E1A0C6-F24D-497C-8A38-6513E6F5272C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B32CEA5-01C7-4812-A013-3622275D34E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B32CEA5-01C7-4812-A013-3622275D34E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B32CEA5-01C7-4812-A013-3622275D34E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,15 +46,24 @@ Global
 		{8F8D980A-1606-4568-B2A4-B355EBE7013D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F8D980A-1606-4568-B2A4-B355EBE7013D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F8D980A-1606-4568-B2A4-B355EBE7013D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8905AF-8011-4BCA-9B29-EC238F339735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8905AF-8011-4BCA-9B29-EC238F339735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8905AF-8011-4BCA-9B29-EC238F339735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8905AF-8011-4BCA-9B29-EC238F339735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364F05A7-8F50-48F3-94E6-8AADE2CDF532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364F05A7-8F50-48F3-94E6-8AADE2CDF532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364F05A7-8F50-48F3-94E6-8AADE2CDF532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364F05A7-8F50-48F3-94E6-8AADE2CDF532}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3B1DB9B7-B8AD-4060-B203-21706D60B53B} = {F20D1581-D0F1-40D1-94B6-A23B23550048}
 		{8B32CEA5-01C7-4812-A013-3622275D34E6} = {220C56D9-90FD-4D9A-A860-CE5BCB55A163}
 		{84C8C0D9-73B9-4372-94D5-B19DD37F2636} = {220C56D9-90FD-4D9A-A860-CE5BCB55A163}
 		{8F8D980A-1606-4568-B2A4-B355EBE7013D} = {220C56D9-90FD-4D9A-A860-CE5BCB55A163}
+		{EC8905AF-8011-4BCA-9B29-EC238F339735} = {F20D1581-D0F1-40D1-94B6-A23B23550048}
+		{364F05A7-8F50-48F3-94E6-8AADE2CDF532} = {614B0A95-7720-40EE-B5E5-F66F03A19F0D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C650BE3C-E02D-414E-A3C3-EBA5FED604C5}
