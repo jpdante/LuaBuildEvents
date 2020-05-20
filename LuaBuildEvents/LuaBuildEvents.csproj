@@ -18,7 +18,7 @@
     <None Remove="lua\config.lua" />
     <None Remove="lua\config\fastconfig.lua" />
     <None Remove="lua\io.lua" />
-    <None Remove="lua\io\Compression.lua" />
+    <None Remove="lua\io\compression.lua" />
     <None Remove="lua\io\compression\DeflateStream.lua" />
     <None Remove="lua\io\compression\GZipStream.lua" />
     <None Remove="lua\io\compression\ZipArchive.lua" />
@@ -129,7 +129,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="lua\io\Compression.lua" />
+    <EmbeddedResource Include="lua\io\compression.lua" />
   </ItemGroup>
 
 </Project>
