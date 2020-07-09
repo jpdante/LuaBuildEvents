@@ -10,6 +10,7 @@ namespace LuaBuildEvents.lua.io {
     public static class LuaDirectory {
         public static bool exists(string path) => Directory.Exists(path);
         public static void delete(string path) => Directory.Delete(path);
+        public static void delete(string path, bool recursive) => Directory.Delete(path, recursive);
         public static void move(string from, string to) => Directory.Move(from, to);
         public static string getCurrentDirectory() => Directory.GetCurrentDirectory();
         public static void createDirectory(string path) => Directory.CreateDirectory(path);

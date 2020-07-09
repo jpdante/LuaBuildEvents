@@ -56,6 +56,7 @@ namespace LuaBuildEvents {
                 DebuggerEnabled = true
             };
             UserData.RegisterType<LuaConsole>();
+            UserData.RegisterType<EventArgs>();
             Script.Globals["waitExit"] = false;
             Script.Globals["args"] = args;
             Script.Globals["exit"] = new Action<int>(Environment.Exit);
