@@ -1,1 +1,1 @@
-﻿return _csharp_getType("LuaBuildEvents.SSH.LuaSftpFileSystemInformation");
+﻿return _csharp_getAssemblyType("LuaBuildEvents.SSH.LuaSftpFileSystemInformation");

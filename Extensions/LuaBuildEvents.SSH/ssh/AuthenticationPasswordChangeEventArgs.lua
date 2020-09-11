@@ -1,1 +1,1 @@
-﻿return _csharp_getType("LuaBuildEvents.SSH.LuaAuthenticationPasswordChangeEventArgs");
+﻿return _csharp_getAssemblyType("LuaBuildEvents.SSH.LuaAuthenticationPasswordChangeEventArgs");

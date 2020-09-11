@@ -1,1 +1,1 @@
-﻿return _csharp_getType("LuaBuildEvents.SSH.LuaForwardedPort");
+﻿return _csharp_getAssemblyType("LuaBuildEvents.SSH.LuaForwardedPort");

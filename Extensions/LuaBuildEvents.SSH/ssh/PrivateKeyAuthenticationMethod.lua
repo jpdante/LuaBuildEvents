@@ -1,1 +1,1 @@
-﻿return _csharp_getType("LuaBuildEvents.SSH.LuaPrivateKeyAuthenticationMethod");
+﻿return _csharp_getAssemblyType("LuaBuildEvents.SSH.LuaPrivateKeyAuthenticationMethod");

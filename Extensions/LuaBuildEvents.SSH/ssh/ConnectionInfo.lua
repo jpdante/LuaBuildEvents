@@ -1,1 +1,1 @@
-﻿return _csharp_getType("LuaBuildEvents.SSH.LuaConnectionInfo");
+﻿return _csharp_getAssemblyType("LuaBuildEvents.SSH.LuaConnectionInfo");
