@@ -98,15 +98,15 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Files]
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\publish-windows-x64\LuaBuildEvents.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\FluentFTP.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.FTP.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.MySql.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.SSH.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\MySqlConnector.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\SshNet.Security.Cryptography.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\Publish\windows-x64\LuaBuildEvents.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\FluentFTP.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\LuaBuildEvents.FTP.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\LuaBuildEvents.MySql.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\LuaBuildEvents.SSH.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\MySqlConnector.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\SshNet.Security.Cryptography.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jpdante\Documents\GitHub\LuaBuildEvents\LuaBuildEvents\bin\x64\Release\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

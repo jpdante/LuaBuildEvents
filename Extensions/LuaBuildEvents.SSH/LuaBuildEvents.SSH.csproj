@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,7 +50,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\Debug\netcoreapp3.1\LuaBuildEvents.dll $(SolutionDir)Extensions\$(ProjectName)\PostBuild.BuildEvents.lua $(ConfigurationName) $(SolutionDir)" />
+    <Exec Command="dotnet $(SolutionDir)LuaBuildEvents\bin\x64\$(ConfigurationName)\netcoreapp3.1\LuaBuildEvents.dll $(SolutionDir)Extensions\$(ProjectName)\PostBuild.BuildEvents.lua $(ConfigurationName) $(SolutionDir) $(TargetDir)" />
   </Target>
 
 </Project>

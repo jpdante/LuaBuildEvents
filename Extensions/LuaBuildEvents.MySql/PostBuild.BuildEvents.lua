@@ -1,41 +1,41 @@
 ﻿print("[LuaBuildEvents] Starting LuaBuildEvents.MySql PostBuild\n")
 require("lua.io")
 
-function execute(configuration, solution_folder)
-  if args[2] == "Debug" then
+function execute(configuration, solution_folder, target_folder)
+  if configuration == "Debug" then
     print("[LuaBuildEvents] Running in Debug Mode\n")
-    outputDirectory = Path.combine(args[3], [[LuaBuildEvents/bin/Debug/netcoreapp3.1]])
+    outputDirectory = Path.combine(solution_folder, [[LuaBuildEvents/bin/x64/Release/netcoreapp3.1]])
     if Directory.exists(outputDirectory) == false then
 	    Directory.createDirectory(outputDirectory)
 	end
 	File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Debug/netcoreapp3.1/LuaBuildEvents.MySql.dll]]),
-      Path.combine(outputDirectory, [[LuaBuildEvents.MySql.dll]]),
+      Path.combine(solution_folder, target_folder, "LuaBuildEvents.MySql.dll"),
+      Path.combine(outputDirectory, "LuaBuildEvents.MySql.dll"),
       true
     )
     File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Debug/netcoreapp3.1/MySqlConnector.dll]]),
-      Path.combine(outputDirectory, [[MySqlConnector.dll]]),
+      Path.combine(solution_folder, target_folder, "MySqlConnector.dll"),
+      Path.combine(outputDirectory, "MySqlConnector.dll"),
       true
     )
-  elseif args[2] == "Release" then
+  elseif configuration == "Release" then
     print("[LuaBuildEvents] Running in Release Mode\n")
-    outputDirectory = Path.combine(args[3], [[LuaBuildEvents/bin/Release/netcoreapp3.1]])
+    outputDirectory = Path.combine(solution_folder, [[LuaBuildEvents/bin/x64/Release/netcoreapp3.1]])
     if Directory.exists(outputDirectory) == false then
 	    Directory.createDirectory(outputDirectory)
 	end
 	File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Release/netcoreapp3.1/LuaBuildEvents.MySql.dll]]),
-      Path.combine(outputDirectory, [[LuaBuildEvents.MySql.dll]]),
+      Path.combine(solution_folder, target_folder, "LuaBuildEvents.MySql.dll"),
+      Path.combine(outputDirectory, "LuaBuildEvents.MySql.dll"),
       true
     )
     File.copy(
-      Path.combine(solution_folder, [[Extensions/LuaBuildEvents.MySql/bin/Release/netcoreapp3.1/MySqlConnector.dll]]),
-      Path.combine(outputDirectory, [[MySqlConnector.dll]]),
+      Path.combine(solution_folder, target_folder, "MySqlConnector.dll"),
+      Path.combine(outputDirectory, "MySqlConnector.dll"),
       true
     )
   end
 end
 
-execute(args[2], args[3])
+execute(args[2], args[3], args[4])
 print("[LuaBuildEvents] Finishing LuaBuildEvents.MySql PostBuild\n")
