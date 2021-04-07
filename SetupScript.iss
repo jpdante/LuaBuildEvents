@@ -30,6 +30,7 @@ Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 ChangesEnvironment=true
+ArchitecturesInstallIn64BitMode=x64
 
 [Code]
 const EnvironmentKey = 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment';
