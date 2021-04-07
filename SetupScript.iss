@@ -61,7 +61,7 @@ var
 begin
     { Skip if registry entry not exists }
     if not RegQueryStringValue(HKEY_LOCAL_MACHINE, EnvironmentKey, 'Path', Paths) then
-        exit;
+      exit;
 
     { Skip if string not found in path }
     P := Pos(';' + Uppercase(Path) + ';', ';' + Uppercase(Paths) + ';');
@@ -78,14 +78,18 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
-    if CurStep = ssPostInstall 
-     then EnvAddPath(ExpandConstant('{app}') +'\bin');
+    if CurStep = ssPostInstall then
+    begin
+      EnvAddPath(ExpandConstant('{app}'));
+    end;
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 begin
-    if CurUninstallStep = usPostUninstall
-    then EnvRemovePath(ExpandConstant('{app}') +'\bin');
+    if CurUninstallStep = usPostUninstall then
+    begin
+      EnvRemovePath(ExpandConstant('{app}'));
+    end;
 end;
 
 [Languages]
