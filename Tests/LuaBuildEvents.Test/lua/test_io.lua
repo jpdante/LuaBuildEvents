@@ -40,7 +40,7 @@ writer.close();
 writer.dispose();
 fileStream.dispose();
 
-fileStream = File.open("test-folder/test-file.txt", "Open")
+fileStream = File.open("test-folder/test-file.txt", FileMode.Open)
 
 if isempty(fileStream) then
 print("# 4 - Open file 'test-folder/test-file.txt'         X\n")
@@ -112,7 +112,7 @@ print("# 9 - Extract zip 'testzip.zip'                     X\n")
 end
 
 fileStream = File.create("test-folder/test-gzip.txt")
-gzip = GZipStream.New(fileStream, "Compress")
+gzip = GZipStream.New(fileStream, CompressionMode.Compress)
 writer = StreamWriter.New(gzip)
 writer.write("Test GZip ;)")
 writer.flush()
@@ -121,8 +121,8 @@ writer.dispose();
 gzip.dispose();
 fileStream.dispose();
 
-fileStream = File.open("test-folder/test-gzip.txt", "Open")
-gzip = GZipStream.New(fileStream, "Decompress")
+fileStream = File.open("test-folder/test-gzip.txt", FileMode.Open)
+gzip = GZipStream.New(fileStream, CompressionMode.Decompress)
 reader = StreamReader.New(gzip)
 data = reader.readToEnd()
 reader.close();
@@ -138,7 +138,7 @@ print("#10 - GZip stream 'test-gzip.txt'                   X\n")
 end
 
 fileStream = File.create("test-folder/test-deflate.txt")
-deflate = DeflateStream.New(fileStream, "Compress")
+deflate = DeflateStream.New(fileStream, CompressionMode.Compress)
 writer = StreamWriter.New(deflate)
 writer.write("Test Deflate ;)")
 writer.flush()
@@ -147,8 +147,8 @@ writer.dispose();
 deflate.dispose();
 fileStream.dispose();
 
-fileStream = File.open("test-folder/test-deflate.txt", "Open")
-deflate = DeflateStream.New(fileStream, "Decompress")
+fileStream = File.open("test-folder/test-deflate.txt", FileMode.Open)
+deflate = DeflateStream.New(fileStream, CompressionMode.Decompress)
 reader = StreamReader.New(deflate)
 data = reader.readToEnd()
 reader.close();
@@ -187,7 +187,7 @@ print("#13 - Delete directory 'test-folder'                V\n")
 test_count = test_count + 1
 end
 
-Directory.delete("test-folder2")
+--Directory.delete("test-folder2")
 print("-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
 if test_count == 14 then
 print("              All tests have passed!\n")

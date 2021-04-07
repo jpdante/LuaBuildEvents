@@ -67,11 +67,11 @@
     <None Remove="lua\system\threading\Thread.lua" />
     <None Remove="lua\system\TimeSpan.lua" />
     <None Remove="lua\system\Uri.lua" />
+    <None Remove="lua\timers.lua" />
     <None Remove="lua\timers\Timer.lua" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="lua\timers.lua" />
     <EmbeddedResource Include="lua\config.lua" />
     <EmbeddedResource Include="lua\config\fastconfig.lua" />
     <EmbeddedResource Include="lua\io\compression\ZipFile.lua" />
@@ -123,6 +123,7 @@
     <EmbeddedResource Include="lua\system\DateTime.lua" />
     <EmbeddedResource Include="lua\system\threading.lua" />
     <EmbeddedResource Include="lua\system\threading\Thread.lua" />
+    <EmbeddedResource Include="lua\timers.lua" />
     <EmbeddedResource Include="lua\timers\Timer.lua" />
   </ItemGroup>
 

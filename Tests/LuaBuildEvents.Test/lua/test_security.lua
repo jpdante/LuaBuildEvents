@@ -67,7 +67,7 @@ writer.close();
 writer.dispose();
 fileStream.dispose();
 
-fileStream = File.open("hash-file.txt", "Open")
+fileStream = File.open("hash-file.txt", FileMode.Open)
 
 md5String = FileHash.hashStreamToString("MD5", fileStream)
 sha1String = FileHash.hashStreamToString("SHA-1", fileStream)
